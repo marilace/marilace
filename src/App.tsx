@@ -1,4 +1,4 @@
-import { Rotas } from './rotas/Rotas'
+import { Rotas } from './routes/Rotas'
 import { AutenticacaoProvider } from './contexts/AutenticacaoContexto'
 import { AcessibilidadeProvider } from './contexts/AcessibilidadeContexto'
 

@@ -3,6 +3,8 @@ import styles from './ModalPostagem.module.css'
 import { TbUser, TbPhotoPlus, TbMoodSmile, TbSettings, TbX } from "react-icons/tb";
 import { usePublicacoes } from '../../hooks/usePublicacoes'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
+import EmojiPicker, { EmojiStyle, Theme } from 'emoji-picker-react'
+import type { EmojiClickData } from 'emoji-picker-react'
 
 type ModalPostagemProps = {
     aberto: boolean;
@@ -21,6 +23,12 @@ export function ModalPostagem({ aberto, fechar }: ModalPostagemProps) {
 
     const inputImagemRef = useRef<HTMLInputElement>(null)
 
+    const [pickerEmojiAberto, setPickerEmojiAberto] = useState(false)
+
+    const aoSelecionarEmoji = (emojiData: EmojiClickData) => {
+        setTexto((atual) => atual + emojiData.emoji)
+    }
+
     if (!aberto) return null
 
     const limparEFechar = () => {
@@ -28,6 +36,7 @@ export function ModalPostagem({ aberto, fechar }: ModalPostagemProps) {
         setArquivoImagem(null)
         setPreviewImagem(null)
         setErro('')
+        setPickerEmojiAberto(false)
         fechar()
     }
 
@@ -120,7 +129,30 @@ export function ModalPostagem({ aberto, fechar }: ModalPostagemProps) {
                             onChange={aoSelecionarImagem}
                             style={{ display: 'none' }}
                         />
-                        <TbMoodSmile size={24} className={styles.acao} />
+                        <div className={styles.acaoEmoji}>
+                            <TbMoodSmile
+                                size={24}
+                                className={styles.acao}
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => setPickerEmojiAberto((atual) => !atual)}
+                                aria-label="Adicionar emoji"
+                            />
+                            {pickerEmojiAberto && (
+                                <div className={styles.emojiPickerContainer}>
+                                    <EmojiPicker
+                                        onEmojiClick={aoSelecionarEmoji}
+                                        theme={Theme.LIGHT}
+                                        emojiStyle={EmojiStyle.NATIVE}
+                                        autoFocusSearch={false}
+                                        searchPlaceholder="Buscar emoji..."
+                                        previewConfig={{ showPreview: false }}
+                                        width={380}
+                                        height={320}
+                                        lazyLoadEmojis
+                                    />
+                                </div>
+                            )}
+                        </div>
                         <TbSettings size={24} className={styles.acao} />
                     </div>
                     <div className={styles.btnsPostagem}>

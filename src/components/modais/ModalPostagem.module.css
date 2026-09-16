@@ -123,6 +123,49 @@ main{
     cursor: pointer;
 }
 
+.acaoEmoji{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.emojiPickerContainer{
+    position: absolute;
+    top: 100%;
+    left: -8px;
+    z-index: 1100;
+    animation: aparecer .2s ease;
+
+    --epr-emoji-size: 22px;
+    --epr-header-padding: 12px;
+    --epr-picker-border-radius: 24px;
+
+    --epr-bg-color: var(--branco);
+    --epr-category-label-bg-color: var(--branco);
+    --epr-text-color: var(--preto);
+
+    --epr-picker-border-color: var(--primaria);
+    --epr-hover-bg-color: var(--rosa);
+    --epr-focus-bg-color: var(--rosa);
+    --epr-highlight-color: var(--primaria);
+
+    --epr-search-input-bg-color: var(--branco);
+    --epr-search-input-bg-color-active: var(--branco);
+    --epr-search-border-color: var(--primaria);
+
+    --epr-category-icon-active-color: var(--primaria);
+    --epr-active-skin-tone-indicator-border-color: var(--primaria);
+
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.emojiPickerContainer aside{
+    border: 3px solid var(--primaria) !important;
+    border-radius: 24px !important;
+    font-family: var(--base) !important;
+}
+
 .btnsPostagem{
     display: flex;
     gap: 8px;
