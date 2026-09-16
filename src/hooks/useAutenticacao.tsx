@@ -1,14 +1,12 @@
 import { FirebaseError } from 'firebase/app'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { autenticacao, banco } from '../firebase/FirebaseConexao'
-import { doc, setDoc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore'
+import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, writeBatch } from 'firebase/firestore'
 import { useContext } from 'react'
 import { AutenticacaoContexto } from '../contexts/AutenticacaoContexto'
 import { enviarImagem } from '../services/uploadImagem'
 
 export function useAutenticacao(){
-    // Esse hook depende do contexto AutenticacaoContexto para ser executado
-
     const autenticacaoContexto = useContext(AutenticacaoContexto)
 
     if (autenticacaoContexto === undefined) {
@@ -69,7 +67,6 @@ export function useAutenticacao(){
     const validarUsuario = async (email: string, senha: string): Promise<string> => {
         let retorno = 'Sucesso!'
         try {
-            // Verifica se o email e senha informados condizem com um usuário autenticado
             await signInWithEmailAndPassword(autenticacao, email, senha)
         } catch (error) {
             if (error instanceof FirebaseError) {
@@ -103,11 +100,42 @@ export function useAutenticacao(){
         return retorno
     }
 
+    const sincronizarDadosAutorNosPosts = async (
+        dadosAtualizados: Partial<{
+            authorUsername: string
+            authorDisplayName: string
+            authorPhotoURL: string
+        }>
+    ) => {
+        if (!usuario) return
+
+        const postsRef = collection(banco, 'posts')
+        const q = query(postsRef, where('authorId', '==', usuario.uid))
+        const snap = await getDocs(q)
+
+        if (snap.empty) return
+
+        const tamanhoLote = 450
+        const docs = snap.docs
+
+        for (let i = 0; i < docs.length; i += tamanhoLote) {
+            const lote = docs.slice(i, i + tamanhoLote)
+            const batch = writeBatch(banco)
+
+            lote.forEach((postSnap) => {
+                batch.update(postSnap.ref, dadosAtualizados)
+            })
+
+            await batch.commit()
+        }
+    }
+
     const atualizarPerfil = async (dados: { displayName: string; bio: string; area: string }): Promise<string> => {
-        let retorno = 'Sucesso!'
+        let retorno = 'sucesso'
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
             await updateDoc(doc(banco, 'users', usuario.uid), dados)
+            await sincronizarDadosAutorNosPosts({ authorDisplayName: dados.displayName })
         } catch (error) {
             retorno = `Erro ao atualizar perfil! (${error})`
         }
@@ -115,11 +143,12 @@ export function useAutenticacao(){
     }
 
     const atualizarFotoPerfil = async (arquivo: File): Promise<string> => {
-        let retorno = 'Sucesso!'
+        let retorno = 'sucesso'
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
             const photoURL = await enviarImagem(arquivo)
             await updateDoc(doc(banco, 'users', usuario.uid), { photoURL })
+            await sincronizarDadosAutorNosPosts({ authorPhotoURL: photoURL })
         } catch (error) {
             retorno = `Erro ao atualizar foto de perfil! (${error})`
         }
@@ -127,13 +156,12 @@ export function useAutenticacao(){
     }
 
     const alterarUsername = async (novoUsername: string): Promise<string> => {
-        let retorno = 'Sucesso!'
+        let retorno = 'sucesso'
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
             if (!usuario.username) throw new Error('Usuário sem username definido.')
 
             const usernameAtual = usuario.username
-
             const novo = novoUsername.toLowerCase().trim()
             const novoRef = doc(banco, 'usernames', novo)
 
@@ -143,6 +171,7 @@ export function useAutenticacao(){
             await setDoc(novoRef, { uid: usuario.uid })
             await deleteDoc(doc(banco, 'usernames', usernameAtual))
             await updateDoc(doc(banco, 'users', usuario.uid), { username: novo })
+            await sincronizarDadosAutorNosPosts({ authorUsername: novo })
 
         } catch (error) {
             retorno = `Erro ao alterar username! (${error})`
