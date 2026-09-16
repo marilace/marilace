@@ -4,7 +4,7 @@ import { HeaderAnon } from '../components/headers/HeaderAnon'
 import { FooterAnon } from '../components/footers/FooterAnon'
 import { type UsuarioTipo } from '../types/Usuario'
 import { Link, useNavigate } from 'react-router-dom'
-import { TbUserPlus, TbAlertCircle } from "react-icons/tb";
+import { TbUserPlus, TbAlertCircle, TbEye, TbEyeClosed } from "react-icons/tb";
 import { z } from "zod";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,6 +28,7 @@ export function Login(){
     const [modalMensagemVisivel, setModalMensagemVisivel] = useState(false)
     const [modalMensagemTitulo, setModalMensagemTitulo] = useState('')
     const [modalMensagemTexto, setModalMensagemTexto] = useState('')
+    const [mostrarSenha, setMostrarSenha] = useState(false)
 
     const exibirModal = () => {
         setModalMensagemTitulo('Autenticação')
@@ -99,16 +100,30 @@ useEffect(() => {
                             {errors.email && <p className={ styles.erro }>
                                 <TbAlertCircle className={ styles.icon }/>{errors.email.message}
                             </p>}
+
                         </div>
 
                         <div className={ styles.inputContainer }>
+                            
                             <label htmlFor="senha">Senha:</label>
-                            <input type='password'
-                                {...register("senha")}
-                            />
+                            <div className={ styles.inputSenha }>
+                                <input 
+                                    type={mostrarSenha ? 'text' : 'password'}
+                                    {...register("senha")}
+                                />
+                                <button
+                                    type="button"
+                                    className={ styles.btnEye }
+                                    onClick={() => setMostrarSenha(!mostrarSenha)}
+                                    tabIndex={-1}
+                                >
+                                    {mostrarSenha ? <TbEyeClosed /> : <TbEye />}
+                                </button>
+                            </div>
                             {errors.senha && <p className={ styles.erro }>
                                 <TbAlertCircle className={ styles.icon }/>{errors.senha.message}
                             </p>}
+
                         </div>
 
                         <button

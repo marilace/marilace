@@ -120,6 +120,31 @@
     transition: .2s ease;
 }
 
+.inputSenha {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.inputSenha input {
+    width: 100%;
+    padding-right: 2.5rem;
+}
+
+.btnEye {
+    position: absolute;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: var(--cinza);
+}
+
 .btnForm{
     font-family: var(--base);
     font-size: var(--P);

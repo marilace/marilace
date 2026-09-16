@@ -9,7 +9,7 @@ import { type UsuarioTipo } from '../types/Usuario';
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import { TbLogin2, TbAlertCircle, TbX, TbCheck } from "react-icons/tb";
+import { TbLogin2, TbAlertCircle, TbX, TbCheck, TbEye, TbEyeClosed } from "react-icons/tb";
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -48,6 +48,8 @@ export function Registro(){
     const [modalMensagemVisivel, setModalMensagemVisivel] = useState(false)
     const [modalMensagemTitulo, setModalMensagemTitulo] = useState('')
     const [modalMensagemTexto, setModalMensagemTexto] = useState('')
+    const [mostrarSenha, setMostrarSenha] = useState(false)
+    const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false)
 
     const{
         register,
@@ -162,12 +164,22 @@ export function Registro(){
 
                         <div className={ styles.inputContainer }>
                             <label htmlFor="senha">Senha:</label>
-                            <input 
-                                id='senha'
-                                type="password" 
-                                {...register("senha")}
-                                aria-describedby="senha-requisitos"
-                            />
+                            <div className={ styles.inputSenha }>
+                                <input 
+                                    id='senha'
+                                    type={mostrarSenha ? "text" : "password"} 
+                                    {...register("senha")}
+                                    aria-describedby="senha-requisitos"
+                                />
+                                <button
+                                    type="button"
+                                    className={ styles.btnEye }
+                                    onClick={() => setMostrarSenha(!mostrarSenha)}
+                                    tabIndex={-1}
+                                >
+                                    {mostrarSenha ? <TbEyeClosed/> : <TbEye />}
+                                </button>
+                            </div>
 
                             {senhaAtual.length > 0 && (
                                 <>
@@ -198,15 +210,25 @@ export function Registro(){
 
                         <div className={ styles.inputContainer }>
                             <label htmlFor="confirmarSenha">Confirme sua senha:</label>
-                            <input 
-                            id='confirmarSenha' 
-                            type="password" 
-                            {...register("confirmarSenha")}
-                        />
-                        {errors.confirmarSenha && <p className={ styles.erro } role='alert'>
-                            <TbAlertCircle className={ styles.icon } aria-hidden="true" />
-                            {errors.confirmarSenha.message}
-                        </p>}
+                            <div className={ styles.inputSenha }>
+                                <input 
+                                    id='confirmarSenha' 
+                                    type={mostrarConfirmarSenha ? "text" : "password"} 
+                                    {...register("confirmarSenha")}
+                                />
+                                <button
+                                    type="button"
+                                    className={ styles.btnEye }
+                                    onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
+                                    tabIndex={-1}
+                                >
+                                    {mostrarConfirmarSenha ? <TbEyeClosed /> : <TbEye />}
+                                </button>
+                            </div>
+                            {errors.confirmarSenha && <p className={ styles.erro } role='alert'>
+                                <TbAlertCircle className={ styles.icon } aria-hidden="true" />
+                                {errors.confirmarSenha.message}
+                            </p>}
                         </div>
 
                         <button
