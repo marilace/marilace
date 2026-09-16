@@ -1,5 +1,6 @@
 .page{
     background-color: var(--branco);
+    height: 100vh;
 }
 
 .container{

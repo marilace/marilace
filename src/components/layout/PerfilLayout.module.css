@@ -2,10 +2,13 @@
     background-color: var(--branco);
     color: var(--preto);
     font-family: var(--base);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .mainPerfil{
-    margin: 16px 40px;
+    margin: 16px 40px 0px 40px;
     display: flex;
     gap: 24px;
 }

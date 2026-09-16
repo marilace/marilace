@@ -13,7 +13,7 @@ export function FooterAnon(){
         <div className={ styles.footer }>
             <div className={ styles.conteudoFooter}>
                 <div className={ styles.mainContainer }>
-                    <main>
+                    <main className={styles.logoDesc}>
                         <div className={ styles.logo }>
                             <img src={ estrela } />
                             <img src={ logo } />
