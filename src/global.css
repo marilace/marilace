@@ -30,7 +30,7 @@
   --adicional: "Redaction50";
 
   /* TAMANHOS */
-  --tiulo-landing: clamp(5.5rem, 12vw, 12rem);
+  --titulo-landing: clamp(5.5rem, 12vw, 12rem);
   --XG: clamp(4rem, 8vw, 8rem);
   --GG: clamp(3rem, 6vw, 6rem);
   --G: clamp(2rem, 3vw, 3.25rem);

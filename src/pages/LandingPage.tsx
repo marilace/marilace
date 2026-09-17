@@ -1,32 +1,75 @@
-import styles  from './LandingPage.module.css'
+import styles from './LandingPage.module.css'
 
 import { HeaderAnon } from '../components/headers/HeaderAnon'
-import { BtnCTA } from '../components/buttons/BtnCTA'
 import { FooterAnon } from '../components/footers/FooterAnon'
+import { Chip } from '../components/misc/Chip'
 
-import fundoLanding from '../assets/img/fundo landpage.svg'
-import imgHero from '../assets/img/marie curie.png'
+const fundoLanding = 'https://i.imgur.com/0x40IR0.png'
+const imgAda = 'https://i.imgur.com/Q0N78bZ.png'
+const imgMarie = 'https://i.imgur.com/626nzKl.png'
+const pontilhado = 'https://i.imgur.com/CDM2OxK.png'
 
 export function LandingPage(){
     return(
-        <div className={styles.LandingPage}>
+        <div className={ styles.landingPage }>
             <HeaderAnon/>
 
-            <div className={ styles.hero }>
-                <div className={ styles.textoHero }>
-                    <h1 className={ styles.tituloHero }>CONHEÇA O <span>MARILACE</span></h1>
-                    <p className={ styles.descHero }>Faça parte de uma comunidade colaborativa que incentiva o aprendizado, o compartilhamento de experiências e o crescimento de mulheres nas áreas STEM (Ciência, Tecnologia, Engenharia e Matemática).</p>
-                    <BtnCTA className={styles.CTA} />
-                </div>
+            <main className={ styles.hero }>
                 <img
-                    className={ styles.imgHero }
-                    src={ imgHero } 
-                    alt="Colagem gráfica de Marie Curie usando óculos de pixel art, cercada por ilustrações de átomo, moléculas e elementos químicos da tabela periódica, com legenda 'Marie Curie (1867-1934)'"
+                    src={ fundoLanding }
+                    className={ styles.fundoHero }
+                    alt=""
+                    aria-hidden="true"
                 />
+
+                <div className={ styles.conteudoHero }>
+                    <div className={ styles.etiqueta }>
+                        <Chip texto='Grandes ideias' cor='var(--verde)' />
+                    </div>
+
+                    <h1 className={ styles.tituloHero }>Também tem voz</h1>
+                    <img src={pontilhado} className={ styles.pontilhado } />
+                    <h1 className={ styles.tituloFeminina }>feminina</h1>
+
+                    <p className={ styles.descHero }>
+                        Conheça uma comunidade feita para apoiar mulheres<br/>
+                        em cada etapa da sua jornada em STEM.
+                    </p>
+
+                    <button className={ styles.btnHero }>
+                        <span className={ styles.estrelaBtn } aria-hidden="true" />
+                        <span>Quero fazer parte!</span>
+                        <span className={ styles.estrelaBtn } aria-hidden="true" />
+                    </button>
+                </div>
+
+                <img
+                    className={ styles.imgAda }
+                    src={ imgAda }
+                    alt="Ilustração estilizada em tom roxo de Ada Lovelace, com vestido de época"
+                />
+                <img
+                    className={ styles.imgMarie }
+                    src={ imgMarie }
+                    alt="Ilustração estilizada em tom roxo de Marie Curie, usando óculos escuros em estilo pixel art"
+                />
+            </main>
+
+            <div className={ styles.marquee } aria-hidden="true">
+                <div className={ styles.marqueeTrack }>
+                    {Array.from({ length: 2 }).map((_, grupo) => (
+                        <div className={ styles.marqueeGrupo } key={ grupo }>
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <span className={ styles.marqueeItem } key={ i }>
+                                    marilace
+                                    <span className={ styles.marqueeEstrela } />
+                                </span>
+                            ))}
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className={ styles.fundoHero }>
-                <img src={ fundoLanding } />
-            </div>
+
             <FooterAnon />
         </div>
     )
