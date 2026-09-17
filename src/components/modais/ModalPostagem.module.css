@@ -31,7 +31,7 @@
     gap: 24px;
     padding: 18px;
     border-radius: 32px;
-    border: 6px solid var(--rosa);
+    border: 2px solid var(--cinza);
     width: 80%;
     max-width: 600px;
     animation: aparecer .3s ease;
@@ -118,7 +118,7 @@ main{
 }
 
 .acao:hover{
-    background-color: var(--rosa);
+    background-color: var(--primaria);
     color: var(--branco);
     cursor: pointer;
 }

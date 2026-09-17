@@ -4,6 +4,7 @@ import { useState } from "react";
 import badgeVerificado from '../../assets/img/verificado.png';
 import { useCurtida } from "../../hooks/useCurtidas";
 import { Link } from "react-router-dom";
+import { ModalAcaoPostagem } from "../modais/ModalAcoesPostagem";
 
 interface PostProps {
     postId: string;
@@ -43,6 +44,7 @@ export function Post({
 
     const { curtido, alternarCurtida } = useCurtida(postId)
     const [salvo, setSalvo] = useState(false)
+    const [ modalAberto, setModalAberto ] = useState(false)
 
     return (
         <div className={styles.card}>
@@ -73,8 +75,18 @@ export function Post({
                         @{username} • {tempo}
                     </p>
                 </div>
-
-                <button className={styles.menuBtn}><TbDots /></button>
+                <div style={{ position: 'relative' }}>
+                    <button 
+                        className={styles.menuBtn}
+                        onClick={() => setModalAberto(!modalAberto)}
+                    >
+                        <TbDots />
+                    </button>
+                    <ModalAcaoPostagem
+                        aberto={modalAberto}
+                        fechar={() => setModalAberto(false)}
+                    />
+                </div>
             </div>
 
             <p className={styles.conteudo}>{conteudo}</p>
@@ -113,6 +125,10 @@ export function Post({
                 )}
                 </button>
             </div>
+            <ModalAcaoPostagem
+                aberto={modalAberto}
+                fechar={() => setModalAberto(false)}
+            />
         </div>
     );
 }
