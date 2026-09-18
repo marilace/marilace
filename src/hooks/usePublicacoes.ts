@@ -7,7 +7,10 @@ import {
     orderBy,
     limit,
     where,
-    onSnapshot
+    onSnapshot,
+    doc,
+    updateDoc,
+    deleteDoc
 } from 'firebase/firestore'
 import { banco } from '../firebase/FirebaseConexao'
 import { enviarImagem } from '../services/uploadImagem'
@@ -40,10 +43,24 @@ export function usePublicacoes() {
     return publicacaoRef.id
   }
 
-  return { criarPublicacao }
+  const editarPublicacao = async (postId: string, novoTexto: string): Promise<void> => {
+    if (!usuario) throw new Error('Usuário não autenticado.')
+
+    await updateDoc(doc(banco, 'posts', postId), {
+      text: novoTexto,
+      editedAt: serverTimestamp()
+    })
+  }
+
+  const excluirPublicacao = async (postId: string): Promise<void> => {
+    if (!usuario) throw new Error('Usuário não autenticado.')
+
+    await deleteDoc(doc(banco, 'posts', postId))
+  }
+
+  return { criarPublicacao, editarPublicacao, excluirPublicacao }
 }
 
-// Hook separado para o feed, já que ele escuta em tempo real
 export function useFeed() {
     const [publicacoes, setPublicacoes] = useState<PublicacaoTipo[]>([])
     const [carregando, setCarregando] = useState(true)
@@ -67,7 +84,6 @@ export function useFeed() {
     return { publicacoes, carregando }
     }
 
-    // Hook para posts de um usuário específico (usado na página de perfil)
 export function usePublicacoesDoUsuario(uid: string | undefined) {
   const [publicacoes, setPublicacoes] = useState<PublicacaoTipo[]>([])
   const [carregando, setCarregando] = useState(true)

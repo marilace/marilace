@@ -1,0 +1,164 @@
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.container {
+    background-color: var(--branco);
+    font-family: var(--base);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    border-radius: 32px;
+    border: 2px solid var(--cinza);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: aparecer .3s ease;
+    box-sizing: border-box;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho h2 {
+    font-family: var(--base);
+    font-size: var(--M);
+    color: var(--primaria-escura);
+    font-weight: 800;
+}
+
+.btnFechar {
+    background: transparent;
+    border: none;
+    color: var(--preto);
+    cursor: pointer;
+    display: flex;
+    padding: 4px;
+    border-radius: 999px;
+    transition: .2s ease;
+}
+
+.btnFecharIcon path{
+    stroke-width: 2.5px;
+}
+
+.btnFechar:hover {
+    background-color: var(--rosa);
+    color: var(--branco);
+}
+
+.inputEdicao{
+    resize: none;
+    border: none;
+    background-color: transparent;
+    font-family: var(--base);
+    font-size: var(--PP);
+    color: var(--preto);
+    border-radius: 16px;
+    border: 2px solid var(--cinza);
+    padding: 12px 14px;
+}
+
+.inputEdicao:focus{
+    outline: none;
+    border: 2px solid var(--primaria);
+}
+
+.contador {
+    align-self: flex-end;
+    font-size: var(--footer);
+    color: var(--cinza);
+}
+
+.previewContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.previewImagem{
+    max-width: 100%;
+    max-height: 280px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.erroTexto {
+    font-size: var(--PP);
+    color: var(--rosa);
+    font-weight: 600;
+    background-color: rgba(255, 203, 203, 0.3);
+    padding: 8px 12px;
+    border-radius: 12px;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btnCancelar {
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--cinza);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.btnCancelar:hover {
+    background-color: var(--rosa);
+    color: var(--branco);
+}
+
+.btnSalvar {
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 700;
+    background-color: var(--verde);
+    color: var(--preto);
+    border: 2px solid var(--preto);
+    padding: 10px 24px;
+    border-radius: 999px;
+    cursor: pointer;
+    filter: drop-shadow(0px 4px var(--preto));
+    transition: .2s ease;
+}
+
+.btnSalvar:hover:not(:disabled) {
+    transform: translateY(2px);
+    filter: drop-shadow(0px 2px var(--preto));
+}
+
+.btnSalvar:disabled,
+.btnCancelar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

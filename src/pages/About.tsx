@@ -9,11 +9,11 @@ import { TbBrandGithub, TbBrandInstagram, TbBrandLinkedin } from "react-icons/tb
 
 import listrado from '../assets/img/listrado.svg'
 import ada from '../assets/img/adaLovelace.png'
-import ana from '../assets/img/ana.jpg'
-import fefe from '../assets/img/fefe.jpg'
-import gui from '../assets/img/gui.jpeg'
-import emilly from '../assets/img/emilly.jpeg'
-import equipe from '../assets/img/equipe.jpeg'
+const ana = 'https://i.imgur.com/6lcZcHJ.jpeg'
+const fefe = 'https://i.imgur.com/N3tjHOJ.jpeg'
+const gui = 'https://i.imgur.com/cwHd3Oo.jpeg'
+const emilly = 'https://i.imgur.com/YIsEJeq.jpeg'
+const equipe = 'https://i.imgur.com/DF0I82T.jpeg'
 
 export function About(){
     return(

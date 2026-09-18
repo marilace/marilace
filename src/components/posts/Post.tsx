@@ -1,13 +1,17 @@
 import styles from "./Post.module.css";
-import { TbStar, TbStarFilled, TbBookmark, TbBookmarkFilled, TbMessage, TbShare, TbDots, TbUser } from "react-icons/tb";
+import { TbStar, TbStarFilled, TbBookmark, TbBookmarkFilled, TbMessage, TbShare, TbDots, TbUser, TbEdit, TbTrash } from "react-icons/tb";
 import { useState } from "react";
 import badgeVerificado from '../../assets/img/verificado.png';
 import { useCurtida } from "../../hooks/useCurtidas";
+import { useAutenticacao } from "../../hooks/useAutenticacao";
+import { usePublicacoes } from "../../hooks/usePublicacoes";
+import { ModalEditarPostagem } from "../modais/ModalEditarPostagem";
+import { ModalConfirmacao } from "../modais/ModalConfirmacao";
 import { Link } from "react-router-dom";
-import { ModalAcaoPostagem } from "../modais/ModalAcoesPostagem";
 
 interface PostProps {
     postId: string;
+    authorId: string;
     avatarSrc?: string;
     nome: string;
     username: string;
@@ -26,6 +30,7 @@ interface PostProps {
 
 export function Post({
     postId,
+    authorId,
     avatarSrc,
     nome,
     username,
@@ -43,8 +48,29 @@ export function Post({
 }: PostProps) {
 
     const { curtido, alternarCurtida } = useCurtida(postId)
+    const { usuario } = useAutenticacao()
+    const { excluirPublicacao } = usePublicacoes()
+
     const [salvo, setSalvo] = useState(false)
-    const [ modalAberto, setModalAberto ] = useState(false)
+
+    const [menuAberto, setMenuAberto] = useState(false)
+    const [modalEditarAberto, setModalEditarAberto] = useState(false)
+    const [modalExcluirAberto, setModalExcluirAberto] = useState(false)
+    const [excluindo, setExcluindo] = useState(false)
+
+    const souAutor = usuario?.uid === authorId
+
+    const excluir = async () => {
+        setExcluindo(true)
+        try {
+            await excluirPublicacao(postId)
+            setModalExcluirAberto(false)
+        } catch (e) {
+            console.error('Erro ao excluir publicação:', e)
+        } finally {
+            setExcluindo(false)
+        }
+    }
 
     return (
         <div className={styles.card}>
@@ -75,18 +101,47 @@ export function Post({
                         @{username} • {tempo}
                     </p>
                 </div>
-                <div style={{ position: 'relative' }}>
-                    <button 
-                        className={styles.menuBtn}
-                        onClick={() => setModalAberto(!modalAberto)}
-                    >
-                        <TbDots />
-                    </button>
-                    <ModalAcaoPostagem
-                        aberto={modalAberto}
-                        fechar={() => setModalAberto(false)}
-                    />
-                </div>
+
+                {souAutor && (
+                    <div className={styles.menuContainer}>
+                        <button
+                            className={styles.menuBtn}
+                            onClick={() => setMenuAberto((atual) => !atual)}
+                            aria-label="Opções da publicação"
+                        >
+                            <TbDots />
+                        </button>
+
+                        {menuAberto && (
+                            <>
+                                <div
+                                    className={styles.menuOverlay}
+                                    onClick={() => setMenuAberto(false)}
+                                />
+                                <div className={styles.menuDropdown}>
+                                    <button
+                                        className={styles.menuItem}
+                                        onClick={() => {
+                                            setModalEditarAberto(true)
+                                            setMenuAberto(false)
+                                        }}
+                                    >
+                                        <TbEdit size={16} /> Editar
+                                    </button>
+                                    <button
+                                        className={styles.menuItemExcluir}
+                                        onClick={() => {
+                                            setModalExcluirAberto(true)
+                                            setMenuAberto(false)
+                                        }}
+                                    >
+                                        <TbTrash size={16} /> Excluir
+                                    </button>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
 
             <p className={styles.conteudo}>{conteudo}</p>
@@ -125,9 +180,22 @@ export function Post({
                 )}
                 </button>
             </div>
-            <ModalAcaoPostagem
-                aberto={modalAberto}
-                fechar={() => setModalAberto(false)}
+
+            <ModalEditarPostagem
+                aberto={modalEditarAberto}
+                postId={postId}
+                conteudoAtual={conteudo}
+                imagemUrl={imagemUrl}
+                fechar={() => setModalEditarAberto(false)}
+            />
+
+            <ModalConfirmacao
+                aberto={modalExcluirAberto}
+                titulo="Excluir publicação"
+                mensagem="Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita."
+                confirmando={excluindo}
+                confirmar={excluir}
+                cancelar={() => setModalExcluirAberto(false)}
             />
         </div>
     );

@@ -32,6 +32,7 @@ export function Profile(){
                     <Post
                         key={post.id}
                         postId={post.id}
+                        authorId={post.authorId}
                         avatarSrc={post.authorPhotoURL}
                         nome={post.authorDisplayName}
                         username={post.authorUsername}
