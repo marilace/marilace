@@ -31,7 +31,6 @@ export function Login(){
     const [mostrarSenha, setMostrarSenha] = useState(false)
 
     const exibirModal = () => {
-        setModalMensagemTitulo('Autenticação')
         setModalMensagemVisivel(true)
     }
 
@@ -69,6 +68,12 @@ useEffect(() => {
         let retorno = await autenticacao.validarUsuario(data.email, data.senha)
 
         if(retorno == 'Sucesso!'){
+            setModalMensagemTitulo("Bom te ver de novo!")
+            setModalMensagemTexto(retorno)
+            exibirModal()
+        }
+        else{
+            setModalMensagemTitulo("Algo deu errado...")
             setModalMensagemTexto(retorno)
             exibirModal()
         }
