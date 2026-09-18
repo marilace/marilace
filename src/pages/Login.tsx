@@ -47,7 +47,7 @@ export function Login(){
 
     const navegacao = useNavigate()
     const autenticacao = useAutenticacao()
-    const { usuario, carregando } = autenticacao // pega o usuario atualmente logado e o estado de carregamento da autenticação
+    const { usuario, carregando } = autenticacao
 
     const dadosUsuario: UsuarioTipo = {
         uid: '',
@@ -55,9 +55,7 @@ export function Login(){
         senha: ''
     }
 
-// verifica se o usuário está autenticado
 useEffect(() => {
-    // se o carregamento terminou e o usuário está autenticado, redireciona para a página do fórum
     if (!carregando && usuario) {
         navegacao('/forum')
     }

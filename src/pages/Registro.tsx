@@ -50,6 +50,7 @@ export function Registro(){
     const [modalMensagemTexto, setModalMensagemTexto] = useState('')
     const [mostrarSenha, setMostrarSenha] = useState(false)
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false)
+    const [cadastroSucesso, setCadastroSucesso] = useState(false)
 
     const{
         register,
@@ -86,8 +87,10 @@ export function Registro(){
 
         if (retorno == 'Sucesso!') {
             setModalMensagemTexto(`Seja bem-vindo ${dadosUsuario.nome}!`)
+            setCadastroSucesso(true)
         }else {
             setModalMensagemTexto(retorno)
+            setCadastroSucesso(false)
         }
 
         exibirModal()
@@ -100,8 +103,12 @@ export function Registro(){
 
     const ocultarModal = async () => {
         setModalMensagemVisivel(false)
-        await deslogar()
-        navegacao('/login')
+        if (cadastroSucesso) {
+            navegacao('/forum')
+        }
+        else {
+            await deslogar()
+        }
     }
 
     return(
