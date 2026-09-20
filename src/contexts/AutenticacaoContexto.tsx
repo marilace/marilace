@@ -43,15 +43,16 @@ export function AutenticacaoProvider({ children }: AutenticacaoProviderProps) {
             if (snap.exists()) {
                 const dados = snap.data()
                 setUsuario({
-                uid: uidAtual,
-                username: dados.username,
-                email: dados.email ?? autenticacao.currentUser?.email ?? '',
-                nome: dados.displayName,
-                bio: dados.bio,
-                area: dados.area,
-                photoURL: dados.photoURL,
-                followersCount: dados.followersCount,
-                followingCount: dados.followingCount,
+                    uid: uidAtual,
+                    username: dados.username,
+                    email: dados.email ?? autenticacao.currentUser?.email ?? '',
+                    nome: dados.displayName,
+                    bio: dados.bio,
+                    area: dados.area,
+                    photoURL: dados.photoURL,
+                    followersCount: dados.followersCount,
+                    followingCount: dados.followingCount,
+                    emblemas: dados.emblemas ?? [],
                 })
             } else {
                 setUsuario(null)
