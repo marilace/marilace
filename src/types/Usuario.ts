@@ -9,4 +9,6 @@ export type UsuarioTipo = {
     photoURL?: string
     followersCount?: number
     followingCount?: number
+    verificado?: boolean
+    emblemas?: string[]
 }
