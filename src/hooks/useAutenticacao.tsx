@@ -50,11 +50,20 @@ export function useAutenticacao(){
             if (error instanceof FirebaseError) {
                 switch (error.code) {
                     case 'auth/email-already-in-use':
-                    retorno = `E-mail já utilizado por outra conta. ${error.code}`
-                    break
+                        retorno = `Esse endereço e-mail já está sendo usado por outra conta. ${error.code}`
+                        break
+                    case 'auth/user-not-found':
+                        retorno = 'Esse usuário não existe.'
+                        break
+                    case 'auth/invalid-credential':
+                        retorno = 'Credenciais incorretas! Verifique seu e-mail e senha novamente.'
+                        break
+                    case 'auth/wrong-password':
+                        retorno = 'Senha incorreta! Tente novamente.'
+                        break
                     default:
-                    retorno = `Erro na criação da autenticação do usuário! (${error.code}: ${error.message})`
-                    break
+                        retorno = `Erro na criação da autenticação do usuário! (${error.code}: ${error.message})`
+                        break
                 }
             } else {
                 retorno = `Erro imprevisto! (${error})`
@@ -130,7 +139,7 @@ export function useAutenticacao(){
         }
     }
 
-    const atualizarPerfil = async (dados: { displayName: string; bio: string; area: string }): Promise<string> => {
+    const atualizarPerfil = async (dados: { displayName: string; bio: string; area: string; emblemas: string[] }): Promise<string> => {
         let retorno = 'sucesso'
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
