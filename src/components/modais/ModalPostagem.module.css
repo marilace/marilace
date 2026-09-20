@@ -86,6 +86,7 @@ main {
 .inputPostagem {
     resize: none;
     border: none;
+    color: var(--preto);
     background-color: transparent;
     font-family: var(--base);
     font-size: var(--PP);
