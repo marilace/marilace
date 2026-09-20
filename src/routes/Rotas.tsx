@@ -25,7 +25,6 @@ import { ConfigSobre } from '../pages/ConfigSobre.tsx'
 import { PerfilLayout } from '../components/layout/PerfilLayout.tsx'
 import { Profile } from '../pages/Profile.tsx'
 import { Portfolio } from '../pages/Portfolio.tsx'
-import { SobrePerfil } from '../pages/SobrePerfil.tsx'
 
 import { RotaProtegida } from './RotaProtegida.tsx'
 
@@ -48,7 +47,6 @@ export function Rotas(){
                 <Route path='/:username' element={ <RotaProtegida><PerfilLayout/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Profile/></RotaProtegida> }/>
                     <Route path='portfolio' element={ <RotaProtegida><Portfolio/></RotaProtegida> }/>
-                    <Route path='sobre' element={ <RotaProtegida><SobrePerfil/></RotaProtegida> }/>
                 </Route>
                 <Route path='notificacoes' element={ <RotaProtegida><Notificacoes/></RotaProtegida> }/>
                 <Route path='configuracoes' element={ <RotaProtegida><ConfigLayout/></RotaProtegida> }>
