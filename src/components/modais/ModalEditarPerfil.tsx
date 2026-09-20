@@ -16,7 +16,6 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
     const [displayName, setDisplayName] = useState('')
     const [username, setUsername] = useState('')
     const [bio, setBio] = useState('')
-    const [area, setArea] = useState('')
     const [emblemas, setEmblemas] = useState<string[]>([])
 
     const [arquivoFoto, setArquivoFoto] = useState<File | null>(null)
@@ -32,7 +31,6 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             setDisplayName(usuario.nome ?? '')
             setUsername(usuario.username ?? '')
             setBio(usuario.bio ?? '')
-            setArea(usuario.area ?? '')
             setEmblemas(usuario.emblemas ?? [])
             setArquivoFoto(null)
             setPreviewFoto(null)
@@ -95,7 +93,6 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             const retornoPerfil = await atualizarPerfil({
                 displayName: displayName.trim(),
                 bio: bio.trim(),
-                area: area.trim(),
                 emblemas,
             })
             if (retornoPerfil !== 'sucesso') {
@@ -176,19 +173,6 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                                 maxLength={30}
                             />
                         </div>
-                    </div>
-
-                    <div className={styles.campo}>
-                        <label htmlFor="area">Área STEM</label>
-                        <input
-                            id="area"
-                            type="text"
-                            value={area}
-                            onChange={(e) => setArea(e.target.value)}
-                            disabled={salvando}
-                            placeholder="Ex: Engenharia de Software"
-                            maxLength={60}
-                        />
                     </div>
 
                     <div className={styles.campo}>

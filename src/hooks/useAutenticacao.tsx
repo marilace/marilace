@@ -37,7 +37,6 @@ export function useAutenticacao(){
                 username: usernameFormatado,
                 displayName: nome,
                 bio: '',
-                area: '',
                 photoURL: '',
                 followersCount: 0,
                 followingCount: 0,
@@ -139,7 +138,7 @@ export function useAutenticacao(){
         }
     }
 
-    const atualizarPerfil = async (dados: { displayName: string; bio: string; area: string; emblemas: string[] }): Promise<string> => {
+    const atualizarPerfil = async (dados: { displayName: string; bio: string; emblemas: string[] }): Promise<string> => {
         let retorno = 'sucesso'
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
