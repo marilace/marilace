@@ -10,6 +10,8 @@ import { useAutenticacao } from '../../hooks/useAutenticacao'
 import { useParams } from 'react-router-dom'
 import { usePerfil } from '../../hooks/usePerfil'
 import { ModalEditarPerfil } from '../modais/ModalEditarPerfil'
+import { TelaCarregamento } from '../misc/TelaCarregamento'
+import { NaoEncontrado } from '../misc/NaoEncontrado'
 
 
 export function PerfilLayout(){
@@ -20,19 +22,10 @@ export function PerfilLayout(){
 
     const location = useLocation()
 
-    const [emblemasAtivos, setEmblemasAtivos] = useState<string[]>([]);
     const [modalEdicaoAberto, setModalEdicaoAberto] = useState(false)
 
-    function toggleEmblema(id: string) {
-        setEmblemasAtivos((atuais) =>
-        atuais.includes(id)
-            ? atuais.filter((emblemaId) => emblemaId !== id)
-            : [...atuais, id]
-        );
-    }
-
-    if (carregando) return <div>Carregando perfil...</div>
-    if (naoEncontrado) return <div>Esse perfil não existe.</div>
+    if (carregando) return <TelaCarregamento/>
+    if (naoEncontrado) return <NaoEncontrado/>
     if (!perfil) return null
 
     const meuPerfil = usuarioLogado?.uid === perfil.uid
@@ -67,13 +60,13 @@ export function PerfilLayout(){
                                 <h1>{perfil.nome}</h1>
                                 <div className={ styles.emblemas }>
                                     {EMBLEMAS_DISPONIVEIS
-                                    .filter((emblema) => emblemasAtivos.includes(emblema.id))
+                                    .filter((emblema) => perfil.emblemas?.includes(emblema.id))
                                     .map((emblema) => (
                                         <span
-                                        key={emblema.id}
-                                        className={ styles.emblema }
-                                        style={{ color: emblema.cor }}
-                                        title={emblema.texto}
+                                            key={emblema.id}
+                                            className={ styles.emblema }
+                                            style={{ color: emblema.cor }}
+                                            title={emblema.texto}
                                         >
                                         {emblema.letra}
                                         </span>
@@ -141,7 +134,7 @@ export function PerfilLayout(){
                         </Link>
                     </nav>
 
-                    <Outlet context={{ perfil, meuPerfil, emblemasAtivos, toggleEmblema }} />
+                    <Outlet context={{ perfil, meuPerfil }}/>
 
                 </div>
                 <div className={ styles.sugestoes }>
