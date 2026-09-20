@@ -28,15 +28,16 @@ export function usePerfil(username: string | undefined) {
                 const docSnap = snap.docs[0]
                 const dados = docSnap.data()
                 setPerfil({
-                uid: docSnap.id,
-                username: dados.username,
-                email: dados.email ?? '',
-                nome: dados.displayName,
-                bio: dados.bio,
-                area: dados.area,
-                photoURL: dados.photoURL,
-                followersCount: dados.followersCount,
-                followingCount: dados.followingCount,
+                    uid: docSnap.id,
+                    username: dados.username,
+                    email: dados.email ?? '',
+                    nome: dados.displayName,
+                    bio: dados.bio,
+                    area: dados.area,
+                    photoURL: dados.photoURL,
+                    followersCount: dados.followersCount,
+                    followingCount: dados.followingCount,
+                    emblemas: dados.emblemas ?? [],
                 })
             }
             setCarregando(false)
