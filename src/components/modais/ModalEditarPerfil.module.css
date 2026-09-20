@@ -27,7 +27,7 @@
     gap: 20px;
     padding: 28px;
     border-radius: 32px;
-    border: 6px solid var(--primaria);
+    border: 2px solid var(--cinza);
     width: 90%;
     max-width: 480px;
     max-height: 85vh;
@@ -83,7 +83,7 @@
     height: 96px;
     border-radius: 999px;
     object-fit: cover;
-    border: 3px solid var(--primaria);
+    border: 2px solid var(--primaria);
 }
 
 .avatarPadrao {
@@ -245,4 +245,23 @@
 .btnCancelar:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.listaChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.listaChips > button {
+    padding: 4px 16px;
+}
+
+.listaChips span {
+    font-size: var(--PP);
+}
+
+.desc {
+    font-size: var(--footer);
+    color: var(--cinza);
 }

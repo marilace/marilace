@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import styles from './ModalEditarPerfil.module.css'
 import { TbUser, TbCamera, TbX } from 'react-icons/tb'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
+import { EMBLEMAS_DISPONIVEIS } from '../../types/Emblemas'
+import { ChipClicavel } from '../misc/ChipClicavel'
 
 type ModalEditarPerfilProps = {
     aberto: boolean
@@ -15,6 +17,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
     const [username, setUsername] = useState('')
     const [bio, setBio] = useState('')
     const [area, setArea] = useState('')
+    const [emblemas, setEmblemas] = useState<string[]>([])
 
     const [arquivoFoto, setArquivoFoto] = useState<File | null>(null)
     const [previewFoto, setPreviewFoto] = useState<string | null>(null)
@@ -30,6 +33,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             setUsername(usuario.username ?? '')
             setBio(usuario.bio ?? '')
             setArea(usuario.area ?? '')
+            setEmblemas(usuario.emblemas ?? [])
             setArquivoFoto(null)
             setPreviewFoto(null)
             setErro('')
@@ -37,6 +41,14 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
     }, [aberto, usuario])
 
     if (!aberto) return null
+
+    const toggleEmblema = (id: string) => {
+    setEmblemas((atuais) =>
+        atuais.includes(id)
+            ? atuais.filter((emblemaId) => emblemaId !== id)
+            : [...atuais, id]
+    )
+}
 
     const aoSelecionarFoto = (e: React.ChangeEvent<HTMLInputElement>) => {
         const arquivo = e.target.files?.[0]
@@ -83,7 +95,8 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             const retornoPerfil = await atualizarPerfil({
                 displayName: displayName.trim(),
                 bio: bio.trim(),
-                area: area.trim()
+                area: area.trim(),
+                emblemas,
             })
             if (retornoPerfil !== 'sucesso') {
                 setErro(retornoPerfil)
@@ -190,6 +203,24 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                             placeholder="Conte um pouco sobre você..."
                         />
                         <span className={styles.contador}>{bio.length}/160</span>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label>Áreas de interesse</label>
+                        <div className={styles.listaChips}>
+                            {EMBLEMAS_DISPONIVEIS.map((emblema) => (
+                                <ChipClicavel
+                                    key={emblema.id}
+                                    texto={emblema.texto}
+                                    cor={emblema.cor}
+                                    selecionado={emblemas.includes(emblema.id)}
+                                    onClick={() => !salvando && toggleEmblema(emblema.id)}
+                                />
+                            ))}
+                        </div>
+                        <span className={ styles.desc }>
+                            As áreas escolhidas aparecem como emblemas do lado do seu nome! :)
+                        </span>
                     </div>
 
                 {   erro && <p className={styles.erroTexto}>{erro}</p>}
