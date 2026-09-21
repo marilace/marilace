@@ -130,8 +130,11 @@
 }
 
 .campo label {
-    font-size: var(--PP);
-    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--P);
+    font-weight: 700;
     color: var(--primaria-escura);
 }
 
@@ -166,10 +169,8 @@
     border: 2px solid var(--primaria);
 }
 
-.inputComPrefixo span {
+.iconInput {
     color: var(--cinza);
-    font-size: var(--PP);
-    font-weight: 600;
 }
 
 .inputComPrefixo input {
@@ -264,4 +265,16 @@
 .desc {
     font-size: var(--footer);
     color: var(--cinza);
+}
+
+.estrela{
+    background-color: var(--primaria-escura);
+
+    mask-image: url('../../assets/estrela.svg');
+    -webkit-mask-image: url('../../assets/estrela.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+
+    width: 8px;
+    height: 8px;
 }

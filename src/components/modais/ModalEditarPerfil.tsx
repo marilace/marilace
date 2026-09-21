@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './ModalEditarPerfil.module.css'
-import { TbUser, TbCamera, TbX } from 'react-icons/tb'
+import { TbUser, TbCamera, TbX, TbAt } from 'react-icons/tb'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
 import { EMBLEMAS_DISPONIVEIS } from '../../types/Emblemas'
 import { ChipClicavel } from '../misc/ChipClicavel'
@@ -149,7 +149,10 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
 
                 <div className={styles.formulario}>
                     <div className={styles.campo}>
-                        <label htmlFor="displayName">Nome</label>
+                        <label htmlFor="displayName">
+                            <div className={ styles.estrela } />
+                            Nome
+                        </label>
                         <input
                             id="displayName"
                             type="text"
@@ -161,9 +164,12 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                     </div>
 
                     <div className={styles.campo}>
-                        <label htmlFor="username">Nome de usuário</label>
+                        <label htmlFor="username">
+                            <div className={ styles.estrela } />
+                            Nome de usuário
+                        </label>
                         <div className={styles.inputComPrefixo}>
-                            <span>@</span>
+                            <TbAt className={ styles.iconInput } />
                             <input
                                 id="username"
                                 type="text"
@@ -176,7 +182,10 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                     </div>
 
                     <div className={styles.campo}>
-                        <label htmlFor="bio">Bio</label>
+                        <label htmlFor="bio">
+                            <div className={ styles.estrela } />
+                            Bio
+                        </label>
                         <textarea
                             id="bio"
                             value={bio}
@@ -190,7 +199,10 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                     </div>
 
                     <div className={styles.campo}>
-                        <label>Áreas de interesse</label>
+                        <label>
+                            <div className={ styles.estrela } />
+                            Áreas de interesse
+                        </label>
                         <div className={styles.listaChips}>
                             {EMBLEMAS_DISPONIVEIS.map((emblema) => (
                                 <ChipClicavel
