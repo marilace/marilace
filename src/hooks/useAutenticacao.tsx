@@ -113,6 +113,7 @@ export function useAutenticacao(){
             authorUsername: string
             authorDisplayName: string
             authorPhotoURL: string
+            authorEmblemas: string[]
         }>
     ) => {
         if (!usuario) return
@@ -143,7 +144,10 @@ export function useAutenticacao(){
         try {
             if (!usuario) throw new Error('Usuário não autenticado.')
             await updateDoc(doc(banco, 'users', usuario.uid), dados)
-            await sincronizarDadosAutorNosPosts({ authorDisplayName: dados.displayName })
+            await sincronizarDadosAutorNosPosts({ 
+                authorDisplayName: dados.displayName,
+                authorEmblemas: dados.emblemas,
+            })
         } catch (error) {
             retorno = `Erro ao atualizar perfil! (${error})`
         }
