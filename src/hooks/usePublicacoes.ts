@@ -33,6 +33,7 @@ export function usePublicacoes() {
       authorUsername: usuario.username,
       authorDisplayName: usuario.nome,
       authorPhotoURL: usuario.photoURL,
+      authorEmblemas: usuario.emblemas ?? [],
       text: texto,
       imageURL,
       likesCount: 0,
