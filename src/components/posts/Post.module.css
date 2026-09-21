@@ -50,20 +50,6 @@
     width: 18px;
 }
 
-.badgeS,
-.badgeT,
-.badgeE,
-.badgeM{
-    font-family: var(--logo);
-    font-size: var(--M);
-}
-
-.badgeS { color: var(--verde) }
-.badgeT { color: var(--primaria-escura) }
-.badgeE { color: var(--primaria) }
-.badgeM { color: var(--rosa) }
-
-
 .usernameLinha {
     font-size: var(--PP);
     color: var(--cinza);
@@ -74,6 +60,7 @@
     border: none;
     cursor: pointer;
     font-size: 18px;
+    color: var(--preto);
 }
 
 .menuContainer{

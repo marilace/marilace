@@ -5,13 +5,13 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { CardSugestoes } from '../misc/CardSugestoes'
 import { TbUser, TbLink, TbUserEdit, TbUserPlus } from 'react-icons/tb'
-import { EMBLEMAS_DISPONIVEIS } from '../../types/Emblemas'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
 import { useParams } from 'react-router-dom'
 import { usePerfil } from '../../hooks/usePerfil'
 import { ModalEditarPerfil } from '../modais/ModalEditarPerfil'
 import { TelaCarregamento } from '../misc/TelaCarregamento'
 import { NaoEncontrado } from '../misc/NaoEncontrado'
+import { Emblemas } from '../misc/Emblemas'
 
 
 export function PerfilLayout(){
@@ -58,20 +58,7 @@ export function PerfilLayout(){
                         <div className={ styles.mainInfo}>
                             <div className={styles.nomeEmblemas}>
                                 <h1>{perfil.nome}</h1>
-                                <div className={ styles.emblemas }>
-                                    {EMBLEMAS_DISPONIVEIS
-                                    .filter((emblema) => perfil.emblemas?.includes(emblema.id))
-                                    .map((emblema) => (
-                                        <span
-                                            key={emblema.id}
-                                            className={ styles.emblema }
-                                            style={{ color: emblema.cor }}
-                                            title={emblema.texto}
-                                        >
-                                        {emblema.letra}
-                                        </span>
-                                    ))}
-                                </div>
+                                <Emblemas ids={perfil.emblemas}/>
                             </div>
 
                             <h2>@{perfil.username}</h2>

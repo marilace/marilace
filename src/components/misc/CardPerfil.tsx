@@ -2,25 +2,20 @@ import styles from './CardPerfil.module.css'
 import { useState } from 'react'
 import { TbUser, TbUserPlus } from 'react-icons/tb'
 import badgeVerificado from '../../assets/img/verificado.png';
+import { Emblemas } from './Emblemas';
 
 interface CardPerfilProps{
     nome: string
     username: string
     verificado?: boolean;
-    emblemaS?: boolean;
-    emblemaT?: boolean;
-    emblemaE?: boolean;
-    emblemaM?: boolean;
+    emblemas?: string[];
 }
 
 export function CardPerfil({
     nome,
     username,
     verificado = false,
-    emblemaS = false,
-    emblemaT = false,
-    emblemaE = false,
-    emblemaM = false
+    emblemas,
 }:CardPerfilProps){
 
     const [seguindo, setSeguindo] = useState(false)
@@ -34,10 +29,7 @@ export function CardPerfil({
                         <span className={ styles.nome }>{nome}</span>
 
                         {verificado && <img src={badgeVerificado} className={ styles.badgeVerificado }/>}
-                        {emblemaS && <span className={styles.badgeS}>s</span>}
-                        {emblemaT && <span className={styles.badgeT}>t</span>}
-                        {emblemaE && <span className={styles.badgeE}>e</span>}
-                        {emblemaM && <span className={styles.badgeM}>m</span>}
+                        <Emblemas ids={emblemas} />
                     </div>
                     <span className={ styles.username }>@{username}</span>
                 </div>

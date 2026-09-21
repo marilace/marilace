@@ -8,6 +8,7 @@ import { usePublicacoes } from "../../hooks/usePublicacoes";
 import { ModalEditarPostagem } from "../modais/ModalEditarPostagem";
 import { ModalConfirmacao } from "../modais/ModalConfirmacao";
 import { Link } from "react-router-dom";
+import { Emblemas } from "../misc/Emblemas";
 
 interface PostProps {
     postId: string;
@@ -22,10 +23,7 @@ interface PostProps {
     comentarios: number;
     compartilhamentos: number;
     verificado?: boolean;
-    emblemaS?: boolean;
-    emblemaT?: boolean;
-    emblemaE?: boolean;
-    emblemaM?: boolean;
+    emblemas?: string[];
 }
 
 export function Post({
@@ -41,10 +39,7 @@ export function Post({
     comentarios,
     compartilhamentos,
     verificado = false,
-    emblemaS = false,
-    emblemaT = false,
-    emblemaE = false,
-    emblemaM = false
+    emblemas
 }: PostProps) {
 
     const { curtido, alternarCurtida } = useCurtida(postId)
@@ -89,12 +84,9 @@ export function Post({
                 <div className={styles.headerInfo}>
                     <div className={styles.nomeLinha}>
                         <h1 className={styles.nome}>{nome}</h1>
-
+                        
                         {verificado && <img src={badgeVerificado} className={styles.badgeVerificado} />}
-                        {emblemaS && <span className={styles.badgeS}>s</span>}
-                        {emblemaT && <span className={styles.badgeT}>t</span>}
-                        {emblemaE && <span className={styles.badgeE}>e</span>}
-                        {emblemaM && <span className={styles.badgeM}>m</span>}
+                        <Emblemas ids={emblemas} />
                     </div>
 
                     <p className={styles.usernameLinha}>
