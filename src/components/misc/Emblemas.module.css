@@ -1,0 +1,9 @@
+.emblemas {
+    display: flex;
+    gap: 4px;
+}
+
+.emblema {
+    font-family: var(--logo);
+    font-size: var(--M);
+}
