@@ -4,6 +4,7 @@ export type PublicacaoTipo = {
     authorUsername: string
     authorDisplayName: string
     authorPhotoURL: string
+    authorEmblemas?: string[]
     text: string
     imageURL: string | null
     likesCount: number
