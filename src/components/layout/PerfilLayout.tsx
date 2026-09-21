@@ -78,7 +78,7 @@ export function PerfilLayout(){
                                     <TbUserEdit size={22} className={ styles.iconEditar } /> Editar perfil
                                 </button>
                             ) : (
-                                <button className={ styles.btnEditar }>
+                                <button className={ styles.btnSeguir }>
                                     <TbUserPlus size={22} className={ styles.iconEditar } /> Seguir
                                 </button>
                             )}

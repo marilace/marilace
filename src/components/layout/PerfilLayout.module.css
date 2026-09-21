@@ -72,7 +72,7 @@
 .infoPerfil{
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     margin-top: -3rem;
     margin-inline: 24px;
 }
@@ -114,7 +114,8 @@
     cursor: pointer;
 }
 
-.btnEditar{
+.btnEditar,
+.btnSeguir{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -133,14 +134,20 @@
     cursor: pointer;
 }
 
-.btnEditar:hover{
+.btnEditar:hover,
+.btnSeguir:hover{
     filter: drop-shadow(0px 4px var(--preto));
     transform: translateY(2px);
 }
 
-.btnEditar:active{
+.btnEditar:active,
+.btnSeguir:active{
     filter: drop-shadow(0px 0px var(--preto));
     transform: translateY(6px);
+}
+
+.btnSeguir{
+    background-color: var(--verde);
 }
 
 .iconEditar path{
