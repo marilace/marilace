@@ -1,10 +1,12 @@
 import styles from './CardPerfil.module.css'
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { TbUser, TbUserPlus } from 'react-icons/tb'
 import badgeVerificado from '../../assets/img/verificado.png';
 import { Emblemas } from './Emblemas';
 
 interface CardPerfilProps{
+    avatarSrc?: string;
     nome: string
     username: string
     verificado?: boolean;
@@ -12,6 +14,7 @@ interface CardPerfilProps{
 }
 
 export function CardPerfil({
+    avatarSrc,
     nome,
     username,
     verificado = false,
@@ -23,7 +26,15 @@ export function CardPerfil({
     return(
         <div className={ styles.container }>
             <main>
-            <TbUser size={24} className={ styles.iconPerfil } />
+                <Link to={`/${username}`}>
+                    {avatarSrc ? (
+                        <img src={avatarSrc} className={styles.avatar} />
+                    ) : (
+                        <div className={styles.avatarDefault}>
+                            <TbUser size={28} />
+                        </div>
+                    )}
+                </Link>
                 <div className={ styles.info }>
                     <div className={ styles.nomeLinha }>
                         <span className={ styles.nome }>{nome}</span>

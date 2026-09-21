@@ -17,6 +17,7 @@ export function useSugestoes(quantidade = 4) {
                     const dados = d.data()
                     return {
                         uid: d.id,
+                        photoURL: dados.photoURL,
                         username: dados.username,
                         nome: dados.displayName,
                         emblemas: dados.emblemas ?? [],

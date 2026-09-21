@@ -23,19 +23,6 @@
     height: 18px;
 }
 
-.badgeS,
-.badgeT,
-.badgeE,
-.badgeM{
-    font-family: var(--logo);
-    font-size: var(--M);
-}
-
-.badgeS { color: var(--verde) }
-.badgeT { color: var(--primaria-escura) }
-.badgeE { color: var(--primaria) }
-.badgeM { color: var(--rosa) }
-
 .nome{
     font-weight: 500;
     color: var(--preto);
@@ -45,11 +32,24 @@
     color: var(--cinza);
 }
 
-.iconPerfil{
+.avatarDefault{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 8px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
     border-radius: 999px;
     border: 2px solid;
-        color: var(--primaria);
+    color: var(--primaria);
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 999px;
 }
 
 .btnSeguir{
