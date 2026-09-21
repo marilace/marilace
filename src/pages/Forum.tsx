@@ -47,6 +47,7 @@ export function Forum(){
                         avatarSrc={post.authorPhotoURL}
                         nome={post.authorDisplayName}
                         username={post.authorUsername}
+                        emblemas={post.authorEmblemas}
                         tempo={formatarTempo(post.createdAt)}
                         conteudo={post.text}
                         imagemUrl={post.imageURL}
