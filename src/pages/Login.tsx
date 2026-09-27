@@ -4,7 +4,7 @@ import { HeaderAnon } from '../components/headers/HeaderAnon'
 import { FooterAnon } from '../components/footers/FooterAnon'
 import { type UsuarioTipo } from '../types/Usuario'
 import { Link, useNavigate } from 'react-router-dom'
-import { TbUserPlus, TbAlertCircle, TbEye, TbEyeClosed } from "react-icons/tb";
+import { TbUserPlus, TbAlertCircle, TbEye, TbEyeClosed, TbHelpCircle } from "react-icons/tb";
 import { z } from "zod";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -128,6 +128,11 @@ useEffect(() => {
                             </p>}
 
                         </div>
+
+                        <Link to="/esqueci-a-senha" className={ styles.esqueci }>
+                            <TbHelpCircle className={ styles.iconEsqueci } size={18}/>
+                            Esqueci minha senha
+                        </Link>
 
                         <button
                             className={ styles.btnForm }

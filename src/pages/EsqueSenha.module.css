@@ -1,0 +1,181 @@
+@keyframes aparecerErro {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aparecerMensagem {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerForm{
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--branco);
+    z-index: 1;
+    padding: 2.5rem 4rem;
+    border-radius: 16px;
+    border: 4px solid var(--primaria);
+}
+
+.fundo{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.iconTexto{
+    color: var(--branco);
+    background-color: var(--primaria);
+    padding: 12px;
+    border-radius: 999px;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    text-align: center;
+}
+
+.texto h1{
+    font-size: var(--GG);
+    color: var(--preto);
+}
+
+.texto p{
+    font-size: var(--P);
+    font-weight: 500;
+}
+
+.form{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    margin-block: 2rem 3rem;
+}
+
+.inputContainer label{
+    color: var(--preto);
+    font-family: var(--base);
+    font-size: var(--P);
+    font-weight: 600;
+}
+
+.inputContainer input{
+    background-color: var(--branco);
+    color: var(--preto);
+    filter: drop-shadow(0px 8px var(--preto));
+    border: 3px solid var(--preto);
+    border-radius: 999px;
+    font-family: var(--base);
+    font-size: var(--P);
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.inputContainer input:focus{
+    outline: 2px solid var(--verde);
+    transition: .2s ease;
+}
+
+.btnForm{
+    font-family: var(--base);
+    font-size: var(--P);
+    font-weight: 800;
+    padding: 12px 64px;
+    border-radius: 999px;
+    border: 3px solid var(--preto);
+    background-color: var(--verde);
+    color: var(--preto);
+    filter: drop-shadow(0px 6px var(--preto));
+    cursor: pointer;
+    max-width: 100%;
+    transition: .2s ease;
+}
+
+.btnForm:hover{
+    filter: drop-shadow(0px 3px);
+    transform: translateY(3px);
+}
+
+.btnForm:active{
+    filter: drop-shadow(0px 0px);
+    transform: translateY(6px);
+}
+
+.voltar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: var(--P);
+    font-weight: 700;
+    color: var(--primaria);
+    margin-block: .5rem;
+    padding: 1rem 2rem;
+}
+
+.icon path{
+    stroke-width: 2.5px;
+}
+
+.erro{
+    display: flex;
+    align-items: center;
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 500;
+    margin-top: 8px;
+    color: var(--cinza);
+    animation: aparecerErro 0.3s ease-out;
+}
+
+.msgSucesso,
+.msgErro{
+    margin-top: -1rem;
+    margin-bottom: .5rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primaria);
+    animation: aparecerMensagem 0.3s ease-out;
+}

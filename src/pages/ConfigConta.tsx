@@ -6,12 +6,17 @@ import { TbUserCog, TbMail, TbLock, TbLogout, TbTrash } from 'react-icons/tb'
 
 export function ConfigConta(){
 
-    const { usuario, deslogar } = useAutenticacao()
+    const { usuario, deslogar, solicitarRedefinicaoSenha } = useAutenticacao()
     const navegacao = useNavigate()
 
     const sair = async () => {
         await deslogar()
         navegacao('/')
+    }
+
+    const alterarSenha = async () => {
+        if (!usuario?.email) return
+        await solicitarRedefinicaoSenha(usuario.email)
     }
 
     return (
@@ -29,7 +34,7 @@ export function ConfigConta(){
             </ItemConfiguracao>
 
             <ItemConfiguracao icon={TbLock} titulo="Senha" descricao="Mantenha uma senha forte e exclusiva.">
-                <button className={styles.btnSecundario}>Alterar</button>
+                <button className={styles.btnSecundario} onClick={alterarSenha}>Alterar</button>
             </ItemConfiguracao>
 
             <div className={styles.acoesConta}>

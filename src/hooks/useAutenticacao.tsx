@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
 import { autenticacao, banco } from '../firebase/FirebaseConexao'
 import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, writeBatch } from 'firebase/firestore'
 import { useContext } from 'react'
@@ -191,6 +191,32 @@ export function useAutenticacao(){
         return retorno
     }
 
-    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, usuario, carregando }
-}
+    const recuperarSenha = async (email: string): Promise<string> => {
+        let retorno = 'Sucesso!'
+        try{
+            await sendPasswordResetEmail(autenticacao, email)
+        }catch (error) {
+            if(error instanceof FirebaseError) {
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                        retorno = 'Essa conta não existe.'
+                        break
+                    case 'auth/invalid-email':
+                        retorno = 'E-mail inválido.'
+                        break
+                    case 'auth/too-many-requests':
+                        retorno = 'Muitas tentativas. Tente novamente mais tarde.'
+                        break
+                    default:
+                        retorno = `Erro ao enviar e-mail de recuperação! (${error.code})`
+                        break
+                }
+            } else {
+                retorno = `Erro imprevisto! (${error})`
+            }
+        }
+        return retorno
+    }
 
+    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, recuperarSenha, usuario, carregando }
+}
