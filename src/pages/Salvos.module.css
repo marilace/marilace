@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-inline: 15%;
+    padding-inline: 6%;
     padding-block: 2rem;
     overflow-x: hidden;
 }
@@ -18,18 +18,75 @@
 
 .filtros {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     align-self: flex-start;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
+    padding: 6px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.035);
 }
 
+/* mural estilo Pinterest: colunas fluidas, cada card cai na coluna
+   mais vazia e mantém sua própria altura, um do lado do outro */
 .containerItens {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
     width: 100%;
+    column-count: 1;
+    column-gap: 20px;
+}
+
+@media (min-width: 700px) {
+    .containerItens {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1150px) {
+    .containerItens {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 1500px) {
+    .containerItens {
+        column-count: 4;
+    }
+}
+
+/* cada item entra com um fade + leve deslize pra cima, em cascata,
+   e nunca é cortado ao virar a coluna.
+   IMPORTANTE: fill-mode "backwards" (não "both") — assim que a animação
+   termina, o elemento volta a não ter nenhum transform aplicado. Se ficasse
+   um transform residual aqui, ele viraria um novo "containing block" e
+   quebraria o position: fixed do ModalComentarios, que é renderizado dentro
+   do card do post (por isso o modal saía distorcido só na página Salvos). */
+.itemEntrada {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 20px;
+    animation: entrarItem 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+    animation-delay: var(--atraso, 0ms);
+    border-radius: 20px;
+    transition: box-shadow 0.2s ease;
+}
+
+/* box-shadow em vez de transform: dá o efeito de "levantar" o card sem
+   nunca criar containing block pra elementos position: fixed dentro dele */
+.itemEntrada:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+@keyframes entrarItem {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .vazio {
@@ -40,6 +97,7 @@
     gap: 8px;
     color: var(--cinza);
     padding: 4rem 1rem;
+    animation: entrarItem 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 .iconeVazio {
@@ -47,6 +105,12 @@
     height: 48px;
     color: var(--primaria);
     margin-bottom: 8px;
+    animation: flutuar 2.6s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 
 .vazio p {
@@ -63,6 +127,15 @@
     max-width: 320px;
 }
 
+/* respeita quem prefere menos movimento na tela */
+@media (prefers-reduced-motion: reduce) {
+    .itemEntrada,
+    .vazio,
+    .iconeVazio {
+        animation: none;
+    }
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
     .salvos {
@@ -71,9 +144,5 @@
 
     .titulo {
         font-size: var(--P);
-    }
-
-    .containerItens {
-        gap: 18px;
     }
 }

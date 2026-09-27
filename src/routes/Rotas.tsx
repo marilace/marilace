@@ -45,6 +45,7 @@ export function Rotas(){
                     <Route index element={ <RotaProtegida><Forum/></RotaProtegida> }/>
                     <Route path='oportunidades' element={ <RotaProtegida><Oportunidades/></RotaProtegida> }/>
                     <Route path='salvos' element={ <RotaProtegida><Salvos/></RotaProtegida> }/>
+                    <Route path='blog' element={ <RotaProtegida><Blog/></RotaProtegida> }/>
                 </Route>
                 <Route path='/:username' element={ <RotaProtegida><PerfilLayout/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Profile/></RotaProtegida> }/>

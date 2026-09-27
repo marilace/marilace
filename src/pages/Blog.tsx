@@ -1,10 +1,12 @@
-  import styles from './Blog.module.css'
+import styles from './Blog.module.css'
 import { HeaderAnon } from '../components/headers/HeaderAnon'
 import { FooterAnon } from '../components/footers/FooterAnon'
 import { Chip } from '../components/misc/Chip';
 import { ArtigoBlog } from '../components/posts/ArtigoBlog';
 import { TelaCarregamento } from '../components/misc/TelaCarregamento';
 import { useArtigos } from '../hooks/useArtigos';
+import { useAutenticacao } from '../hooks/useAutenticacao';
+import { artigosExemplo } from '../utils/artigosExemplo';
 import { TbChevronRight } from "react-icons/tb";
 
 import logoComp from '../assets/img/logo-compacta.svg'
@@ -25,9 +27,22 @@ function corDaCategoria(categoria: string) {
 }
 
 export function Blog(){
-    const { artigos, carregando } = useArtigos()
+    const { artigos: artigosBanco, carregando } = useArtigos()
+    const { usuario } = useAutenticacao()
 
     if (carregando) return <TelaCarregamento />
+
+    // Quando acessado de dentro da área logada (/forum/blog), o header e o
+    // footer públicos não aparecem, já que o HeaderUser e o Menu do layout
+    // Principal já cuidam da navegação nesse caso.
+    const logada = Boolean(usuario)
+
+    // Enquanto não existem artigos cadastrados no Firestore, mostramos
+    // alguns exemplos estáticos (src/utils/artigosExemplo.ts) só para
+    // ilustrar o layout do blog. Assim que houver artigos reais, eles
+    // substituem os exemplos automaticamente.
+    const usandoExemplos = artigosBanco.length === 0
+    const artigos = usandoExemplos ? artigosExemplo : artigosBanco
 
     const destaques = artigos.filter((artigo) => artigo.destaque).slice(0, 3)
 
@@ -39,15 +54,21 @@ export function Blog(){
     })
 
     return(
-        <div className={ styles.container }>
-            <HeaderAnon/>
+        <main className={ styles.container }>
+            {!logada && <HeaderAnon/>}
 
             {destaques.length > 0 && (
-                <main className={ styles.destaques }>
+                <section className={`${ styles.destaques } ${ logada ? styles.destaquesLogada : '' }`}>
                     <h1 className={ styles.tituloDestaques }>
                         Destaques da <span>semana</span>
                         <TbChevronRight size={24} className={ styles.icon } />
                     </h1>
+
+                    {usandoExemplos && (
+                        <span className={ styles.containerChip }>
+                            <Chip texto="exemplos ilustrativos" cor="var(--cinza)" />
+                        </span>
+                    )}
 
                     <section className={ styles.artigosDestaque }>
                         {destaques[0] && (
@@ -93,7 +114,7 @@ export function Blog(){
                             </article>
                         )}
                     </section>
-                </main>
+                </section>
             )}
 
             <div className={ styles.divisoria }>
@@ -141,7 +162,7 @@ export function Blog(){
                     </section>
                 ))}
             </div>
-            <FooterAnon/>
-        </div>
+            {!logada && <FooterAnon/>}
+        </main>
     )
 }

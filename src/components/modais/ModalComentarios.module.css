@@ -1,14 +1,18 @@
 .modalOverlay{
     position: fixed;
     inset: 0;
-    background: var(--preto);
-    opacity: 1;
     background: rgba(0, 0, 0, 0.55);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     padding: 20px;
+    animation: entrarOverlay 0.25s ease both;
+}
+
+@keyframes entrarOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .container{
@@ -23,6 +27,25 @@
     box-shadow: 8px 8px 0 var(--preto);
     font-family: var(--base);
     overflow: hidden;
+    animation: entrarContainer 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes entrarContainer {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modalOverlay,
+    .container {
+        animation: none;
+    }
 }
 
 .header{
@@ -45,15 +68,24 @@
     cursor: pointer;
     color: var(--preto);
     display: flex;
+    border-radius: 999px;
+    padding: 4px;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btnFechar:hover{
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: rotate(90deg);
 }
 
 .listaComentarios{
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
     padding: 16px 20px;
     overflow-y: auto;
     flex: 1;
+    scroll-behavior: smooth;
 }
 
 .vazio{
@@ -75,13 +107,34 @@
     text-align: center;
 }
 
+.thread{
+    animation: entrarComentario 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes entrarComentario {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .comentario{
     display: flex;
     gap: 10px;
     align-items: flex-start;
 }
 
+.blocoComentario{
+    flex: 1;
+    min-width: 0;
+}
+
 .avatar,
+.avatarResposta,
 .avatarDefault,
 .avatarUsuario{
     width: 34px;
@@ -89,6 +142,11 @@
     border-radius: 999px;
     object-fit: cover;
     flex-shrink: 0;
+}
+
+.avatarResposta{
+    width: 28px;
+    height: 28px;
 }
 
 .avatarDefault{
@@ -101,11 +159,14 @@
 }
 
 .bolhaComentario{
-    background: var(--fundo, #f4f4f4);
     background-color: rgba(0, 0, 0, 0.035);
-    border-radius: 14px;
+    border-radius: 14px 14px 14px 4px;
     padding: 8px 12px;
-    flex: 1;
+    transition: background-color 0.15s ease;
+}
+
+.comentario:hover .bolhaComentario{
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .linhaAutor{
@@ -134,10 +195,102 @@
     word-break: break-word;
 }
 
+.mencao{
+    color: var(--primaria-escura);
+    font-weight: 600;
+}
+
 .erroTexto{
     color: var(--rosa);
     font-size: 13px;
     padding: 0 20px;
+}
+
+.acoesComentario{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    padding-left: 4px;
+}
+
+.btnAcao{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cinza);
+    font-family: var(--base);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btnAcao:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--preto);
+}
+
+.btnAcao svg{
+    transition: transform 0.15s ease;
+}
+
+.btnAcao:active svg{
+    transform: scale(1.2);
+}
+
+.btnAcaoAtiva{
+    color: var(--rosa);
+}
+
+.btnAcaoAtiva:hover{
+    color: var(--rosa);
+}
+
+.listaRespostas{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+    padding-left: 18px;
+    border-left: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.caixaResposta{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+    padding-left: 4px;
+    animation: entrarComentario 0.2s ease both;
+}
+
+.respondendoLabel{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--primaria-escura);
+    font-weight: 600;
+}
+
+.btnCancelarResposta{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cinza);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.btnCancelarResposta:hover{
+    color: var(--preto);
 }
 
 .containerInput{
@@ -148,26 +301,44 @@
     border-top: 2px solid var(--cinza);
 }
 
+.capsulaInput{
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background-color: var(--branco);
+    border: 2px solid var(--cinza);
+    border-radius: 20px;
+    padding: 6px 6px 6px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.capsulaInput:focus-within{
+    border-color: var(--primaria);
+    box-shadow: 0 0 0 3px rgba(195, 160, 238, 0.35);
+}
+
 .inputComentario{
     flex: 1;
     resize: none;
-    max-height: 90px;
-    border: 2px solid var(--cinza);
-    border-radius: 14px;
-    padding: 8px 12px;
+    max-height: 96px;
+    min-height: 24px;
+    border: none;
+    background: transparent;
+    padding: 6px 0;
     font-family: var(--base);
     font-size: var(--PP);
     color: var(--preto);
+    transition: height 0.15s ease;
 }
 
 .inputComentario:focus{
     outline: none;
-    border-color: var(--primaria);
 }
 
 .btnEnviar{
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -176,9 +347,13 @@
     background-color: var(--verde);
     color: var(--preto);
     border: 2px solid var(--preto);
-    filter: drop-shadow(0px 4px var(--preto));
+    filter: drop-shadow(0px 3px var(--preto));
     cursor: pointer;
-    transition: .1s ease;
+    transition: transform 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
+}
+
+.btnEnviar:not(:disabled):hover{
+    transform: translateY(-1px) scale(1.04);
 }
 
 .btnEnviar:disabled{
@@ -188,6 +363,6 @@
 }
 
 .btnEnviar:not(:disabled):active{
-    transform: translateY(4px);
+    transform: translateY(3px);
     filter: drop-shadow(0px 0px var(--preto));
 }

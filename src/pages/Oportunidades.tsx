@@ -1,54 +1,60 @@
-import styles from './Construcao.module.css'
-import { Chip } from '../components/misc/Chip';
-import { TbTools } from "react-icons/tb";
-import { Btn } from '../components/buttons/Btn';
+import styles from './Oportunidades.module.css'
+import { useState } from 'react'
+import { TbBriefcase } from "react-icons/tb";
+import { ChipClicavel } from '../components/misc/ChipClicavel'
+import { CardOportunidade } from '../components/misc/CardOportunidade'
+import { oportunidadesExemplo } from '../utils/oportunidadesExemplo'
+import { type CategoriaOportunidade } from '../types/Oportunidade'
+
+type Filtro = 'Todos' | CategoriaOportunidade
+
+const CATEGORIAS: Filtro[] = ['Todos', 'Vaga', 'Estágio', 'Bolsa', 'Mentoria', 'Evento']
 
 export function Oportunidades(){
+    const [filtro, setFiltro] = useState<Filtro>('Todos')
+
+    // Por enquanto a lista vem de dados estáticos de exemplo (veja
+    // src/utils/oportunidadesExemplo.ts), só para ilustrar como a página
+    // vai se comportar quando houver oportunidades reais cadastradas.
+    const oportunidades = oportunidadesExemplo
+    const oportunidadesFiltradas = oportunidades.filter(
+        (oportunidade) => filtro === 'Todos' || oportunidade.categoria === filtro
+    )
+
     return (
-        <div className={ styles.page }>
+        <main className={ styles.oportunidades }>
+            <div className={ styles.cabecalho }>
+                <h1 className={ styles.titulo }>Oportunidades</h1>
+                <p className={ styles.subtitulo }>
+                    Vagas, bolsas, mentorias e eventos para impulsionar sua carreira nas exatas.
+                </p>
+            </div>
 
-            <main className={ styles.main }>
-                <svg className={ styles.linhasFundo } viewBox="0 0 1000 700" preserveAspectRatio="none">
-                    <path
-                        d="M-50 100 C 150 0, 250 200, 450 100 S 750 0, 1050 120"
-                        fill="none"
-                        strokeWidth="22"
+            <div className={ styles.filtros }>
+                {CATEGORIAS.map((categoria) => (
+                    <ChipClicavel
+                        key={ categoria }
+                        texto={ categoria }
+                        cor="var(--primaria)"
+                        selecionado={ filtro === categoria }
+                        onClick={() => setFiltro(categoria)}
                     />
-                    <path
-                        d="M-50 550 C 200 450, 300 650, 550 550 S 850 450, 1050 580"
-                        fill="none"
-                        strokeWidth="22"
-                    />
-                </svg>
+                ))}
+            </div>
 
-                <span className={`${ styles.forma } ${ styles.nuvem }`} />
-                <span className={`${ styles.forma } ${ styles.estrela1 }`} />
-                <span className={`${ styles.forma } ${ styles.estrela2 }`} />
-                <span className={`${ styles.forma } ${ styles.blobVerde }`} />
-
-                <div className={ styles.conteudo }>
-                    <span className={ styles.etiqueta }><Chip texto='ainda estamos montando essa parte!' cor='var(--rosa)'/></span>
-
-                    <div className={ styles.iconeBlob }>
-                        <div className={ styles.circuloPontilhado }>
-                            <TbTools className={ styles.icone } />
-                        </div>
-                    </div>
-
-                    <h1 className={ styles.titulo }>Em construção!</h1>
-
-                    <p className={ styles.descricao }>
-                        Parece que algumas engenheiras estão trabalhando aqui...
-                    </p>
-
-                    <div className={ styles.botao }>
-                        <Btn
-                            route='/forum'
-                            text='Voltar para o fórum'
-                        />
-                    </div>
+            {oportunidadesFiltradas.length === 0 ? (
+                <div className={ styles.vazio }>
+                    <TbBriefcase className={ styles.iconeVazio } />
+                    <p>Nenhuma oportunidade por aqui ainda...</p>
+                    <span>Tente outra categoria ou volte mais tarde.</span>
                 </div>
-            </main>
-        </div>
+            ) : (
+                <div className={ styles.grid }>
+                    {oportunidadesFiltradas.map((oportunidade) => (
+                        <CardOportunidade key={ oportunidade.id } oportunidade={ oportunidade } />
+                    ))}
+                </div>
+            )}
+        </main>
     )
 }

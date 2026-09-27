@@ -1,0 +1,144 @@
+.oportunidades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 15%;
+    padding-block: 2rem;
+    overflow-x: hidden;
+}
+
+.cabecalho {
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    font-family: var(--base);
+    font-size: var(--M);
+    font-weight: 700;
+    color: var(--primaria-escura);
+    margin-bottom: 6px;
+}
+
+.subtitulo {
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 500;
+    color: var(--cinza);
+    max-width: 520px;
+}
+
+.filtros {
+    display: flex;
+    gap: 12px;
+    align-self: stretch;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    width: 100%;
+}
+
+.vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    color: var(--cinza);
+    padding: 4rem 1rem;
+}
+
+.iconeVazio {
+    width: 48px;
+    height: 48px;
+    color: var(--primaria);
+    margin-bottom: 8px;
+}
+
+.vazio p {
+    font-family: var(--base);
+    font-size: var(--P);
+    font-weight: 700;
+    color: var(--preto);
+    margin: 0;
+}
+
+.vazio span {
+    font-family: var(--base);
+    font-size: var(--PP);
+    max-width: 320px;
+}
+
+/* TELAS GRANDES */
+@media (max-width: 1400px) {
+    .oportunidades {
+        padding-inline: 8%;
+    }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .oportunidades {
+        padding-inline: 6%;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .oportunidades {
+        padding-inline: 4%;
+        padding-block: 1.5rem;
+    }
+
+    .titulo {
+        font-size: var(--P);
+    }
+
+    .subtitulo {
+        max-width: 100%;
+    }
+
+    .filtros {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-inline: -4%;
+        padding-inline: 4%;
+        gap: 8px;
+        margin-bottom: 20px;
+        scrollbar-width: none;
+    }
+
+    .filtros::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filtros > * {
+        flex-shrink: 0;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* MOBILE PEQUENO */
+@media (max-width: 380px) {
+    .oportunidades {
+        padding-inline: 3%;
+    }
+
+    .subtitulo {
+        font-size: 0.8rem;
+    }
+}

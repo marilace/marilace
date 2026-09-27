@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+.destaques.destaquesLogada {
+    height: auto;
+    padding: 2rem 3rem 3rem 3rem;
+}
+
 .tituloDestaques{
     font-family: var(--base);
     font-size: var(--M);
@@ -231,6 +236,12 @@
         padding: 4rem 2rem 2rem 2rem;
     }
 
+        .destaques.destaquesLogada {
+        min-height: auto;
+        padding: 1.5rem 2rem 2rem 2rem;
+    }
+
+
     .artigosDestaque {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
@@ -362,6 +373,10 @@
     @media (max-width: 480px) {
     .destaques {
         padding: 3rem 1rem 1.5rem 1rem;
+    }
+
+        .destaques.destaquesLogada {
+        padding: 1.5rem 1rem 1.5rem 1rem;
     }
 
     .containerChip {

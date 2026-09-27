@@ -185,8 +185,8 @@ main {
 
 .emojiPickerContainer{
     position: absolute;
-    top: 100%;
-    left: -8px;
+    top: -200%;
+    left: 30px;
     z-index: 1100;
     animation: aparecer .2s ease;
 

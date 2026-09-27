@@ -50,33 +50,37 @@ export function Salvos(){
                     <span>Toque no ícone de salvar em um post ou artigo para vê-lo aqui depois.</span>
                 </div>
             ) : (
-                <div className={ styles.containerItens }>
-                    {itensFiltrados.map((item) => (
-                        item.tipo === 'post' ? (
-                            <Post
-                                key={`post-${item.dados.id}`}
-                                postId={item.dados.id}
-                                authorId={item.dados.authorId}
-                                avatarSrc={item.dados.authorPhotoURL}
-                                nome={item.dados.authorDisplayName}
-                                username={item.dados.authorUsername}
-                                emblemas={item.dados.authorEmblemas}
-                                tempo={formatarTempo(item.dados.createdAt)}
-                                conteudo={item.dados.text}
-                                imagemUrl={item.dados.imageURL}
-                                curtidas={item.dados.likesCount}
-                                comentarios={item.dados.commentsCount}
-                                compartilhamentos={0}
-                            />
-                        ) : (
-                            <ArtigoBlog
-                                key={`artigo-${item.dados.id}`}
-                                id={item.dados.id}
-                                src={item.dados.imagemURL}
-                                titulo={item.dados.titulo}
-                                descricao={item.dados.descricao}
-                            />
-                        )
+                <div className={ styles.containerItens } key={filtro}>
+                    {itensFiltrados.map((item, indice) => (
+                        <div
+                            key={`${item.tipo}-${item.dados.id}`}
+                            className={ styles.itemEntrada }
+                            style={{ ['--atraso' as string]: `${Math.min(indice, 8) * 45}ms` }}
+                        >
+                            {item.tipo === 'post' ? (
+                                <Post
+                                    postId={item.dados.id}
+                                    authorId={item.dados.authorId}
+                                    avatarSrc={item.dados.authorPhotoURL}
+                                    nome={item.dados.authorDisplayName}
+                                    username={item.dados.authorUsername}
+                                    emblemas={item.dados.authorEmblemas}
+                                    tempo={formatarTempo(item.dados.createdAt)}
+                                    conteudo={item.dados.text}
+                                    imagemUrl={item.dados.imageURL}
+                                    curtidas={item.dados.likesCount}
+                                    comentarios={item.dados.commentsCount}
+                                    compartilhamentos={0}
+                                />
+                            ) : (
+                                <ArtigoBlog
+                                    id={item.dados.id}
+                                    src={item.dados.imagemURL}
+                                    titulo={item.dados.titulo}
+                                    descricao={item.dados.descricao}
+                                />
+                            )}
+                        </div>
                     ))}
                 </div>
             )}
