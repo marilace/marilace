@@ -6,8 +6,6 @@ import { Blog } from '../pages/Blog.tsx'
 
 import { Login } from '../pages/Login.tsx'
 import { Registro } from '../pages/Registro.tsx'
-
-import { EsqueciSenha } from '../pages/EsqueciSenha.tsx'
 import { AlterarSenha } from '../pages/AlterarSenha.tsx'
 
 import { Principal } from '../components/layout/Principal.tsx'
@@ -40,7 +38,6 @@ export function Rotas(){
                 <Route path='blog' element={ <Blog/> }/>
                 <Route path='login' element={ <Login/> }/>
                 <Route path='register' element={ <Registro/> }/>
-                <Route path='esqueci-a-senha' element={ <EsqueciSenha/> }/>
                 <Route path='alterar-senha' element={ <AlterarSenha/> }/>
                 <Route path='forum' element={ <RotaProtegida><Principal/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Forum/></RotaProtegida> }/>

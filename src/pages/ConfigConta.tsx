@@ -6,7 +6,7 @@ import { TbUserCog, TbMail, TbLock, TbLogout, TbTrash } from 'react-icons/tb'
 
 export function ConfigConta(){
 
-    const { usuario, deslogar, solicitarRedefinicaoSenha } = useAutenticacao()
+    const { usuario, deslogar, recuperarSenha } = useAutenticacao()
     const navegacao = useNavigate()
 
     const sair = async () => {
@@ -16,7 +16,7 @@ export function ConfigConta(){
 
     const alterarSenha = async () => {
         if (!usuario?.email) return
-        await solicitarRedefinicaoSenha(usuario.email)
+        await recuperarSenha(usuario.email)
     }
 
     return (
