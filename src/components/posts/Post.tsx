@@ -10,6 +10,7 @@ import { ModalConfirmacao } from "../modais/ModalConfirmacao";
 import { Link } from "react-router-dom";
 import { Emblemas } from "../misc/Emblemas";
 import { useSalvo } from "../../hooks/useSalvos";
+import { ModalComentarios } from "../modais/ModalComentarios";
 
 interface PostProps {
     postId: string;
@@ -54,6 +55,7 @@ export function Post({
     const [modalEditarAberto, setModalEditarAberto] = useState(false)
     const [modalExcluirAberto, setModalExcluirAberto] = useState(false)
     const [excluindo, setExcluindo] = useState(false)
+    const [modalComentariosAberto, setModalComentariosAberto] = useState(false)
 
     const souAutor = usuario?.uid === authorId
 
@@ -158,7 +160,14 @@ export function Post({
                     )}
                     <span className={styles.numeros}>{curtidas}</span>
                 </button>
-                <span className={styles.acao}><TbMessage size={24}/> {comentarios}</span>
+                                <button
+                    className={styles.iconBtn}
+                    onClick={() => setModalComentariosAberto(true)}
+                    aria-label="Ver comentários"
+                >
+                    <TbMessage className={styles.icon} size={24}/>
+                    <span className={styles.numeros}>{comentarios}</span>
+                </button>
                 <span className={styles.acao}><TbShare size={24}/> {compartilhamentos}</span>
                 </div>
 
@@ -191,6 +200,12 @@ export function Post({
                 confirmando={excluindo}
                 confirmar={excluir}
                 cancelar={() => setModalExcluirAberto(false)}
+            />
+                        <ModalComentarios
+                aberto={modalComentariosAberto}
+                postId={postId}
+                authorId={authorId}
+                fechar={() => setModalComentariosAberto(false)}
             />
         </div>
     );

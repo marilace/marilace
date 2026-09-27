@@ -14,6 +14,7 @@ export function CardSugestoes(){
                 {sugestoes.map((sugestao) => (
                     <CardPerfil
                         key={sugestao.uid}
+                        uid={sugestao.uid}
                         avatarSrc={sugestao.photoURL}
                         nome={sugestao.nome ?? ''}
                         username={sugestao.username ?? ''}

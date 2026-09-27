@@ -1,11 +1,12 @@
 import styles from './CardPerfil.module.css'
-import { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { TbUser, TbUserPlus } from 'react-icons/tb'
+import { TbUser, TbUserPlus, TbUserCheck } from 'react-icons/tb'
 import badgeVerificado from '../../assets/img/verificado.png';
 import { Emblemas } from './Emblemas';
+import { useSeguir } from '../../hooks/useSeguir';
 
 interface CardPerfilProps{
+    uid: string;
     avatarSrc?: string;
     nome: string
     username: string
@@ -14,6 +15,7 @@ interface CardPerfilProps{
 }
 
 export function CardPerfil({
+    uid,
     avatarSrc,
     nome,
     username,
@@ -21,7 +23,7 @@ export function CardPerfil({
     emblemas,
 }:CardPerfilProps){
 
-    const [seguindo, setSeguindo] = useState(false)
+    const { seguindo, alternarSeguir, atualizando, ehMeuProprioPerfil } = useSeguir(uid)
 
     return(
         <div className={ styles.container }>
@@ -46,11 +48,19 @@ export function CardPerfil({
                 </div>
             </main>
 
-            <button
-            className={`${styles.btnSeguir} ${seguindo ? styles.ativo : ''}`}
-            onClick={() => setSeguindo(!seguindo)}>
-                <TbUserPlus size={20} className={ styles.iconSeguir }/>
-            </button>
+            {!ehMeuProprioPerfil && (
+                <button
+                className={`${styles.btnSeguir} ${seguindo ? styles.ativo : ''}`}
+                onClick={alternarSeguir}
+                disabled={atualizando}
+                aria-label={seguindo ? 'Deixar de seguir' : 'Seguir'}>
+                    {seguindo ? (
+                        <TbUserCheck size={20} className={ styles.iconSeguir }/>
+                    ) : (
+                        <TbUserPlus size={20} className={ styles.iconSeguir }/>
+                    )}
+                </button>
+            )}
         </div>
     )
 }

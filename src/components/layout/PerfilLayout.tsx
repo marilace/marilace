@@ -12,6 +12,7 @@ import { ModalEditarPerfil } from '../modais/ModalEditarPerfil'
 import { TelaCarregamento } from '../misc/TelaCarregamento'
 import { NaoEncontrado } from '../misc/NaoEncontrado'
 import { Emblemas } from '../misc/Emblemas'
+import { useSeguir } from '../../hooks/useSeguir'
 
 
 export function PerfilLayout(){
@@ -19,6 +20,7 @@ export function PerfilLayout(){
     const { username } = useParams()
     const { usuario: usuarioLogado } = useAutenticacao()
     const { perfil, carregando, naoEncontrado } = usePerfil(username)
+    const { seguindo, alternarSeguir, atualizando } = useSeguir(perfil?.uid)
 
     const location = useLocation()
 
@@ -78,10 +80,15 @@ export function PerfilLayout(){
                                     <TbUserEdit size={22} className={ styles.iconEditar } /> Editar perfil
                                 </button>
                             ) : (
-                                <button className={ styles.btnSeguir }>
-                                    <TbUserPlus size={22} className={ styles.iconEditar } /> Seguir
-                                </button>
-                            )}
+                                    <button
+                                        className={ styles.btnSeguir }
+                                        onClick={alternarSeguir}
+                                        disabled={atualizando}
+                                    >
+                                        <TbUserPlus size={22} className={ styles.iconEditar } /> {seguindo ? 'Seguindo' : 'Seguir'}
+                                    </button>
+                                )}
+                        
                         </div>
 
                     </div>
