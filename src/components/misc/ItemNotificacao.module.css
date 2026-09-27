@@ -1,15 +1,67 @@
 .container{
     display: flex;
+    align-items: center;
     gap: 16px;
     padding: 24px 48px;
     border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    position: relative;
+    transition: background-color .15s ease;
+}
+
+.container:hover{
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.naoLida{
+    background-color: rgba(195, 160, 238, .1);
 }
 
 .icon{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--verde);
-    padding: 8px;
+    color: var(--branco);
+    padding: 10px;
     border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.texto{
+    color: var(--preto);
+}
+
+.texto h1{
+    font-size: var(--P);
+    font-weight: 700;
+}
+
+.texto p{
+    font-size: var(--PP);
+    font-weight: 400;
+    color: var(--cinza);
+}
+
+.tempo{
+    display: block;
+    font-size: var(--footer);
+    color: var(--cinza);
+    margin-top: 4px;
+}
+
+.pontoNaoLido{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background-color: var(--primaria);
+    flex-shrink: 0;
 }

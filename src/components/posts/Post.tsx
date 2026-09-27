@@ -43,7 +43,7 @@ export function Post({
     emblemas
 }: PostProps) {
 
-    const { curtido, alternarCurtida } = useCurtida(postId)
+    const { curtido, alternarCurtida } = useCurtida(postId, authorId)
     const { usuario } = useAutenticacao()
     const { excluirPublicacao } = usePublicacoes()
 

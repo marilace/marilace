@@ -138,11 +138,11 @@ export function Login() {
                             )}
 
                         </div>
-
-                        <Link
-                            to="/AlterarSenha"
-                            className={styles.esqueci}
-                        >
+                            
+                            <Link
+                                 to="/esqueci-senha"
+                                className={styles.esqueci}
+                                    >
                             <TbHelpCircle
                                 className={styles.iconEsqueci}
                                 size={18}

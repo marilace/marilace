@@ -1,8 +1,9 @@
 import { FirebaseError } from 'firebase/app'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth'
 import { autenticacao, banco } from '../firebase/FirebaseConexao'
 import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, writeBatch } from 'firebase/firestore'
 import { useContext } from 'react'
+import { criarNotificacao } from '../services/Notificacoes'
 import { AutenticacaoContexto } from '../contexts/AutenticacaoContexto'
 import { enviarImagem } from '../services/uploadImagem'
 
@@ -24,6 +25,7 @@ export function useAutenticacao(){
             const usernameRef = doc(banco, 'usernames', usernameFormatado)
             const usernameSnap = await getDoc(usernameRef)
 
+
             if (usernameSnap.exists()) {
                 return 'Esse nome de usuário já está em uso.'
             }
@@ -44,6 +46,16 @@ export function useAutenticacao(){
 
             // reserva o username
             await setDoc(usernameRef, { uid })
+                        // reserva o username
+            await setDoc(usernameRef, { uid })
+
+            // notificação de boas-vindas
+            await criarNotificacao({
+                paraUid: uid,
+                tipo: 'sistema',
+                titulo: 'Boas-vindas ao MariLace!',
+                mensagem: 'Estamos muito felizes de ver você aqui! Esperamos que tenha uma experiência incrível usando o MariLace :)',
+            })
 
         } catch (error) {
             if (error instanceof FirebaseError) {
@@ -217,6 +229,62 @@ export function useAutenticacao(){
         }
         return retorno
     }
+        const verificarCodigoRedefinicao = async (oobCode: string): Promise<string> => {
+        let retorno = 'Sucesso!'
+        try {
+            await verifyPasswordResetCode(autenticacao, oobCode)
+        } catch (error) {
+            if (error instanceof FirebaseError) {
+                switch (error.code) {
+                    case 'auth/expired-action-code':
+                        retorno = 'Esse link de redefinição expirou. Solicite um novo.'
+                        break
+                    case 'auth/invalid-action-code':
+                        retorno = 'Esse link de redefinição é inválido ou já foi usado.'
+                        break
+                    case 'auth/user-disabled':
+                        retorno = 'Essa conta foi desativada.'
+                        break
+                    case 'auth/user-not-found':
+                        retorno = 'Essa conta não existe mais.'
+                        break
+                    default:
+                        retorno = `Erro ao verificar o link de redefinição! (${error.code})`
+                        break
+                }
+            } else {
+                retorno = `Erro imprevisto! (${error})`
+            }
+        }
+        return retorno
+    }
 
-    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, recuperarSenha, usuario, carregando }
+    const redefinirSenha = async (oobCode: string, novaSenha: string): Promise<string> => {
+        let retorno = 'Sucesso!'
+        try {
+            await confirmPasswordReset(autenticacao, oobCode, novaSenha)
+        } catch (error) {
+            if (error instanceof FirebaseError) {
+                switch (error.code) {
+                    case 'auth/expired-action-code':
+                        retorno = 'Esse link de redefinição expirou. Solicite um novo.'
+                        break
+                    case 'auth/invalid-action-code':
+                        retorno = 'Esse link de redefinição é inválido ou já foi usado.'
+                        break
+                    case 'auth/weak-password':
+                        retorno = 'Essa senha é muito fraca. Escolha uma senha mais forte.'
+                        break
+                    default:
+                        retorno = `Erro ao redefinir a senha! (${error.code})`
+                        break
+                }
+            } else {
+                retorno = `Erro imprevisto! (${error})`
+            }
+        }
+        return retorno
+    }
+
+    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, recuperarSenha, verificarCodigoRedefinicao, redefinirSenha, usuario, carregando }
 }

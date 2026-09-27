@@ -11,8 +11,9 @@ import {
 } from 'firebase/firestore'
 import { banco } from '../firebase/FirebaseConexao'
 import { useAutenticacao } from './useAutenticacao'
+import { criarNotificacao } from '../services/Notificacoes'
 
-export function useCurtida(postId: string) {
+export function useCurtida(postId: string, authorId: string) {
     const { usuario } = useAutenticacao()
     const [curtido, setCurtido] = useState(false)
 
@@ -41,6 +42,18 @@ export function useCurtida(postId: string) {
         } else {
             await setDoc(curtidaRef, { createdAt: serverTimestamp() })
             await updateDoc(postRef, { likesCount: increment(1) })
+
+            await criarNotificacao({
+                paraUid: authorId,
+                tipo: 'curtida',
+                titulo: 'Nova curtida',
+                mensagem: `${usuario.nome ?? usuario.username ?? 'Alguém'} curtiu sua publicação.`,
+                deQuemId: usuario.uid,
+                deQuemUsername: usuario.username,
+                deQuemNome: usuario.nome,
+                deQuemPhotoURL: usuario.photoURL,
+                postId,
+            })
         }
     }
 

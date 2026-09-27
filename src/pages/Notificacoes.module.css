@@ -6,6 +6,7 @@
 .container{
     padding: 1.5rem 2rem;
     color: var(--preto);
+    display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
@@ -43,4 +44,28 @@
 
 .filtros > button {
     padding: 4px 16px !important;
+}
+
+.notificacoes{
+    display: flex;
+    flex-direction: column;
+}
+
+.btnMarcarTodas{
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--primaria-escura);
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.mensagemVazia{
+    text-align: center;
+    color: var(--cinza);
+    font-size: var(--P);
+    padding: 3rem 0;
 }

@@ -163,3 +163,37 @@
     width: 100%;
     padding-right: 2.5rem;
 }
+
+.erro{
+    display: flex;
+    align-items: center;
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 500;
+    margin-top: 8px;
+    color: var(--cinza);
+}
+
+.msgSucesso,
+.msgErro{
+    margin-top: -.5rem;
+    margin-bottom: .5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.msgErro{
+    color: var(--rosa);
+}
+
+.msgSucesso{
+    color: var(--primaria);
+}
+
+.textoCarregando{
+    font-size: var(--P);
+    font-weight: 500;
+    color: var(--cinza);
+    text-align: center;
+    margin-top: 1rem;
+}
