@@ -1,0 +1,79 @@
+.salvos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 15%;
+    padding-block: 2rem;
+    overflow-x: hidden;
+}
+
+.titulo {
+    align-self: flex-start;
+    font-family: var(--base);
+    font-size: var(--M);
+    font-weight: 700;
+    color: var(--primaria-escura);
+    margin-bottom: 16px;
+}
+
+.filtros {
+    display: flex;
+    gap: 12px;
+    align-self: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.containerItens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    color: var(--cinza);
+    padding: 4rem 1rem;
+}
+
+.iconeVazio {
+    width: 48px;
+    height: 48px;
+    color: var(--primaria);
+    margin-bottom: 8px;
+}
+
+.vazio p {
+    font-family: var(--base);
+    font-size: var(--P);
+    font-weight: 700;
+    color: var(--preto);
+    margin: 0;
+}
+
+.vazio span {
+    font-family: var(--base);
+    font-size: var(--PP);
+    max-width: 320px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .salvos {
+        padding-inline: 4%;
+    }
+
+    .titulo {
+        font-size: var(--P);
+    }
+
+    .containerItens {
+        gap: 18px;
+    }
+}

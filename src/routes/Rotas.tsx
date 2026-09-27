@@ -9,7 +9,6 @@ import { Registro } from '../pages/Registro.tsx'
 
 import { Principal } from '../components/layout/Principal.tsx'
 import { Forum } from '../pages/Forum.tsx'
-import { Chat } from '../pages/Chat.tsx'
 import { Oportunidades } from '../pages/Oportunidades.tsx'
 import { Salvos } from '../pages/Salvos.tsx'
 
@@ -40,7 +39,6 @@ export function Rotas(){
                 <Route path='register' element={ <Registro/> }/>
                 <Route path='forum' element={ <RotaProtegida><Principal/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Forum/></RotaProtegida> }/>
-                    <Route path='chat' element={ <RotaProtegida><Chat/></RotaProtegida> }/>
                     <Route path='oportunidades' element={ <RotaProtegida><Oportunidades/></RotaProtegida> }/>
                     <Route path='salvos' element={ <RotaProtegida><Salvos/></RotaProtegida> }/>
                 </Route>

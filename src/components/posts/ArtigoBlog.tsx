@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { TbStar, TbStarFilled, TbBookmark, TbBookmarkFilled } from "react-icons/tb";
 import styles from './ArtigoBlog.module.css'
+import { useSalvo } from '../../hooks/useSalvos'
 
 interface ArtigoBlogProps {
+    id: string
     src: string
     titulo: string
     descricao: string
 }
 
-export function ArtigoBlog({ src, titulo, descricao }: ArtigoBlogProps) {
-    const [salvo, setSalvo] = useState(false)
+export function ArtigoBlog({ id, src, titulo, descricao }: ArtigoBlogProps) {
+    const { salvo, alternarSalvo, salvando } = useSalvo(id, 'artigo')
     const [favorito, setFavorito] = useState(false)
+    // só troquei o onClick do botão de salvar pra `alternarSalvo`
 
     return (
     <div className={ styles.card }>
@@ -25,7 +28,8 @@ export function ArtigoBlog({ src, titulo, descricao }: ArtigoBlogProps) {
             <div className={ styles.cardIcones }>
                 <button
                     className={ styles.iconBtn }
-                    onClick={() => setSalvo(!salvo)}
+                    onClick={alternarSalvo}
+                    disabled={salvando}
                     aria-label="Salvar"
                 >
                     {salvo ? (

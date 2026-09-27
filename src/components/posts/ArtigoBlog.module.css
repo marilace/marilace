@@ -84,12 +84,18 @@
     transform: scale(1.1);
 }
 
+
 .iconSalvo {
-    width: 20px;
-    height: 20px;
     color: var(--primaria-escura);
-    transition: transform 0.2s ease;
+    animation: popSalvo 0.35s ease;
 }
+
+@keyframes popSalvo {
+    0% { transform: scale(0.6); }
+    50% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
 
 .iconFavorito {
     width: 20px;

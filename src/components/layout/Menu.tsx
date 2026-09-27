@@ -1,6 +1,6 @@
 import styles from './Menu.module.css'
 import { Link, useLocation } from 'react-router-dom'
-import { TbHome, TbMessages, TbClipboardSmile, TbBookmark } from "react-icons/tb";
+import { TbHome, TbClipboardSmile, TbBookmark } from "react-icons/tb";
 
 
 // o propósito é o menu ficar sempre aberto mesmo
@@ -23,19 +23,6 @@ export function Menu(){
                 >
                     <TbHome size={30} className={ styles.icon }/>
                     <span className={ styles.rotulo }>Início</span>
-                </Link>
-                <hr />
-                <Link
-                    className={ styles.item }
-                    style={{
-                        color: location.pathname === '/forum/chat'
-                            ? 'var(--primaria-escura)'
-                            : 'var(--preto)'
-                    }}
-                    to='chat'
-                >
-                    <TbMessages size={30} className={ styles.icon }/>
-                    <span className={ styles.rotulo }>Chat</span>
                 </Link>
                 <hr />
                 <Link

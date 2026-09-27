@@ -9,6 +9,7 @@ import { ModalEditarPostagem } from "../modais/ModalEditarPostagem";
 import { ModalConfirmacao } from "../modais/ModalConfirmacao";
 import { Link } from "react-router-dom";
 import { Emblemas } from "../misc/Emblemas";
+import { useSalvo } from "../../hooks/useSalvos";
 
 interface PostProps {
     postId: string;
@@ -46,7 +47,8 @@ export function Post({
     const { usuario } = useAutenticacao()
     const { excluirPublicacao } = usePublicacoes()
 
-    const [salvo, setSalvo] = useState(false)
+    const {salvo, alternarSalvo, salvando} = useSalvo(postId, 'post')
+
 
     const [menuAberto, setMenuAberto] = useState(false)
     const [modalEditarAberto, setModalEditarAberto] = useState(false)
@@ -162,7 +164,8 @@ export function Post({
 
                 <button
                 className={styles.iconBtn}
-                onClick={() => setSalvo(!salvo)}
+                onClick={alternarSalvo}
+                disabled={salvando}
                 aria-label="Salvar"
                 >
                 {salvo ? (
