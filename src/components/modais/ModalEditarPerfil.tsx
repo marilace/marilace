@@ -16,6 +16,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
     const [displayName, setDisplayName] = useState('')
     const [username, setUsername] = useState('')
     const [bio, setBio] = useState('')
+    const [pronomes, setPronomes] = useState('')
     const [emblemas, setEmblemas] = useState<string[]>([])
 
     const [arquivoFoto, setArquivoFoto] = useState<File | null>(null)
@@ -31,6 +32,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             setDisplayName(usuario.nome ?? '')
             setUsername(usuario.username ?? '')
             setBio(usuario.bio ?? '')
+            setPronomes(usuario.pronomes ?? '')
             setEmblemas(usuario.emblemas ?? [])
             setArquivoFoto(null)
             setPreviewFoto(null)
@@ -93,6 +95,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             const retornoPerfil = await atualizarPerfil({
                 displayName: displayName.trim(),
                 bio: bio.trim(),
+                pronomes: pronomes.trim(),
                 emblemas,
             })
             if (retornoPerfil !== 'sucesso') {
@@ -175,6 +178,23 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                disabled={salvando}
+                                maxLength={30}
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.campo}>
+                        <label htmlFor="username">
+                            <div className={ styles.estrela } />
+                            Pronomes
+                        </label>
+                        <div className={styles.inputComPrefixo}>
+                            <input
+                                id="username"
+                                type="text"
+                                value={pronomes}
+                                onChange={(e) => setPronomes(e.target.value)}
                                 disabled={salvando}
                                 maxLength={30}
                             />

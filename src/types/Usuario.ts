@@ -5,6 +5,7 @@ export type UsuarioTipo = {
     email?: string
     senha?: string
     bio?: string
+    pronomes?: string
     photoURL?: string
     followersCount?: number
     followingCount?: number

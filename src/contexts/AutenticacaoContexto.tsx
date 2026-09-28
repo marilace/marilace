@@ -48,6 +48,7 @@ export function AutenticacaoProvider({ children }: AutenticacaoProviderProps) {
                     email: dados.email ?? autenticacao.currentUser?.email ?? '',
                     nome: dados.displayName,
                     bio: dados.bio,
+                    pronomes: dados.pronomes,
                     photoURL: dados.photoURL,
                     followersCount: dados.followersCount,
                     followingCount: dados.followingCount,

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-inline: 15%;
+    padding-inline: 5%;
     padding-block: 2rem;
     overflow-x: hidden;
 }
@@ -30,16 +30,19 @@
 
 .filtros {
     display: flex;
-    gap: 12px;
-    align-self: stretch;
+    gap: 10px;
+    align-self: flex-start;
     margin-bottom: 28px;
     flex-wrap: wrap;
+    padding: 6px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.035);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
     width: 100%;
 }
 

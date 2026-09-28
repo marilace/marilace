@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    max-width: 380px;
+    max-width: 480px;
     background-color: var(--branco);
     color: var(--preto);
     border: 3px solid var(--preto);
@@ -11,6 +11,7 @@
     padding: 20px;
     filter: drop-shadow(0px 6px var(--preto));
     transition: transform 0.2s ease, filter 0.2s ease;
+    box-sizing: border-box;
 }
 
 .card:hover {
@@ -22,6 +23,20 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 4px;
+}
+
+.chip > div{
+    padding: 6px 12px !important;
+}
+
+.chip > div > div{
+    width: 8px !important;
+    height: 8px !important;
+}
+
+.chip > div > span{
+    font-size: var(--PP) !important;
+    font-weight: 700 !important;
 }
 
 .iconeCategoria {

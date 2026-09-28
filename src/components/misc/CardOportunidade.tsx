@@ -30,11 +30,14 @@ export function CardOportunidade({ oportunidade }: CardOportunidadeProps) {
 
     return (
         <article className={ styles.card }>
+
             <div className={ styles.topo }>
                 <div className={ styles.iconeCategoria } style={{ backgroundColor: COR_CATEGORIA[oportunidade.categoria] }}>
                     <Icone className={ styles.icone } />
                 </div>
-                <Chip texto={ oportunidade.categoria } cor={ COR_CATEGORIA[oportunidade.categoria] } />
+                <div className={ styles.chip }>
+                    <Chip texto={ oportunidade.categoria } cor={ COR_CATEGORIA[oportunidade.categoria] } />
+                </div>
             </div>
 
             <h2 className={ styles.titulo }>{ oportunidade.titulo }</h2>

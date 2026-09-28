@@ -190,6 +190,13 @@
     font-size: var(--M);
 }
 
+.pronomes{
+    color: var(--cinza);
+    font-family: var(--base);
+    font-size: var(--PP);
+    margin-left: 6px;
+}
+
 @media (max-width: 1200px){
     .sugestoes{
         display: none;

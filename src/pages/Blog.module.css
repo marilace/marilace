@@ -1,3 +1,8 @@
+.container{
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
 .destaques {
     height: 100vh;
     display: flex;
@@ -159,14 +164,16 @@
     justify-content: center;
     align-items: center;
     padding: 4rem;
+    width: calc(100% - 4rem);
 }
 
 .divisoria img{
-    width: 10%;
+    width: 8%;
 }
 
 .artigos{
     margin: 6rem 2rem;
+    width: calc(100% - 4rem);
 }
 
 .flexArtigos{
@@ -196,13 +203,13 @@
 .tituloArtigos span{
     font-family: var(--adicional);
     font-size: var(--G);
-    color: var(--preto);
+    color: var(--rosa);
     text-shadow:
         4px 4px 0 var(--branco),
         -4px 4px 0 var(--branco),
         -4px -4px 0 var(--branco),
         4px -4px 0 var(--branco);
-    align-self: end;
+    margin-left: 8rem;
 }
 
 .imgTelefone{
@@ -224,7 +231,6 @@
 
 .artigosCategoria{
     display: flex;
-    justify-content: center;
     gap: 40px;
 }
 
