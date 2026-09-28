@@ -67,7 +67,9 @@ O MariLace busca proporcionar um ambiente seguro, respeitoso e acolhedor para su
 Dessa forma, o projeto busca manter um espaço de convivência baseado no respeito, na colaboração e no incentivo à participação feminina.
 
 ## 🖥️ Tecnologias utilizadas
+<div align='center'>
 <img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/VITE-button.png" height="28" alt="Vite"> <img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/REACT-button.png" height="28" alt="React"> <img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/TYPESCRIPT-button.png" height="28" alt="TypeScript"> <img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/FIREBASE-button.png" height="28" alt="Firebase">
+</div>  
 
 O **Firebase** é utilizado para o armazenamento e gerenciamento dos dados da plataforma, incluindo informações relacionadas às contas dos usuários e aos conteúdos disponibilizados na comunidade.
 
@@ -91,12 +93,14 @@ O projeto busca utilizar a tecnologia como ferramenta de apoio para contribuir c
 
 ---
 
-## Redes sociais e contato
-<a target="_blank" href="https://github.com/marilace"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/GITHUB-button.png" height="28" alt="GitHub"></a>
-<a target="_blank" href="https://www.instagram.com/projetomarilace/"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/INSTAGRAM-button.png" height="28" alt="Instagram">
-<a href="mailto:projetomarilace@gmail.com"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/GMAIL-button.png" height="28" alt="Gmail"></a>
+## 🌐 Redes sociais e contato
+<div align='center'>
+  <a target="_blank" href="https://github.com/marilace"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/GITHUB-button.png" height="28" alt="GitHub"></a>
+  <a target="_blank" href="https://www.instagram.com/projetomarilace/"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/INSTAGRAM-button.png" height="28" alt="Instagram">
+  <a href="mailto:projetomarilace@gmail.com"><img src="https://raw.githubusercontent.com/lubisca/retro-badges/main/assets/GMAIL-button.png" height="28" alt="Gmail"></a>
+</div>
 
-## Status do projeto
+## ❔ Status do projeto
 
 🚧 **Em desenvolvimento**
 
