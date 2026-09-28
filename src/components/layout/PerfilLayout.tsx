@@ -116,17 +116,6 @@ export function PerfilLayout(){
                         }}>
                             Portfólio
                         </Link>
-
-                        <Link 
-                        to='sobre'
-                        className={ styles.item }
-                        style={{
-                        color: location.pathname === `/${perfil.username}/sobre`
-                            ? 'var(--primaria-escura)'
-                            : 'var(--primaria)'
-                        }}>
-                            Sobre
-                        </Link>
                     </nav>
 
                     <Outlet context={{ perfil, meuPerfil }}/>
