@@ -47,8 +47,6 @@ export function useAutenticacao(){
 
             // reserva o username
             await setDoc(usernameRef, { uid })
-                        // reserva o username
-            await setDoc(usernameRef, { uid })
 
             // notificação de boas-vindas
             await criarNotificacao({
