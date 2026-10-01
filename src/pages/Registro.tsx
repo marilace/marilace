@@ -6,6 +6,7 @@ import { ModalMensagem } from '../components/modais/ModalMensagem'
 import imgRegistro from '../assets/img/colagem-cadastro.png'
 import { useAutenticacao } from '../hooks/useAutenticacao';
 import { type UsuarioTipo } from '../types/Usuario';
+import { ModalTermos } from '../components/modais/ModalTermos'
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
@@ -48,6 +49,7 @@ export function Registro(){
     const [modalMensagemVisivel, setModalMensagemVisivel] = useState(false)
     const [modalMensagemTitulo, setModalMensagemTitulo] = useState('')
     const [modalMensagemTexto, setModalMensagemTexto] = useState('')
+    const [modalTermosAberto, setModalTermosAberto] = useState(false)
     const [mostrarSenha, setMostrarSenha] = useState(false)
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false)
     const [cadastroSucesso, setCadastroSucesso] = useState(false)
@@ -88,13 +90,18 @@ export function Registro(){
         if (retorno == 'Sucesso!') {
             setModalMensagemTexto(`Seja bem-vindo ${dadosUsuario.nome}!`)
             setCadastroSucesso(true)
+            setModalTermosAberto(true)
         }else {
             setModalMensagemTexto(retorno)
             setCadastroSucesso(false)
+            exibirModal()
         }
-
-        exibirModal()
     }
+
+    const aceitarTermos = () => {
+    setModalTermosAberto(false)
+    exibirModal()
+}
 
     const exibirModal = () => {
         setModalMensagemTitulo('Novo usuário')
@@ -265,6 +272,7 @@ export function Registro(){
                         ocultarModal()
                     }}
                 />
+                <ModalTermos aberto={modalTermosAberto} aceitar={aceitarTermos} />
             <FooterAnon/>
         </div>
 

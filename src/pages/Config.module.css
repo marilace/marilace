@@ -284,6 +284,13 @@
     flex-direction: column;
 }
 
+button.linkLegal {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
 .linkLegal{
     display: flex;
     align-items: center;

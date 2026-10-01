@@ -8,8 +8,13 @@ import {
 } from 'react-icons/tb'
 import { LinkRede } from '../components/links/LinkRede'
 import { VERSAO_ATUAL } from '../types/Versoes'
+import { useState } from 'react'
+import { ModalTermos } from '../components/modais/ModalTermos'
 
 export function ConfigSobre(){
+
+    const [modalTermosAberto, setModalTermosAberto] = useState(false)
+
     return (
         <section className={styles.secaoCard} aria-labelledby="titulo-sobre">
 
@@ -70,9 +75,13 @@ export function ConfigSobre(){
                     Documentos
                 </h3>
                 <div className={styles.sobreLinksLegais}>
-                    <a href="#" className={styles.linkLegal}>
+                    <button
+                        type="button"
+                        className={styles.linkLegal}
+                        onClick={() => setModalTermosAberto(true)}
+                    >
                         <TbFileText size={18}/> Termos de uso
-                    </a>
+                    </button>
                     <a href="#" className={styles.linkLegal}>
                         <TbSpeakerphone size={18}/> Notas de versão
                     </a>
@@ -82,7 +91,7 @@ export function ConfigSobre(){
             <p className={styles.copyright}>
                 &copy; 2026 MariLace Team. Todos os direitos reservados.
             </p>
-
+            <ModalTermos aberto={modalTermosAberto} fechar={() => setModalTermosAberto(false)} />
         </section>
     )
 }
