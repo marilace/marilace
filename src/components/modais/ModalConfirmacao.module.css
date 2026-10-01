@@ -24,8 +24,6 @@
     font-family: var(--base);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
     gap: 8px;
     padding: 32px;
     border-radius: 32px;
@@ -46,8 +44,11 @@
 .modal h2{
     font-family: var(--base);
     font-size: var(--M);
-    color: var(--primaria-escura);
+    color: var(--preto);
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .modal p{
@@ -58,17 +59,16 @@
     margin-bottom: 8px;
 }
 
-.acoes{
+.acoes {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    width: 100%;
+    justify-content: flex-end;
+    align-self: flex-end;
+    gap: 8px;
     margin-top: 8px;
+    width: auto;
 }
 
-.btnCancelar,
-.btnConfirmar{
-    flex: 1;
+.btnConfirmar {
     font-family: var(--base);
     font-size: var(--PP);
     font-weight: 700;
@@ -76,17 +76,26 @@
     border-radius: 999px;
     cursor: pointer;
     transition: .2s ease;
+    width: 120px;
+    box-sizing: border-box;
 }
 
 .btnCancelar{
-    background-color: transparent;
+    font-family: var(--base);
+    font-size: var(--PP);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 10px 16px;
+    background-color: var(--branco);
     color: var(--cinza);
-    border: 2px solid var(--cinza);
+    border: none;
+    cursor: pointer;
+    transition: .2s ease;
+
 }
 
 .btnCancelar:hover:not(:disabled){
-    background-color: var(--cinza);
-    color: var(--branco);
+    filter: brightness(0.95);
 }
 
 .btnConfirmar{

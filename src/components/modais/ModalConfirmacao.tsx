@@ -28,11 +28,11 @@ export function ModalConfirmacao({
     return (
         <div className={styles.modalOverlay} onClick={cancelar}>
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                <div className={styles.icone}>
-                    <TbAlertTriangle size={48} />
-                </div>
 
-                <h2>{titulo}</h2>
+                <h2>
+                    <TbAlertTriangle size={24} className={styles.icone}/>
+                    {titulo}
+                </h2>
                 <p>{mensagem}</p>
 
                 <div className={styles.acoes}>
