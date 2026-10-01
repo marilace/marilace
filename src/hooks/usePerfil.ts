@@ -38,6 +38,7 @@ export function usePerfil(username: string | undefined) {
                     followersCount: dados.followersCount,
                     followingCount: dados.followingCount,
                     emblemas: dados.emblemas ?? [],
+                    links: dados.links ?? {},
                 })
             }
             setCarregando(false)

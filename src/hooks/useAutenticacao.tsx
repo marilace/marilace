@@ -6,6 +6,7 @@ import { useContext } from 'react'
 import { criarNotificacao } from '../services/Notificacoes'
 import { AutenticacaoContexto } from '../contexts/AutenticacaoContexto'
 import { enviarImagem } from '../services/uploadImagem'
+import type { LinksPerfil } from '../types/Usuario'
 
 export function useAutenticacao(){
     const autenticacaoContexto = useContext(AutenticacaoContexto)
@@ -24,7 +25,6 @@ export function useAutenticacao(){
             // verifica se o username já está em uso
             const usernameRef = doc(banco, 'usernames', usernameFormatado)
             const usernameSnap = await getDoc(usernameRef)
-
 
             if (usernameSnap.exists()) {
                 return 'Esse nome de usuário já está em uso.'
@@ -204,6 +204,17 @@ export function useAutenticacao(){
         return retorno
     }
 
+    const atualizarLinks = async (links: LinksPerfil): Promise<string> => {
+        let retorno = 'sucesso'
+        try {
+            if (!usuario) throw new Error('Usuário não autenticado.')
+            await updateDoc(doc(banco, 'users', usuario.uid), { links })
+        } catch (error) {
+            retorno = `Erro ao atualizar links! (${error})`
+        }
+        return retorno
+    }
+
     const recuperarSenha = async (email: string): Promise<string> => {
         let retorno = 'Sucesso!'
         try{
@@ -287,5 +298,5 @@ export function useAutenticacao(){
         return retorno
     }
 
-    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, recuperarSenha, verificarCodigoRedefinicao, redefinirSenha, usuario, carregando }
+    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, atualizarLinks, recuperarSenha, verificarCodigoRedefinicao, redefinirSenha, usuario, carregando }
 }

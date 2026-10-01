@@ -13,6 +13,7 @@ import { TelaCarregamento } from '../misc/TelaCarregamento'
 import { NaoEncontrado } from '../misc/NaoEncontrado'
 import { Emblemas } from '../misc/Emblemas'
 import { useSeguir } from '../../hooks/useSeguir'
+import { ModalLinks } from '../modais/ModalLinks'
 
 
 export function PerfilLayout(){
@@ -25,6 +26,7 @@ export function PerfilLayout(){
     const location = useLocation()
 
     const [modalEdicaoAberto, setModalEdicaoAberto] = useState(false)
+    const [modalLinksAberto, setModalLinksAberto] = useState(false)
 
     if (carregando) return <TelaCarregamento/>
     if (naoEncontrado) return <NaoEncontrado/>
@@ -69,7 +71,10 @@ export function PerfilLayout(){
 
                         <div className={ styles.bio }>
                             <p>{perfil.bio}</p>
-                            <button className={ styles.btnLinks }>
+                            <button
+                            className={ styles.btnLinks }
+                            onClick={() => setModalLinksAberto(true)}
+                            >
                                 <TbLink /> Ver links
                             </button>
 
@@ -128,6 +133,12 @@ export function PerfilLayout(){
             <ModalEditarPerfil
                 aberto={modalEdicaoAberto}
                 fechar={() => setModalEdicaoAberto(false)}
+            />
+            <ModalLinks
+                aberto={modalLinksAberto}
+                fechar={() => setModalLinksAberto(false)}
+                links={perfil.links}
+                ehMeuPerfil={meuPerfil}
             />
         </div>
     )
