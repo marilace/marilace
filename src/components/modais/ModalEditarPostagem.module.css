@@ -49,24 +49,24 @@
     font-weight: 800;
 }
 
-.btnFechar {
-    background: transparent;
+.btnFechar{
+    background: none;
     border: none;
-    color: var(--preto);
     cursor: pointer;
+    color: var(--preto);
     display: flex;
-    padding: 4px;
     border-radius: 999px;
-    transition: .2s ease;
+    padding: 4px;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btnFechar:hover{
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: rotate(90deg);
 }
 
 .btnFecharIcon path{
     stroke-width: 2.5px;
-}
-
-.btnFechar:hover {
-    background-color: var(--rosa);
-    color: var(--branco);
 }
 
 .inputEdicao{

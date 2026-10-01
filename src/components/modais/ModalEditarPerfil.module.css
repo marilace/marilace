@@ -29,7 +29,7 @@
     border-radius: 32px;
     border: 2px solid var(--cinza);
     width: 90%;
-    max-width: 480px;
+    max-width: 700px;
     max-height: 85vh;
     overflow-y: auto;
     animation: aparecer .3s ease;
@@ -43,28 +43,32 @@
 }
 
 .cabecalho h2 {
-    font-family: var(--logo);
-    font-size: var(--G);
-    color: var(--primaria-escura);
+    font-family: var(--base);
+    font-size: var(--M);
+    color: var(--primaria);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.btnFechar {
-    background: transparent;
+.btnFechar{
+    background: none;
     border: none;
-    color: var(--preto);
     cursor: pointer;
+    color: var(--preto);
     display: flex;
-    padding: 4px;
     border-radius: 999px;
-    transition: .2s ease;
+    padding: 4px;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.btnFechar:hover{
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: rotate(90deg);
 }
 
 .btnFecharIcon path{
     stroke-width: 2.5px;
-}
-
-.btnFechar:hover {
-    background-color: var(--rosa);
 }
 
 .containerFoto {
