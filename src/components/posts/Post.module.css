@@ -114,7 +114,7 @@
 }
 
 .menuItemExcluir{
-    color: var(--rosa);
+    color: var(--erro);
 }
 
 .menuItemExcluir:hover{

@@ -195,7 +195,7 @@ export function Post({
 
             <ModalConfirmacao
                 aberto={modalExcluirAberto}
-                titulo="Excluir publicação"
+                titulo="Excluir publicação?"
                 mensagem="Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita."
                 confirmando={excluindo}
                 confirmar={excluir}

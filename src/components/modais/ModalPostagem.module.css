@@ -146,7 +146,7 @@ main {
 }
 
 .erroTexto {
-    color: #e53e3e;
+    color: var(--erro);
     font-size: 0.875rem;
     margin: 0;
 }
