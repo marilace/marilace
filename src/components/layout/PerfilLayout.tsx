@@ -63,7 +63,11 @@ export function PerfilLayout(){
                             <div className={styles.nomeEmblemas}>
                                 <h1>{perfil.nome}</h1>
                                 <Emblemas ids={perfil.emblemas}/>
-                                <span className={ styles.pronomes }>({perfil.pronomes})</span>
+                                {perfil.pronomes && (
+                                    <span className={ styles.pronomes }>
+                                        ({perfil.pronomes})
+                                    </span>
+                                )}
                             </div>
 
                             <h2>@{perfil.username}</h2>
