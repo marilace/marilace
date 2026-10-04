@@ -1,5 +1,5 @@
 // formatação p/ pesquisa
-export function normalizar(texto: string): string {
+export function formatarTexto(texto: string): string {
     return texto
         .normalize('NFD') //separa o acento da letra
         .replace(/[\u0300-\u036f]/g, '') //remove os acentos

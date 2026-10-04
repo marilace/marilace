@@ -62,11 +62,14 @@ export function EsqueciSenha(){
                     >
                         <div className={ styles.inputContainer }>
                             <label htmlFor="email">Email:</label>
-                            <input 
-                                id="email"
-                                type='email'
-                                {...register('email')}
-                            />
+                            <div className={ styles.inputEmail}>
+                                <TbMail className={ styles.iconInput } size={24}/>
+                                <input 
+                                    id="email"
+                                    type='email'
+                                    {...register('email')}
+                                />
+                            </div>
                             {errors.email && <span className={styles.erro}>{errors.email.message}</span>}
                         </div>
 

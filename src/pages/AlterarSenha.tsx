@@ -11,7 +11,7 @@ import { useAutenticacao } from '../hooks/useAutenticacao';
 const fundo = 'https://i.imgur.com/0x40IR0.png'
 
 const alterarSenhaSchema = z.object({
-    senha: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres.'),
+    senha: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres.'),
     confirmarSenha: z.string(),
 }).refine((dados) => dados.senha === dados.confirmarSenha, {
     message: 'As senhas não coincidem.',
@@ -26,6 +26,7 @@ export function AlterarSenha(){
     const [searchParams] = useSearchParams()
     const navegacao = useNavigate()
     const oobCode = searchParams.get('oobCode')
+    const modo = searchParams.get('mode')
 
     const [mostrarSenha, setMostrarSenha] = useState(false)
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false)
@@ -43,7 +44,7 @@ export function AlterarSenha(){
 
     useEffect(() => {
         const verificar = async () => {
-            if (!oobCode) {
+            if (!oobCode || modo !== 'resetPassword') {
                 setErroLink('Esse link de redefinição é inválido. Solicite um novo pelo "Esqueci minha senha".')
                 setStatusLink('invalido')
                 return
@@ -60,11 +61,11 @@ export function AlterarSenha(){
         }
 
         verificar()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [oobCode])
+
+    }, [oobCode, modo, verificarCodigoRedefinicao])
 
     const handleRedefinirSenha = async (dados: AlterarSenhaFormData) => {
-        if (!oobCode) return
+        if (!oobCode || statusLink !== 'valido') { return }
 
         setMensagem(null)
         const resultado = await redefinirSenha(oobCode, dados.senha)
@@ -95,7 +96,9 @@ export function AlterarSenha(){
                     </div>
 
                     {statusLink === 'verificando' && (
-                        <p className={ styles.textoCarregando }>Verificando seu link de redefinição...</p>
+                        <p className={ styles.textoCarregando }>
+                            Verificando seu link de redefinição...
+                        </p>
                     )}
 
                     {statusLink === 'invalido' && (
