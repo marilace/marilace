@@ -1,23 +1,8 @@
 import styles from './CardOportunidade.module.css'
-import { TbBriefcase, TbSchool, TbAward, TbUsers, TbCalendarEvent, TbMapPin, TbClock } from "react-icons/tb";
+import { TbMapPin, TbClock } from "react-icons/tb";
 import { Chip } from './Chip'
 import { type OportunidadeTipo } from '../../types/Oportunidade'
-
-const ICONE_CATEGORIA: Record<OportunidadeTipo['categoria'], typeof TbBriefcase> = {
-    'Vaga': TbBriefcase,
-    'Estágio': TbSchool,
-    'Bolsa': TbAward,
-    'Mentoria': TbUsers,
-    'Evento': TbCalendarEvent,
-}
-
-const COR_CATEGORIA: Record<OportunidadeTipo['categoria'], string> = {
-    'Vaga': 'var(--primaria)',
-    'Estágio': 'var(--verde)',
-    'Bolsa': 'var(--rosa)',
-    'Mentoria': 'var(--primaria-escura)',
-    'Evento': 'var(--cinza)',
-}
+import { ICONE_CATEGORIA, COR_CATEGORIA } from '../../utils/categoriasOportunidade'
 
 interface CardOportunidadeProps {
     oportunidade: OportunidadeTipo

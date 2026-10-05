@@ -1,0 +1,28 @@
+.sidebar{
+    position: sticky;
+    top: 1rem;
+    flex-shrink: 0;
+    width: clamp(300px, 22vw, 360px);
+    max-height: calc(100vh - 2rem);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+.sidebar > div{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px){
+    .sidebar{
+        display: none;
+    }
+}

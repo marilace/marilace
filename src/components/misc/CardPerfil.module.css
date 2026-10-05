@@ -5,6 +5,7 @@
     max-width: 380px;
     min-width: 280px;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .info{
@@ -24,12 +25,14 @@
 }
 
 .nome{
-    font-weight: 500;
+    font-weight: 600;
     color: var(--preto);
+    font-size: var(--PP);
 }
 
 .username{
     color: var(--cinza);
+    font-size: var(--PP);
 }
 
 .avatarDefault{

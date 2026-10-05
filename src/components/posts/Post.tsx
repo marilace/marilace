@@ -72,6 +72,7 @@ export function Post({
     }
 
     return (
+        <>
         <div className={styles.card}>
             <div className={styles.header}>
                 <Link to={`/${username}`}>
@@ -184,7 +185,6 @@ export function Post({
                 )}
                 </button>
             </div>
-
             <ModalEditarPostagem
                 aberto={modalEditarAberto}
                 postId={postId}
@@ -201,12 +201,14 @@ export function Post({
                 confirmar={excluir}
                 cancelar={() => setModalExcluirAberto(false)}
             />
-                        <ModalComentarios
+            <ModalComentarios
                 aberto={modalComentariosAberto}
                 postId={postId}
                 authorId={authorId}
                 fechar={() => setModalComentariosAberto(false)}
             />
         </div>
+        <hr className={styles.divisor}/>
+        </>
     );
 }

@@ -22,7 +22,8 @@
   --verde: #d5f299;
   --branco: #fffef2;
   --preto: #262424;
-  --cinza: #aeaab2;
+  --cinza: #beb8c4;
+  --cinza-claro: #f7efff;
   --erro: #e53e3e;
 
   /* TIPOGRAFIA */
@@ -34,10 +35,10 @@
   --titulo-landing: clamp(5.5rem, 12vw, 12rem);
   --XG: clamp(4rem, 8vw, 8rem);
   --GG: clamp(3rem, 6vw, 6rem);
-  --G: clamp(2rem, 3vw, 3.25rem);
-  --M: clamp(1.25rem, 1.75vw, 1.75rem);
-  --P: clamp(1rem, 1.25vw, 1.25rem);
-  --PP: clamp(0.875rem, 1vw, 1rem);
+  --G: clamp(1.75rem, 2vw, 2rem);
+  --M: clamp(1.25rem, 1.5vw, 1.5rem);
+  --P: clamp(1rem, 1.1vw, 1.1rem);
+  --PP: clamp(0.85rem, .95vw, .95rem);
   --footer: clamp(0.75rem, 0.8vw, 0.8rem);
 }
 
@@ -109,7 +110,8 @@ img{
 .modo-escuro {
   --branco: #1c1a22;
   --preto: #f2f0e8;
-  --cinza: #9a95a3;
+  --cinza: #9f9ca4;
+  --cinza-claro: #353439;
 
   --primaria: #b58cf0;
   --primaria-escura: #e0cdfb;

@@ -2,7 +2,6 @@
     font-family: var(--base);
     background-color: var(--branco);
     color: var(--preto);
-    border: 2px solid var(--cinza);
     border-radius: 20px;
     padding: 16px 20px;
 }
@@ -187,6 +186,11 @@
 
 .numeros{
     color: var(--preto);
+}
+
+.divisor{
+    border: 1px solid var(--cinza-claro);
+    margin: 8px;
 }
 
 @media (max-width: 400px) {
