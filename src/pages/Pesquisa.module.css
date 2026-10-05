@@ -1,0 +1,121 @@
+.pesquisa{
+    display: flex;
+    flex-direction: column;
+    padding-inline: 15%;
+    padding-block: 2rem;
+    overflow-x: hidden;
+}
+
+.titulo{
+    font-family: var(--base);
+    font-size: var(--M);
+    font-weight: 600;
+    color: var(--primaria-escura);
+    margin-bottom: 16px;
+}
+
+.titulo span{
+    color: var(--primaria);
+}
+
+.filtros{
+    display: flex;
+    gap: 10px;
+    align-self: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    padding: 6px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.035);
+}
+
+.secao{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.secao h2{
+    font-family: var(--base);
+    font-size: var(--M);
+    font-weight: 700;
+    color: var(--preto);
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon{
+    color: var(--primaria);
+}
+
+.icon path{
+    stroke-width: 2.25px;
+}
+
+.listaPessoas{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.listaPosts{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.listaArtigos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.listaOportunidades{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.status{
+    text-align: center;
+    color: var(--cinza);
+    font-size: var(--P);
+    padding: 3rem 0;
+}
+
+.vazio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 4rem 1rem;
+    color: var(--cinza);
+}
+
+.iconeVazio{
+    width: 48px;
+    height: 48px;
+    color: var(--primaria);
+    margin-bottom: 8px;
+}
+
+.vazio p{
+    font-size: var(--P);
+    font-weight: 700;
+    color: var(--preto);
+}
+
+.vazio span{
+    font-size: var(--PP);
+    max-width: 360px;
+}
+
+@media (max-width: 768px){
+    .busca{ padding-inline: 4%; }
+    .listaArtigos > div{ width: 100%; }
+}

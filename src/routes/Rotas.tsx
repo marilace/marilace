@@ -13,6 +13,7 @@ import { Principal } from '../components/layout/Principal.tsx'
 import { Forum } from '../pages/Forum.tsx'
 import { Oportunidades } from '../pages/Oportunidades.tsx'
 import { Salvos } from '../pages/Salvos.tsx'
+import { Pesquisa } from '../pages/Pesquisa.tsx'
 
 import { Notificacoes } from '../pages/Notificacoes.tsx'
 
@@ -46,6 +47,7 @@ export function Rotas(){
                     <Route path='oportunidades' element={ <RotaProtegida><Oportunidades/></RotaProtegida> }/>
                     <Route path='salvos' element={ <RotaProtegida><Salvos/></RotaProtegida> }/>
                     <Route path='blog' element={ <RotaProtegida><Blog/></RotaProtegida> }/>
+                    <Route path='pesquisa' element={ <RotaProtegida><Pesquisa/></RotaProtegida> }/>
                 </Route>
                 <Route path='/:username' element={ <RotaProtegida><PerfilLayout/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Profile/></RotaProtegida> }/>
