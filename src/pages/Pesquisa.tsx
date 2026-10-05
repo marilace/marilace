@@ -1,7 +1,12 @@
 import styles from './Pesquisa.module.css'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { TbSearch, TbMoodEmpty, TbUsers, TbNews } from 'react-icons/tb'
+import { 
+    TbSearch, 
+    TbMoodEmpty, 
+    TbUsers, 
+    TbNews 
+} from 'react-icons/tb'
 import { usePesquisa } from '../hooks/usePesquisa'
 import { ChipClicavel } from '../components/misc/ChipClicavel'
 import { CardPerfil } from '../components/misc/CardPerfil'

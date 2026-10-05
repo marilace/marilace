@@ -20,7 +20,10 @@ export function Salvos(){
 
     return(
         <main className={ styles.salvos }>
-            <h1 className={ styles.titulo }>Salvos</h1>
+            <h1 className={ styles.titulo }>
+                <TbBookmark size={32} />
+                Salvos
+            </h1>
 
             <div className={ styles.filtros }>
                 <ChipClicavel

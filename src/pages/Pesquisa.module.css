@@ -95,6 +95,7 @@
     gap: 8px;
     padding: 4rem 1rem;
     color: var(--cinza);
+    width: 100%;
 }
 
 .iconeVazio{

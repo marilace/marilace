@@ -1,7 +1,11 @@
 import styles from './Menu.module.css'
 import { Link, useLocation } from 'react-router-dom'
-import { TbHome, TbClipboardSmile, TbBookmark, TbNews } from "react-icons/tb";
-
+import { 
+    TbHome, 
+    TbClipboardSmile, 
+    TbBookmark, 
+    TbNews 
+} from "react-icons/tb";
 
 // o propósito é o menu ficar sempre aberto mesmo
 

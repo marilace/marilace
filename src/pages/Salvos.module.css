@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-inline: 6%;
+    padding-inline: 5%;
     padding-block: 2rem;
     overflow-x: hidden;
 }
@@ -14,6 +14,9 @@
     font-weight: 700;
     color: var(--primaria-escura);
     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .filtros {
@@ -27,8 +30,6 @@
     background-color: rgba(0, 0, 0, 0.035);
 }
 
-/* mural estilo Pinterest: colunas fluidas, cada card cai na coluna
-   mais vazia e mantém sua própria altura, um do lado do outro */
 .containerItens {
     width: 100%;
     column-count: 1;
@@ -53,13 +54,6 @@
     }
 }
 
-/* cada item entra com um fade + leve deslize pra cima, em cascata,
-   e nunca é cortado ao virar a coluna.
-   IMPORTANTE: fill-mode "backwards" (não "both") — assim que a animação
-   termina, o elemento volta a não ter nenhum transform aplicado. Se ficasse
-   um transform residual aqui, ele viraria um novo "containing block" e
-   quebraria o position: fixed do ModalComentarios, que é renderizado dentro
-   do card do post (por isso o modal saía distorcido só na página Salvos). */
 .itemEntrada {
     display: inline-block;
     width: 100%;
@@ -72,8 +66,6 @@
     transition: box-shadow 0.2s ease;
 }
 
-/* box-shadow em vez de transform: dá o efeito de "levantar" o card sem
-   nunca criar containing block pra elementos position: fixed dentro dele */
 .itemEntrada:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
 }
@@ -127,7 +119,6 @@
     max-width: 320px;
 }
 
-/* respeita quem prefere menos movimento na tela */
 @media (prefers-reduced-motion: reduce) {
     .itemEntrada,
     .vazio,

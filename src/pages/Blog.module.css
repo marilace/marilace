@@ -7,7 +7,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 5rem 3rem 3rem 3rem; 
+    padding-inline: 5%;
+    padding-block: 2rem;
     box-sizing: border-box;
 }
 

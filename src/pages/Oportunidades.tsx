@@ -1,6 +1,6 @@
 import styles from './Oportunidades.module.css'
 import { useState } from 'react'
-import { TbBriefcase } from "react-icons/tb";
+import { TbBriefcase, TbClipboardSmile } from "react-icons/tb";
 import { ChipClicavel } from '../components/misc/ChipClicavel'
 import { CardOportunidade } from '../components/misc/CardOportunidade'
 import { oportunidadesExemplo } from '../utils/oportunidadesExemplo'
@@ -24,7 +24,10 @@ export function Oportunidades(){
     return (
         <main className={ styles.oportunidades }>
             <div className={ styles.cabecalho }>
-                <h1 className={ styles.titulo }>Oportunidades</h1>
+                <h1 className={ styles.titulo }>
+                    <TbClipboardSmile size={32} />
+                    Oportunidades
+                </h1>
                 <p className={ styles.subtitulo }>
                     Vagas, bolsas, mentorias e eventos para impulsionar sua carreira nas exatas.
                 </p>

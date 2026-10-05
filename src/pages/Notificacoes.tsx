@@ -6,6 +6,7 @@ import { useNotificacoes } from '../hooks/useNotificacoes'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { TipoNotificacao } from '../types/Notificacao'
+import { TbCheck } from "react-icons/tb";
 
 const filtros: { texto: string; tipo: TipoNotificacao | 'tudo'; cor: string }[] = [
     { texto: 'Tudo', tipo: 'tudo', cor: 'var(--primaria)' },
@@ -43,6 +44,7 @@ export function Notificacoes(){
 
                     {naoLidasCount > 0 && (
                         <button className={ styles.btnMarcarTodas } onClick={marcarTodasComoLidas}>
+                            <TbCheck size={18} className={styles.icon} />
                             Marcar tudo como lido
                         </button>
                     )}

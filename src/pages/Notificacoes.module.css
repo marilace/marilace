@@ -36,10 +36,14 @@
     border-radius: 999px;
 }
 
-.filtros{
+.filtros {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    gap: 10px;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    padding: 6px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.035);
 }
 
 .filtros > button {
@@ -49,18 +53,34 @@
 .notificacoes{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 4px;
 }
 
 .btnMarcarTodas{
     margin-left: auto;
-    background: transparent;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background-color: var(--branco);
     border: none;
     color: var(--primaria-escura);
     font-family: var(--base);
     font-size: var(--PP);
     font-weight: 600;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    transition: all .2s ease;
+}
+
+.btnMarcarTodas:hover{
+    filter: brightness(0.97);
+}
+
+.icon path{
+    stroke-width: 2.5px;
 }
 
 .mensagemVazia{

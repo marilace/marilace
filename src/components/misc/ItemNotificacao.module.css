@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 24px 48px;
-    border-radius: 8px;
+    padding: 24px 40px;
+    border-radius: 16px;
     width: 100%;
     box-sizing: border-box;
     background: transparent;

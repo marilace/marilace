@@ -18,6 +18,9 @@
     font-weight: 700;
     color: var(--primaria-escura);
     margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .subtitulo {
@@ -25,7 +28,7 @@
     font-size: var(--PP);
     font-weight: 500;
     color: var(--cinza);
-    max-width: 520px;
+    max-width: 640px;
 }
 
 .filtros {
