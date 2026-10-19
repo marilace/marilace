@@ -1,11 +1,32 @@
 import { FirebaseError } from 'firebase/app'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth'
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    sendPasswordResetEmail, 
+    verifyPasswordResetCode, 
+    confirmPasswordReset,
+    GoogleAuthProvider,
+    signInWithPopup
+} from 'firebase/auth'
+import { 
+    doc, 
+    setDoc, 
+    getDoc, 
+    updateDoc, 
+    deleteDoc, 
+    collection, 
+    query, 
+    where, 
+    getDocs, 
+    writeBatch,
+    runTransaction
+} from 'firebase/firestore'
 import { autenticacao, banco } from '../firebase/FirebaseConexao'
-import { doc, setDoc, getDoc, updateDoc, deleteDoc, collection, query, where, getDocs, writeBatch } from 'firebase/firestore'
 import { useContext } from 'react'
 import { criarNotificacao } from '../services/Notificacoes'
 import { AutenticacaoContexto } from '../contexts/AutenticacaoContexto'
-import { enviarImagem } from '../services/uploadImagem'
+import { enviarImagem, enviarFotoGoogle } from '../services/uploadImagem'
 import type { LinksPerfil } from '../types/Usuario'
 
 export function useAutenticacao(){
@@ -100,6 +121,136 @@ export function useAutenticacao(){
         }
         return retorno
     }
+
+
+const autenticarComGoogle = async (): Promise<string> => {
+    try {
+        const provedor = new GoogleAuthProvider()
+        const resultado = await signInWithPopup(autenticacao, provedor)
+        const usuarioGoogle = resultado.user
+
+        const usuarioRef = doc(banco, 'users', usuarioGoogle.uid)
+        const usuarioSnap = await getDoc(usuarioRef)
+
+        // Se o perfil já existe, apenas faz login.
+        if (usuarioSnap.exists()) {
+            return 'Sucesso!'
+        }
+
+        const nomeBase = (
+            usuarioGoogle.email?.split('@')[0] ||
+            usuarioGoogle.displayName ||
+            'usuario'
+        )
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9_]/g, '')
+            .slice(0, 20) || 'usuario'
+
+        // envia a foto pro cloudinary
+        let photoURL = usuarioGoogle.photoURL || ''
+
+        if (usuarioGoogle.photoURL) {
+            try {
+                photoURL = await enviarFotoGoogle(usuarioGoogle.photoURL)
+            } catch (error) {
+                console.error(
+                    'Erro ao enviar foto para o Cloudinary:',
+                    error
+                )
+                photoURL = usuarioGoogle.photoURL
+            }
+        }
+
+        const novoCadastro = await runTransaction(
+            banco,
+            async (transacao) => {
+                const usuarioAtual = await transacao.get(usuarioRef)
+
+                if (usuarioAtual.exists()) {
+                    return false
+                }
+
+                let username = nomeBase
+                let contador = 1
+                let usernameRef = doc(banco, 'usernames', username)
+                let usernameSnap = await transacao.get(usernameRef)
+
+                while (usernameSnap.exists()) {
+                    username = `${nomeBase}${contador}`
+                    contador++
+
+                    usernameRef = doc(banco, 'usernames', username)
+                    usernameSnap = await transacao.get(usernameRef)
+                }
+
+                transacao.set(usuarioRef, {
+                    username,
+                    displayName: usuarioGoogle.displayName || '',
+                    email: usuarioGoogle.email || '',
+                    bio: '',
+                    pronomes: '',
+                    photoURL,
+                    followersCount: 0,
+                    followingCount: 0,
+                    emblemas: []
+                })
+
+                transacao.set(usernameRef, {
+                    uid: usuarioGoogle.uid
+                })
+
+                return true
+            }
+        )
+
+        // Cria a notificação somente para novos cadastros.
+        if (novoCadastro) {
+            try {
+                await criarNotificacao({
+                    paraUid: usuarioGoogle.uid,
+                    tipo: 'sistema',
+                    titulo: 'Boas-vindas ao MariLace!',
+                    mensagem:
+                        'Estamos muito felizes de ver você aqui! Esperamos que tenha uma experiência incrível usando o MariLace :)'
+                })
+            } catch (error) {
+                console.error(
+                    'Erro ao criar notificação de boas-vindas:',
+                    error
+                )
+            }
+        }
+
+        return 'Sucesso!'
+    } catch (error) {
+        if (error instanceof FirebaseError) {
+            switch (error.code) {
+                case 'auth/popup-closed-by-user':
+                    return 'A janela de login foi fechada antes da conclusão.'
+
+                case 'auth/cancelled-popup-request':
+                    return 'Já existe uma solicitação de login em andamento.'
+
+                case 'auth/unauthorized-domain':
+                    return 'Este domínio não está autorizado no Firebase.'
+
+                case 'auth/account-exists-with-different-credential':
+                    return 'Já existe uma conta com este e-mail usando outro método de login.'
+
+                case 'permission-denied':
+                    return 'Sem permissão para criar o perfil no banco de dados.'
+
+                default:
+                    return `Erro na autenticação com Google! (${error.code}: ${error.message})`
+            }
+        }
+
+        return `Erro imprevisto na autenticação com Google! (${error})`
+    }
+}
+
 
     const deslogar = async (): Promise<string> => {
         let retorno = 'Sucesso!'
@@ -296,5 +447,19 @@ export function useAutenticacao(){
         return retorno
     }
 
-    return { criarAutenticacaoUsuario, validarUsuario, deslogar, atualizarPerfil, atualizarFotoPerfil, alterarUsername, atualizarLinks, recuperarSenha, verificarCodigoRedefinicao, redefinirSenha, usuario, carregando }
+    return { 
+        criarAutenticacaoUsuario, 
+        validarUsuario, 
+        autenticarComGoogle, 
+        deslogar, 
+        atualizarPerfil, 
+        atualizarFotoPerfil, 
+        alterarUsername, 
+        atualizarLinks, 
+        recuperarSenha, 
+        verificarCodigoRedefinicao, 
+        redefinirSenha, 
+        usuario, 
+        carregando 
+    }
 }

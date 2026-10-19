@@ -1,0 +1,41 @@
+
+.btnGoogle {
+    font-family: var(--base);
+    font-size: var(--P);
+    font-weight: 700;
+    padding: 8px 64px;
+    border-radius: 999px;
+    border: 3px solid var(--preto);
+    background-color: var(--branco);
+    color: var(--preto);
+    filter: drop-shadow(0px 6px var(--preto));
+    cursor: pointer;
+    max-width: 100%;
+    transition: .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btnGoogle:hover {
+    transform: translateY(3px);
+    filter: drop-shadow(0px 3px var(--preto));
+}
+
+.btnGoogle:active {
+    filter: drop-shadow(0px 0px var(--preto));
+    transform: translateY(6px);
+}
+
+.btnGoogle:focus-visible {
+    outline: 2px solid var(--preto);
+    outline-offset: 5px;
+}
+
+.btnGoogle:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    filter: drop-shadow(0px 6px var(--preto));
+}

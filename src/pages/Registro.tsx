@@ -7,6 +7,7 @@ import imgRegistro from '../assets/img/colagem-cadastro.png'
 import { useAutenticacao } from '../hooks/useAutenticacao';
 import { type UsuarioTipo } from '../types/Usuario';
 import { ModalTermos } from '../components/modais/ModalTermos'
+import { BtnGoogle } from '../components/buttons/BtnGoogle'
 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
@@ -251,6 +252,7 @@ export function Registro(){
                         >
                             Registrar
                         </button>
+                        <BtnGoogle />
                     </form>
                     <Link to={'/login'}
                     className={ styles.linkLogin }
