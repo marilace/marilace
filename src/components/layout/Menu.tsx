@@ -4,7 +4,8 @@ import {
     TbHome, 
     TbClipboardSmile, 
     TbBookmark, 
-    TbNews 
+    TbNews,
+    TbUserPlus
 } from "react-icons/tb";
 
 // o propósito é o menu ficar sempre aberto mesmo
@@ -28,7 +29,18 @@ export function Menu(){
                     <TbHome size={30} className={ styles.icon }/>
                     <span className={ styles.rotulo }>Início</span>
                 </Link>
-                <hr />
+                <Link
+                    className={ styles.item }
+                    style={{
+                        color: location.pathname === '/forum/seguir'
+                            ? 'var(--primaria-escura)'
+                            : 'var(--preto)'
+                    }}
+                    to='seguir'
+                >
+                    <TbUserPlus size={30} className={ styles.icon }/>
+                    <span className={ styles.rotulo }>Seguir</span>
+                </Link>
                 <Link
                     className={ styles.item }
                     style={{
@@ -41,7 +53,6 @@ export function Menu(){
                     <TbClipboardSmile size={30} className={ styles.icon }/>
                     <span className={ styles.rotulo }>Oportunidades</span>
                 </Link>
-                <hr />
                 <Link
                     className={ styles.item }
                     style={{
@@ -54,7 +65,6 @@ export function Menu(){
                     <TbNews size={30} className={ styles.icon }/>
                     <span className={ styles.rotulo }>Blog</span>
                 </Link>
-                <hr />
                 <Link
                     className={ styles.item }
                     style={{

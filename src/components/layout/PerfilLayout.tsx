@@ -4,7 +4,13 @@ import { useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { CardSugestoes } from '../misc/CardSugestoes'
-import { TbUser, TbLink, TbUserEdit, TbUserPlus } from 'react-icons/tb'
+import { 
+    TbUser, 
+    TbLink, 
+    TbUserEdit, 
+    TbUserPlus,
+    TbUserCheck
+} from 'react-icons/tb'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
 import { useParams } from 'react-router-dom'
 import { usePerfil } from '../../hooks/usePerfil'
@@ -90,13 +96,18 @@ export function PerfilLayout(){
                                     <TbUserEdit size={22} className={ styles.iconEditar } /> Editar perfil
                                 </button>
                             ) : (
-                                    <button
-                                        className={ styles.btnSeguir }
-                                        onClick={alternarSeguir}
-                                        disabled={atualizando}
-                                    >
-                                        <TbUserPlus size={22} className={ styles.iconEditar } /> {seguindo ? 'Seguindo' : 'Seguir'}
-                                    </button>
+                                <button
+                                    className={`${styles.btnSeguir} ${seguindo ? styles.seguindo : ''}`}
+                                    onClick={alternarSeguir}
+                                    disabled={atualizando}
+                                >
+                                    {seguindo ? (
+                                        <TbUserCheck size={22} />
+                                    ) : (
+                                        <TbUserPlus size={22} />
+                                    )}
+                                    {seguindo ? 'Seguindo' : 'Seguir'}
+                                </button>
                                 )}
                         
                         </div>

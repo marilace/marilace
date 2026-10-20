@@ -2,7 +2,7 @@
     position: sticky;
     top: 1rem;
     flex-shrink: 0;
-    width: clamp(300px, 22vw, 360px);
+    width: clamp(300px, 20vw, 340px);
     max-height: calc(100vh - 2rem);
     margin-top: 1rem;
     display: flex;

@@ -1,5 +1,5 @@
 .forum{
-    padding-inline: 2%;
+    padding-inline: 5% 2%;
     overflow-x: hidden;
 }
 
@@ -7,7 +7,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 4rem;
+    gap: 5rem;
     width: 100%;
 }
 

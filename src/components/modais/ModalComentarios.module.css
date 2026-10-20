@@ -1,7 +1,7 @@
 .modalOverlay{
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,13 +18,12 @@
 .container{
     display: flex;
     flex-direction: column;
-    width: 520px;
+    width: 580px;
     max-width: 100%;
     max-height: 80vh;
     background: var(--branco);
-    border: 3px solid var(--preto);
+    border: 2px solid var(--cinza);
     border-radius: 24px;
-    box-shadow: 6px 6px 0 var(--preto);
     font-family: var(--base);
     overflow: hidden;
     animation: entrarContainer 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -57,7 +56,7 @@
 
 .header h2{
     font-family: var(--logo);
-    color: var(--primaria-escura);
+    color: var(--primaria);
     font-size: var(--G);
 }
 
@@ -136,8 +135,9 @@
 .avatarResposta,
 .avatarDefault,
 .avatarUsuario{
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
+    margin-block: 4px;
     border-radius: 999px;
     object-fit: cover;
     flex-shrink: 0;
@@ -243,11 +243,11 @@
 }
 
 .btnAcaoAtiva{
-    color: var(--rosa);
+    color: var(--primaria);
 }
 
 .btnAcaoAtiva:hover{
-    color: var(--rosa);
+    color: var(--primaria);
 }
 
 .listaRespostas{
@@ -284,31 +284,32 @@
     color: var(--cinza);
     font-size: 12px;
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none;
     padding: 0;
 }
 
 .btnCancelarResposta:hover{
-    color: var(--preto);
+    color: var(--erro);
+    transition: .2s ease;
 }
 
 .containerInput{
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 10px;
     padding: 14px 20px;
-    border-top: 2px solid var(--cinza);
+    border-top: 2px solid var(--cinza-claro);
 }
 
 .capsulaInput{
     flex: 1;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 8px;
     background-color: var(--branco);
     border: 2px solid var(--cinza);
-    border-radius: 20px;
-    padding: 6px 6px 6px 14px;
+    border-radius: 24px;
+    padding: 4px 4px 4px 16px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 

@@ -10,7 +10,7 @@
     flex: 1;
     display: grid;
     gap: 8px;
-    grid-template-columns: clamp(220px, 15vw, 280px) 1fr;
+    grid-template-columns: clamp(220px, 14vw, 280px) 1fr;
     grid-template-areas: 'lateral conteudo';
 
     min-height: 0;

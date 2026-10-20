@@ -43,11 +43,10 @@
 }
 
 .cabecalho h2 {
-    font-family: var(--base);
-    font-size: var(--M);
+    font-family: var(--logo);
+    font-size: var(--G);
     color: var(--primaria);
     font-weight: 900;
-    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
@@ -99,7 +98,7 @@
     font-size: var(--PP);
     padding: 10px 14px;
     border-radius: 16px;
-    border: 2px solid var(--cinza);
+    border: 2px solid var(--cinza-claro);
     background-color: var(--branco);
     color: var(--preto);
     width: 100%;

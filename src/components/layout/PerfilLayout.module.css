@@ -150,6 +150,10 @@
     background-color: var(--verde);
 }
 
+.btnSeguir.seguindo {
+    background-color: var(--cinza);
+}
+
 .iconEditar path{
     stroke-width: 2.5px;
 }

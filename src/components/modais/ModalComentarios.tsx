@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import styles from './ModalComentarios.module.css'
-import { TbUser, TbSend, TbX, TbMoodEmpty, TbHeart, TbHeartFilled, TbArrowBackUp } from 'react-icons/tb'
+import { TbUser, TbSend, TbX, TbMoodEmpty, TbStar, TbStarFilled, TbArrowBackUp } from 'react-icons/tb'
 import { useComentarios, useCriarComentario, useCurtidaComentario } from '../../hooks/useComentarios'
 import { useAutenticacao } from '../../hooks/useAutenticacao'
 import { formatarTempo } from '../../utils/formatarTempo'
@@ -32,7 +32,7 @@ function BotaoCurtirComentario({ postId, comentario }: { postId: string; comenta
             aria-pressed={curtido}
             aria-label="Curtir comentário"
         >
-            {curtido ? <TbHeartFilled size={16} /> : <TbHeart size={16} />}
+            {curtido ? <TbStarFilled size={16} /> : <TbStar size={16} />}
             {comentario.likesCount > 0 && <span>{comentario.likesCount}</span>}
         </button>
     )
