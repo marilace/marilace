@@ -4,7 +4,7 @@ import { banco } from '../firebase/FirebaseConexao'
 import { type UsuarioTipo } from '../types/Usuario'
 import { useAutenticacao } from './useAutenticacao'
 
-export function useSugestoes(quantidade = 4) {
+export function useSugestoes(quantidade = 25) {
     const { usuario } = useAutenticacao()
     const [sugestoes, setSugestoes] = useState<UsuarioTipo[]>([])
 
@@ -21,6 +21,7 @@ export function useSugestoes(quantidade = 4) {
                         username: dados.username,
                         nome: dados.displayName,
                         emblemas: dados.emblemas ?? [],
+                        bio: dados.bio,
                     } as UsuarioTipo
                 })
                 .filter((u) => u.uid !== usuario?.uid)

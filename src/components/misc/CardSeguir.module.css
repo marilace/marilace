@@ -1,0 +1,118 @@
+.container{
+    font-family: var(--base);
+    display: flex;
+    gap: 12px;
+    width: 70vw;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background-color: var(--branco);
+    transition: .2s ease;
+}
+
+.container:hover{
+    filter: brightness(0.97);
+    transition: .2s ease;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nomeLinha{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badgeVerificado{
+    width: 18px;
+    height: 18px;
+}
+
+.nome{
+    font-weight: 600;
+    color: var(--preto);
+    font-size: var(--P);
+    text-decoration: none;
+}
+
+.nome:hover{
+    text-decoration: underline;
+}
+
+.username{
+    color: var(--cinza);
+    font-size: var(--PP);
+}
+
+.avatarDefault{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 48px;
+    height: 48px;
+    box-sizing: border-box;
+    border-radius: 999px;
+    border: 2px solid;
+    color: var(--primaria);
+}
+
+.avatar{
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 999px;
+}
+
+.btnSeguir{
+    height: 36px;
+    width: 9rem;
+    border-radius: 999px;
+    background-color: var(--verde);
+    color: var(--preto);
+    border: 2px solid var(--preto);
+    filter: drop-shadow(0px 4px var(--preto));
+    cursor: pointer;
+    transition: .1s ease;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnSeguir.ativo{
+    background-color: var(--cinza);
+    transform: translateY(4px);
+    filter: drop-shadow(0px 0px var(--preto));
+}
+
+.conteudoBtnSeguir{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.textoSeguir{
+    font-size: var(--PP);
+    font-weight: 600;
+}
+
+.iconSeguir path{
+    stroke-width: 2.25px;
+}
+
+.bio{
+    font-size: var(--PP);
+    color: var(--preto);
+    margin-top: 4px;
+}
+
+.divisor{
+    border: 1px solid var(--cinza-claro);
+    margin: 8px;
+}
