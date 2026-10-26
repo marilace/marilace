@@ -26,6 +26,7 @@ interface PostProps {
     compartilhamentos: number;
     verificado?: boolean;
     emblemas?: string[];
+    onVerComentarios?: () => void;
 }
 
 export function Post({
@@ -41,7 +42,8 @@ export function Post({
     comentarios,
     compartilhamentos,
     verificado = false,
-    emblemas
+    emblemas,
+    onVerComentarios
 }: PostProps) {
 
     const { curtido, alternarCurtida } = useCurtida(postId, authorId)
@@ -141,11 +143,17 @@ export function Post({
                 )}
             </div>
 
-            <p className={styles.conteudo}>{conteudo}</p>
+            <Link
+                to={`/forum/postagem/${postId}`}
+                aria-label={`Abrir publicação de ${nome}`}
+                style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}
+            >
+                <p className={styles.conteudo}>{conteudo}</p>
 
-            {imagemUrl && (
-            <img src={imagemUrl} className={styles.imagemPost} alt="Imagem do post" />
-            )}
+                {imagemUrl && (
+                    <img src={imagemUrl} className={styles.imagemPost} alt="Imagem da publicação" />
+                )}
+            </Link>
 
             <div className={styles.footer}>
                 <div className={styles.acoes}>
@@ -161,9 +169,9 @@ export function Post({
                     )}
                     <span className={styles.numeros}>{curtidas}</span>
                 </button>
-                                <button
+                <button
                     className={styles.iconBtn}
-                    onClick={() => setModalComentariosAberto(true)}
+                    onClick={() => onVerComentarios ? onVerComentarios() : setModalComentariosAberto(true)}
                     aria-label="Ver comentários"
                 >
                     <TbMessage className={styles.icon} size={24}/>
@@ -201,12 +209,14 @@ export function Post({
                 confirmar={excluir}
                 cancelar={() => setModalExcluirAberto(false)}
             />
-            <ModalComentarios
-                aberto={modalComentariosAberto}
-                postId={postId}
-                authorId={authorId}
-                fechar={() => setModalComentariosAberto(false)}
-            />
+            {!onVerComentarios && (
+                <ModalComentarios
+                    aberto={modalComentariosAberto}
+                    postId={postId}
+                    authorId={authorId}
+                    fechar={() => setModalComentariosAberto(false)}
+                />
+            )}
         </div>
         <hr className={styles.divisor}/>
         </>

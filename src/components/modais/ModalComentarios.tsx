@@ -21,7 +21,6 @@ type AlvoResposta = {
     username: string
 }
 
-// Botão de curtir de um comentário/resposta específico, com seu próprio contador
 function BotaoCurtirComentario({ postId, comentario }: { postId: string; comentario: ComentarioTipo }) {
     const { curtido, alternarCurtida } = useCurtidaComentario(postId, comentario.id, comentario.authorId)
 

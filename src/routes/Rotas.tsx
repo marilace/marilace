@@ -11,6 +11,7 @@ import { EsqueciSenha } from '../pages/EsqueciSenha.tsx'
 
 import { Principal } from '../components/layout/Principal.tsx'
 import { Forum } from '../pages/Forum.tsx'
+import { Postagem } from '../pages/Postagem.tsx'
 import { Oportunidades } from '../pages/Oportunidades.tsx'
 import { Salvos } from '../pages/Salvos.tsx'
 import { Pesquisa } from '../pages/Pesquisa.tsx'
@@ -44,6 +45,7 @@ export function Rotas(){
                 <Route path='alterar-senha' element={ <AlterarSenha/> }/>
                 <Route path='forum' element={ <RotaProtegida><Principal/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Forum/></RotaProtegida> }/>
+                    <Route path='postagem/:id' element={ <RotaProtegida><Postagem/></RotaProtegida> }/>
                     <Route path='oportunidades' element={ <RotaProtegida><Oportunidades/></RotaProtegida> }/>
                     <Route path='salvos' element={ <RotaProtegida><Salvos/></RotaProtegida> }/>
                     <Route path='blog' element={ <RotaProtegida><Blog/></RotaProtegida> }/>

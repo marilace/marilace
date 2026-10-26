@@ -183,7 +183,7 @@
 
 .username,
 .tempo{
-    font-size: 12px;
+    font-size: var(--footer);
     color: var(--cinza);
 }
 

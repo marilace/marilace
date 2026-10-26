@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {
     addDoc,
     collection,
@@ -16,6 +15,7 @@ import { banco } from '../firebase/FirebaseConexao'
 import { enviarImagem } from '../services/uploadImagem'
 import { type PublicacaoTipo } from '../types/Publicacao'
 import { useAutenticacao } from './useAutenticacao'
+import { useEffect, useState } from 'react'
 
 export function usePublicacoes() {
   const { usuario } = useAutenticacao()
@@ -120,4 +120,47 @@ export function usePublicacoesDoUsuario(uid: string | undefined) {
   }, [uid])
 
   return { publicacoes, carregando }
+}
+
+// Observa uma publicação específica em tempo real (posts/{postId}).
+export function usePublicacao(postId: string | undefined) {
+  const [publicacao, setPublicacao] = useState<PublicacaoTipo | null>(null)
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState(false)
+
+  useEffect(() => {
+    if (!postId) {
+      setPublicacao(null)
+      setCarregando(false)
+      setErro(true)
+      return
+    }
+
+    setCarregando(true)
+    setErro(false)
+
+    const unsubscribe = onSnapshot(
+      doc(banco, 'posts', postId),
+      (snap) => {
+        if (snap.exists()) {
+          setPublicacao({ id: snap.id, ...snap.data() } as PublicacaoTipo)
+          setErro(false)
+        } else {
+          setPublicacao(null)
+          setErro(true)
+        }
+        setCarregando(false)
+      },
+      (erroFirebase) => {
+        console.error('Erro ao buscar publicação:', erroFirebase)
+        setPublicacao(null)
+        setErro(true)
+        setCarregando(false)
+      }
+    )
+
+    return () => unsubscribe()
+  }, [postId])
+
+  return { publicacao, carregando, erro }
 }
