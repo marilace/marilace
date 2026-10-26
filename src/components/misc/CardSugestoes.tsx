@@ -1,6 +1,7 @@
 import styles from './CardSugestoes.module.css'
 import { CardPerfil } from './CardPerfil'
 import { useSugestoes } from '../../hooks/useSugestoes'
+import { Link } from 'react-router-dom'
 
 export function CardSugestoes(){
 
@@ -24,7 +25,12 @@ export function CardSugestoes(){
 
             </div>
             <hr className={ styles.linha} />
-            <button className={ styles.btnVerTodos }>Ver todos</button>
+            <Link 
+            to='seguir'
+            className={ styles.btnVerTodos }
+            >
+                Ver todos
+            </Link>
         </div>
     )
 }
