@@ -8,9 +8,9 @@ export interface VersaoInfo {
 }
 
 export const VERSAO_ATUAL: VersaoInfo = {
-    numero: '0.2.0-alpha',
-    codinome: 'Barbara',
-    data: '27 de setembro de 2026',
+    numero: '0.3.0-alpha',
+    codinome: 'Carol',
+    data: '28 de outubro de 2026',
 }
 
 export const HISTORICO_VERSOES: VersaoInfo[] = [
@@ -19,5 +19,10 @@ export const HISTORICO_VERSOES: VersaoInfo[] = [
         numero: '0.1.0-alpha',
         codinome: 'Ada',
         data: '13 de setembro de 2026',
+    },
+        {
+        numero: '0.2.0-alpha',
+        codinome: 'Barbara',
+        data: '27 de setembro de 2026',
     },
 ]

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { TbArrowLeft, TbAlertCircle } from 'react-icons/tb'
+import { TbArrowLeft } from 'react-icons/tb'
 import { Post } from '../components/posts/Post'
 import { ComentariosPost } from '../components/posts/ComentariosPost'
 import { usePublicacao } from '../hooks/usePublicacoes'

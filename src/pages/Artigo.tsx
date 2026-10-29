@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { TbArrowLeft, TbCalendar, TbBookmark, TbStar } from 'react-icons/tb'
+import { TbArrowLeft, TbBookmark, TbStar } from 'react-icons/tb'
 import { HeaderAnon } from '../components/headers/HeaderAnon'
 import { Chip } from '../components/misc/Chip'
 import { TelaCarregamento } from '../components/misc/TelaCarregamento'
