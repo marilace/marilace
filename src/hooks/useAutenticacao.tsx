@@ -276,6 +276,8 @@ const autenticarComGoogle = async (): Promise<string> => {
             authorDisplayName: string
             authorPhotoURL: string
             authorEmblemas: string[]
+            authorAdmin: boolean
+            authorVerificado: boolean
         }>
     ) => {
         if (!usuario) return
@@ -299,6 +301,18 @@ const autenticarComGoogle = async (): Promise<string> => {
 
             await batch.commit()
         }
+    }
+
+    const atualizarStatusAutorNosPosts = async (
+        admin: boolean,
+        verificado: boolean
+    ): Promise<void> => {
+        if (!usuario) throw new Error('Usuário não autenticado.')
+
+        await sincronizarDadosAutorNosPosts({
+            authorAdmin: admin,
+            authorVerificado: verificado
+        })
     }
 
     const atualizarPerfil = async (dados: { displayName: string; bio: string; pronomes: string; emblemas: string[] }): Promise<string> => {
@@ -447,7 +461,7 @@ const autenticarComGoogle = async (): Promise<string> => {
         return retorno
     }
 
-    return { 
+    return {
         criarAutenticacaoUsuario, 
         validarUsuario, 
         autenticarComGoogle, 
@@ -456,6 +470,7 @@ const autenticarComGoogle = async (): Promise<string> => {
         atualizarFotoPerfil, 
         alterarUsername, 
         atualizarLinks, 
+        atualizarStatusAutorNosPosts,
         recuperarSenha, 
         verificarCodigoRedefinicao, 
         redefinirSenha, 

@@ -25,16 +25,16 @@
 }
 
 .chip.ativo {
-    border: 3px solid var(--preto);
+    border: 3px solid var(--preto-fixo);
     transform: translateY(-1px);
 }
 
 .chip.ativo .texto{
-    color: var(--preto);
+    color: var(--preto-fixo);
 }
 
 .chip.ativo .estrela {
-    background-color: var(--preto);
+    background-color: var(--preto-fixo);
 }
 
 .texto {

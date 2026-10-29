@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     padding-inline: 5%;
-    padding-block: 2rem;
+    padding-block: 5rem 0;
     box-sizing: border-box;
 }
 
@@ -182,7 +182,7 @@
 }
 
 .imgMegafone{
-    width: 25%;
+    width: 24%;
     position: relative;
     top: -4rem;
     right: -5rem;
@@ -197,29 +197,30 @@
 
 .tituloArtigos h2{
     font-family: var(--base);
-    font-size: var(--G);
+    font-size: var(--GG);
     color: var(--primaria-escura);
 }
 
 .tituloArtigos span{
     font-family: var(--adicional);
-    font-size: var(--G);
+    font-size: var(--GG);
     color: var(--rosa);
     text-shadow:
         4px 4px 0 var(--branco),
         -4px 4px 0 var(--branco),
         -4px -4px 0 var(--branco),
         4px -4px 0 var(--branco);
-    margin-left: 8rem;
+    margin-left: 12rem;
+    z-index: 2;
 }
 
 .imgTelefone{
     width: 28rem;
     position: relative;
-    top: -1.4rem;
-    right: -10.5rem;
+    top: -1rem;
+    right: -16rem;
     margin-bottom: 32px;
-    z-index: -999;
+    z-index: 1;
 }
 
 .tituloCategoria{

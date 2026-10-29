@@ -30,7 +30,7 @@
     gap: 16px;
     padding: 18px;
     border-radius: 32px;
-    border: 2px solid var(--cinza);
+    border: 2px solid var(--cinza-claro);
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
@@ -250,7 +250,8 @@ main {
     font-size: var(--PP);
     font-weight: 500;
     border-radius: 999px;
-    border: 2px solid var(--preto);
+    border: 2px solid var(--preto-fixo);
+    color: var(--preto-fixo);
     cursor: pointer;
     transition: opacity 0.2s ease;
 }

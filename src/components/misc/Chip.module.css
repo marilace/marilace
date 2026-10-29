@@ -6,18 +6,18 @@
     width: fit-content;
     padding: 12px 24px;
     border-radius: 999px;
-    border: 3px solid var(--preto);
+    border: 3px solid var(--preto-fixo);
 }
 
 .texto{
     font-family: var(--base);
     font-size: var(--P);
-    color: var(--preto);
+    color: var(--preto-fixo);
     font-weight: 600;
 }
 
 .estrela{
-    background-color: var(--preto);
+    background-color: var(--preto-fixo);
 
     mask-image: url('../../assets/estrela.svg');
     -webkit-mask-image: url('../../assets/estrela.svg');

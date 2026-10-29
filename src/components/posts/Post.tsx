@@ -12,21 +12,23 @@ import { Emblemas } from "../misc/Emblemas";
 import { useSalvo } from "../../hooks/useSalvos";
 import { ModalComentarios } from "../modais/ModalComentarios";
 
+
 interface PostProps {
-    postId: string;
-    authorId: string;
-    avatarSrc?: string;
-    nome: string;
-    username: string;
-    tempo: string;
-    imagemUrl?: string | null;
-    conteudo: string;
-    curtidas: number;
-    comentarios: number;
-    compartilhamentos: number;
-    verificado?: boolean;
-    emblemas?: string[];
-    onVerComentarios?: () => void;
+    postId: string
+    authorId: string
+    avatarSrc?: string
+    nome: string
+    username: string
+    tempo: string
+    imagemUrl?: string | null
+    conteudo: string
+    curtidas: number
+    comentarios: number
+    compartilhamentos: number
+    admin?: boolean
+    verificado?: boolean
+    emblemas?: string[]
+    onVerComentarios?: () => void
 }
 
 export function Post({
@@ -41,6 +43,7 @@ export function Post({
     curtidas,
     comentarios,
     compartilhamentos,
+    admin = false,
     verificado = false,
     emblemas,
     onVerComentarios
@@ -90,9 +93,18 @@ export function Post({
 
                 <div className={styles.headerInfo}>
                     <div className={styles.nomeLinha}>
-                        <h1 className={styles.nome}>{nome}</h1>
-                        
-                        {verificado && <img src={badgeVerificado} className={styles.badgeVerificado} />}
+                        <h1 className={`${styles.nome} ${admin ? styles.nomeAdmin : ''}`}>
+                            {nome}
+                        </h1>
+
+                        {verificado && (
+                            <img
+                                src={badgeVerificado}
+                                className={styles.verificado}
+                                alt="Perfil verificado"
+                            />
+                        )}
+
                         <Emblemas ids={emblemas} />
                     </div>
 

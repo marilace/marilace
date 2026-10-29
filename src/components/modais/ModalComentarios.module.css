@@ -22,7 +22,7 @@
     max-width: 100%;
     max-height: 80vh;
     background: var(--branco);
-    border: 2px solid var(--cinza);
+    border: 2px solid var(--cinza-claro);
     border-radius: 24px;
     font-family: var(--base);
     overflow: hidden;
@@ -345,9 +345,9 @@
     justify-content: center;
     border-radius: 999px;
     background-color: var(--verde);
-    color: var(--preto);
-    border: 2px solid var(--preto);
-    filter: drop-shadow(0px 3px var(--preto));
+    color: var(--preto-fixo);
+    border: 2px solid var(--preto-fixo);
+    filter: drop-shadow(0px 3px var(--preto-fixo));
     cursor: pointer;
     transition: transform 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
 }

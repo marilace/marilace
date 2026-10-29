@@ -13,7 +13,7 @@
     background-color: var(--branco);
     padding: 8px;
     border-radius: 12px;
-    border: 1px solid var(--cinza);
+    border: 1px solid var(--cinza-claro);
     user-select: none;
     z-index: 999;
     min-width: 140px;

@@ -57,6 +57,8 @@ export function Forum(){
                                 curtidas={post.likesCount}
                                 comentarios={post.commentsCount}
                                 compartilhamentos={0}
+                                admin={post.authorAdmin}
+                                verificado={post.authorVerificado}
                             />
                         ))}
                     </div>

@@ -4,7 +4,7 @@
     height: 32px;
     padding: 0;
     border-radius: 999px;
-    border: 2px solid var(--preto);
+    border: 2px solid var(--preto-fixo);
     background-color: var(--cinza);
     cursor: pointer;
     flex-shrink: 0;
@@ -23,7 +23,7 @@
     height: 18px;
     border-radius: 50%;
     background-color: var(--branco);
-    border: 2px solid var(--preto);
+    border: 2px solid var(--preto-fixo);
     transition: transform .2s ease;
 }
 

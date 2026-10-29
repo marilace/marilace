@@ -2,7 +2,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { LandingPage } from '../pages/LandingPage.tsx'
 import { About } from '../pages/About.tsx'
+
 import { Blog } from '../pages/Blog.tsx'
+import { Artigo } from '../pages/Artigo.tsx'
+
+import { AdminLayout } from '../components/layout/AdminLayout.tsx'
+import { AdminDashboard } from '../pages/AdminDashboard.tsx'
+import { AdminArtigos } from '../pages/AdminArtigos.tsx'
+import { NovoArtigo } from '../pages/NovoArtigo.tsx'
 
 import { Login } from '../pages/Login.tsx'
 import { Registro } from '../pages/Registro.tsx'
@@ -39,11 +46,22 @@ export function Rotas(){
             <Routes>
                 <Route path='/' element={ <LandingPage/> } />
                 <Route path='about' element={ <About/> }/>
+
                 <Route path='blog' element={ <Blog/> }/>
+                <Route path='blog/:id' element={ <Artigo/> }/>
+
+                <Route path="admin" element={<RotaProtegida><AdminLayout/></RotaProtegida>}>
+                    <Route index element={ <RotaProtegida><AdminDashboard /></RotaProtegida>}/>
+                    <Route path='artigos' element={ <RotaProtegida><AdminArtigos/></RotaProtegida> }/>
+                    <Route path='artigos/novo' element={ <RotaProtegida><NovoArtigo/></RotaProtegida> }/>
+                </Route>
+
                 <Route path='login' element={ <Login/> }/>
                 <Route path='register' element={ <Registro/> }/>
+
                 <Route path='esqueci-senha' element={ <EsqueciSenha/> }/>
                 <Route path='alterar-senha' element={ <AlterarSenha/> }/>
+
                 <Route path='forum' element={ <RotaProtegida><Principal/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Forum/></RotaProtegida> }/>
                     <Route path='postagem/:id' element={ <RotaProtegida><Postagem/></RotaProtegida> }/>
@@ -51,13 +69,17 @@ export function Rotas(){
                     <Route path='oportunidades' element={ <RotaProtegida><Oportunidades/></RotaProtegida> }/>
                     <Route path='salvos' element={ <RotaProtegida><Salvos/></RotaProtegida> }/>
                     <Route path='blog' element={ <RotaProtegida><Blog/></RotaProtegida> }/>
+                    <Route path='blog/:id' element={ <RotaProtegida><Artigo/></RotaProtegida> }/>
                     <Route path='pesquisa' element={ <RotaProtegida><Pesquisa/></RotaProtegida> }/>
                 </Route>
+
                 <Route path='/:username' element={ <RotaProtegida><PerfilLayout/></RotaProtegida> }>
                     <Route index element={ <RotaProtegida><Profile/></RotaProtegida> }/>
                     <Route path='portfolio' element={ <RotaProtegida><Portfolio/></RotaProtegida> }/>
                 </Route>
+
                 <Route path='notificacoes' element={ <RotaProtegida><Notificacoes/></RotaProtegida> }/>
+
                 <Route path='configuracoes' element={ <RotaProtegida><ConfigLayout/></RotaProtegida> }>
                     <Route index element={ <Navigate to="acessibilidade" replace /> } />
                     <Route path='acessibilidade' element={ <RotaProtegida><ConfigAcessibilidade/></RotaProtegida> }/>
@@ -66,6 +88,7 @@ export function Rotas(){
                     <Route path='privacidade' element={ <RotaProtegida><ConfigPrivacidade/></RotaProtegida> }/>
                     <Route path='sobre-o-sistema' element={<RotaProtegida><ConfigSobre/></RotaProtegida>} />
                 </Route>
+
             </Routes>
         </BrowserRouter>
     )

@@ -20,7 +20,7 @@
     background: var(--branco);
     font-family: var(--base);
     text-align: justify;
-    border: 2px solid var(--cinza);
+    border: 2px solid var(--cinza-claro);
     border-radius: 32px;
     width: 100%;
     max-width: 700px;
@@ -35,7 +35,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 28px;
-    border-bottom: 2px solid var(--cinza);
+    border-bottom: 2px solid var(--cinza-claro);
 }
 
 .cabecalho h2 {
@@ -129,17 +129,17 @@
     font-weight: 700;
     padding: 10px 40px;
     border-radius: 999px;
-    border: 3px solid var(--preto);
+    border: 3px solid var(--preto-fixo);
     background-color: var(--verde);
-    color: var(--preto);
-    filter: drop-shadow(0px 5px var(--preto));
+    color: var(--preto-fixo);
+    filter: drop-shadow(0px 5px var(--preto-fixo));
     cursor: pointer;
     transition: .2s ease;
 }
 
 .btnAceitar:hover:not(:disabled) {
     transform: translateY(2px);
-    filter: drop-shadow(0px 3px var(--preto));
+    filter: drop-shadow(0px 3px var(--preto-fixo));
 }
 
 .btnAceitar:disabled {

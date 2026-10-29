@@ -23,4 +23,5 @@ export type UsuarioTipo = {
     verificado?: boolean
     emblemas?: string[]
     links?: LinksPerfil
+    admin?: boolean
 }

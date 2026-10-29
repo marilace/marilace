@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import {
     addDoc,
+    getDoc,
+    doc,
     collection,
     serverTimestamp,
     query,
@@ -38,6 +40,20 @@ export function useArtigos() {
     }, [])
 
     return { artigos, carregando }
+}
+
+export function useArtigo(id: string | undefined) {
+    const [artigo, setArtigo] = useState<ArtigoTipo | null>(null)
+    const [carregando, setCarregando] = useState(true)
+
+    useEffect(() => {
+        if (!id) { setCarregando(false); return }
+        getDoc(doc(banco, 'artigos', id))
+            .then((snap) => setArtigo(snap.exists() ? ({ id: snap.id, ...snap.data() } as ArtigoTipo) : null))
+            .finally(() => setCarregando(false))
+    }, [id])
+
+    return { artigo, carregando }
 }
 
 // Cadastra um novo artigo no Firestore.

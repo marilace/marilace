@@ -22,6 +22,7 @@
   --verde: #d5f299;
   --branco: #fffef2;
   --preto: #262424;
+  --preto-fixo: #262424;
   --cinza: #beb8c4;
   --cinza-claro: #f7efff;
   --erro: #e53e3e;
@@ -34,8 +35,8 @@
   /* TAMANHOS */
   --titulo-landing: clamp(5.5rem, 12vw, 12rem);
   --XG: clamp(4rem, 8vw, 8rem);
-  --GG: clamp(3rem, 6vw, 6rem);
-  --G: clamp(1.75rem, 2vw, 2rem);
+  --GG: clamp(3rem, 5vw, 5rem);
+  --G: clamp(1.75rem, 3vw, 3rem);
   --M: clamp(1.25rem, 1.5vw, 1.5rem);
   --P: clamp(1rem, 1.1vw, 1.1rem);
   --PP: clamp(0.85rem, .95vw, .95rem);
@@ -110,6 +111,7 @@ img{
 .modo-escuro {
   --branco: #1c1a22;
   --preto: #f2f0e8;
+  --preto-fixo: #030305;
   --cinza: #9f9ca4;
   --cinza-claro: #353439;
 

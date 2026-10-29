@@ -127,13 +127,13 @@
     font-size: var(--PP);
     font-weight: 700;
     cursor: pointer;
-    border: 2px solid var(--preto);
+    border: 2px solid var(--preto-fixo);
     transition: .2s ease;
 }
 
 .btnSair{
     background-color: var(--verde);
-    color: var(--preto);
+    color: var(--preto-fixo);
 }
 
 .btnExcluir{
@@ -316,7 +316,7 @@ button.linkLegal {
     color: var(--cinza);
     margin-top: 6rem;
     padding-top: 20px;
-    border-top: 2px solid var(--cinza);
+    border-top: 2px solid var(--cinza-claro);
 }
 
 .estrela{

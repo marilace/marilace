@@ -2,7 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Impede a rolagem na tela inteira */
+    overflow: hidden;
     background-color: var(--branco);
 }
 
@@ -44,7 +44,7 @@
     gap: 32px;
     width: 100%;
     flex: 1;
-    min-height: 0; /* Permite a redução do container flexível */
+    min-height: 0;
 }
 
 /* MENU LATERAL */
@@ -57,7 +57,7 @@
     width: 300px;
     flex-shrink: 0;
     background-color: var(--branco);
-    border-right: 2px solid var(--cinza);
+    border-right: 2px solid var(--cinza-claro);
 
     padding: 0px 24px 0px 0px;
 }

@@ -8,6 +8,7 @@ import { useArtigos } from '../hooks/useArtigos';
 import { useAutenticacao } from '../hooks/useAutenticacao';
 import { artigosExemplo } from '../utils/artigosExemplo';
 import { TbChevronRight } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom'
 
 import logoComp from '../assets/img/logo-compacta.svg'
 import telefone from '../assets/img/telefone.png'
@@ -29,12 +30,14 @@ function corDaCategoria(categoria: string) {
 export function Blog(){
     const { artigos: artigosBanco, carregando } = useArtigos()
     const { usuario } = useAutenticacao()
+    const navegar = useNavigate()
+
+    const abrirArtigo = (id: string) => {
+        navegar(`${id}`)
+    }
 
     if (carregando) return <TelaCarregamento />
 
-    // Quando acessado de dentro da área logada (/forum/blog), o header e o
-    // footer públicos não aparecem, já que o HeaderUser e o Menu do layout
-    // Principal já cuidam da navegação nesse caso.
     const logada = Boolean(usuario)
 
     // Enquanto não existem artigos cadastrados no Firestore, mostramos
@@ -72,7 +75,13 @@ export function Blog(){
 
                     <section className={ styles.artigosDestaque }>
                         {destaques[0] && (
-                            <article className={ styles.artigo1 }>
+                            <article
+                                className={styles.artigo1}
+                                onClick={() => abrirArtigo(destaques[0].id)}
+                                role="link"
+                                tabIndex={0}
+                                aria-label={`Ler artigo: ${destaques[0].titulo}`}
+                            >
                                 <img src={ destaques[0].imagemURL }/>
                                 <div className={ styles.containerChip }>
                                     {destaques[0].categorias.map((categoria) => (

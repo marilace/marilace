@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ModalMensagem } from '../components/modais/ModalMensagem'
 import { useEffect, useState } from 'react'
 import { useAutenticacao } from '../hooks/useAutenticacao'
+import { BtnGoogle } from '../components/buttons/BtnGoogle'
 
 import imgLogin from '../assets/img/colagem-cadastro.png'
 
@@ -140,7 +141,7 @@ export function Login() {
                         </div>
                             
                             <Link
-                                 to="/esqueci-senha"
+                                to="/esqueci-senha"
                                 className={styles.esqueci}
                                     >
                             <TbHelpCircle
@@ -156,6 +157,7 @@ export function Login() {
                         >
                             Entrar
                         </button>
+                        <BtnGoogle/>
 
                     </form>
 

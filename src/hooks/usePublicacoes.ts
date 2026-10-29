@@ -28,18 +28,20 @@ export function usePublicacoes() {
       imageURL = await enviarImagem(arquivoImagem)
     }
 
-    const publicacaoRef = await addDoc(collection(banco, 'posts'), {
+  const publicacaoRef = await addDoc(collection(banco, 'posts'), {
       authorId: usuario.uid,
       authorUsername: usuario.username,
       authorDisplayName: usuario.nome,
       authorPhotoURL: usuario.photoURL,
       authorEmblemas: usuario.emblemas ?? [],
+      authorAdmin: usuario.admin === true,
+      authorVerificado: usuario.verificado === true,
       text: texto,
       imageURL,
       likesCount: 0,
       commentsCount: 0,
       createdAt: serverTimestamp()
-    })
+  })
 
     return publicacaoRef.id
   }

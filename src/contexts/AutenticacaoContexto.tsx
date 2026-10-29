@@ -52,7 +52,9 @@ export function AutenticacaoProvider({ children }: AutenticacaoProviderProps) {
                     photoURL: dados.photoURL,
                     followersCount: dados.followersCount,
                     followingCount: dados.followingCount,
+                    verificado: dados.verificado === true,
                     emblemas: dados.emblemas ?? [],
+                    admin: dados.admin === true,
                 })
             } else {
                 setUsuario(null)

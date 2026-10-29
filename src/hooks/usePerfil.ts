@@ -18,7 +18,7 @@ export function usePerfil(username: string | undefined) {
             collection(banco, 'users'),
             where('username', '==', username.toLowerCase()),
             limit(1)
-        )
+        )   
 
         const unsubscribe = onSnapshot(q, (snap) => {
             if (snap.empty) {
@@ -39,6 +39,8 @@ export function usePerfil(username: string | undefined) {
                     followingCount: dados.followingCount,
                     emblemas: dados.emblemas ?? [],
                     links: dados.links ?? {},
+                    admin: dados.admin === true,
+                    verificado: dados.verificado === true
                 })
             }
             setCarregando(false)

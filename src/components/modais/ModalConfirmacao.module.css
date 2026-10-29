@@ -27,7 +27,7 @@
     gap: 8px;
     padding: 32px;
     border-radius: 32px;
-    border: 2px solid var(--cinza);
+    border: 2px solid var(--cinza-claro);
     width: 90%;
     max-width: 500px;
     box-sizing: border-box;
@@ -100,14 +100,14 @@
 
 .btnConfirmar{
     background-color: var(--rosa);
-    color: var(--preto);
-    border: 2px solid var(--preto);
-    filter: drop-shadow(0px 4px var(--preto));
+    color: var(--preto-fixo);
+    border: 2px solid var(--preto-fixo);
+    filter: drop-shadow(0px 4px var(--preto-fixo));
 }
 
 .btnConfirmar:hover:not(:disabled){
     transform: translateY(2px);
-    filter: drop-shadow(0px 2px var(--preto));
+    filter: drop-shadow(0px 2px var(--preto-fixo));
 }
 
 .btnCancelar:disabled,

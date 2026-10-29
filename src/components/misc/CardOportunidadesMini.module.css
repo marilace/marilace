@@ -14,7 +14,7 @@
 }
 
 .item:hover{
-    transform: translateX(2px);
+    filter: brightness(0.95);
 }
 
 .icone{
@@ -25,8 +25,8 @@
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    border: 2px solid var(--preto);
-    color: var(--preto);
+    border: 2px solid var(--preto-fixo);
+    color: var(--preto-fixo);
 }
 
 .info{

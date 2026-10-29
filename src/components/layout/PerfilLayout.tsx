@@ -20,6 +20,7 @@ import { NaoEncontrado } from '../misc/NaoEncontrado'
 import { Emblemas } from '../misc/Emblemas'
 import { useSeguir } from '../../hooks/useSeguir'
 import { ModalLinks } from '../modais/ModalLinks'
+import badgeVerificado from '../../assets/img/verificado.png'
 
 
 export function PerfilLayout(){
@@ -67,8 +68,16 @@ export function PerfilLayout(){
 
                         <div className={ styles.mainInfo}>
                             <div className={styles.nomeEmblemas}>
-                                <h1>{perfil.nome}</h1>
+
+                                <h1 className={perfil.admin ? styles.nomeAdmin : ''}>
+                                    {perfil.nome}
+                                </h1>
+
+                                {perfil.verificado && (
+                                    <img src={badgeVerificado} className={styles.verificado}/>
+                                )}
                                 <Emblemas ids={perfil.emblemas}/>
+
                                 {perfil.pronomes && (
                                     <span className={ styles.pronomes }>
                                         ({perfil.pronomes})
