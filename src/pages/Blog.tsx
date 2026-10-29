@@ -94,7 +94,13 @@ export function Blog(){
                         )}
 
                         {destaques[1] && (
-                            <article className={ styles.artigo2 }>
+                            <article 
+                                className={ styles.artigo2 }
+                                onClick={() => abrirArtigo(destaques[1].id)}
+                                role="link"
+                                tabIndex={0}
+                                aria-label={`Ler artigo: ${destaques[1].titulo}`}
+                            >
                                 <img src={ destaques[1].imagemURL }/>
                                 <div className={ styles.conteudoArtigo }>
                                     <div className={ styles.containerChip }>
@@ -109,7 +115,13 @@ export function Blog(){
                         )}
 
                         {destaques[2] && (
-                            <article className={ styles.artigo3 }>
+                            <article
+                                className={styles.artigo3}
+                                onClick={() => abrirArtigo(destaques[2].id)}
+                                role="link"
+                                tabIndex={0}
+                                aria-label={`Ler artigo: ${destaques[2].titulo}`}
+                            >
                                 <img src={ destaques[2].imagemURL } />
                                 <div className={ styles.conteudoArtigo }>
                                     <div className={ styles.containerChip }>

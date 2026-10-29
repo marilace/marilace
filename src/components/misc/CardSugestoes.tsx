@@ -26,7 +26,7 @@ export function CardSugestoes(){
             </div>
             <hr className={ styles.linha} />
             <Link 
-            to='seguir'
+            to='/forum/seguir'
             className={ styles.btnVerTodos }
             >
                 Ver todos
