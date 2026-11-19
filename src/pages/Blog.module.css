@@ -159,6 +159,11 @@
     font-weight: 700;
 }
 
+.containerChip > div > div {
+    height: 6px !important;
+    width: 6px !important;
+}
+
 .divisoria{
     background-color: var(--primaria);
     display: flex;
@@ -173,7 +178,7 @@
 }
 
 .artigos{
-    margin: 6rem 2rem;
+    margin: 5rem 2rem;
     width: calc(100% - 4rem);
 }
 
@@ -181,18 +186,29 @@
     display: flex;
 }
 
+.containerCategoria{
+    margin-top: -7.5rem;
+}
+
 .imgMegafone{
-    width: 24%;
+    width: 21%;
     position: relative;
-    top: -4rem;
-    right: -5rem;
+    top: -2.5rem;
+    right: -17rem;
+}
+
+.headingArtigos{
+    width: 100%;
 }
 
 .tituloArtigos{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     line-height: .5;
-    width: 25rem;
+    width: 100%;
+    margin-left: -13rem;
 }
 
 .tituloArtigos h2{
@@ -215,10 +231,10 @@
 }
 
 .imgTelefone{
-    width: 28rem;
+    width: 20rem;
     position: relative;
-    top: -1rem;
-    right: -16rem;
+    top: -0.5rem;
+    right: -30rem;
     margin-bottom: 32px;
     z-index: 1;
 }

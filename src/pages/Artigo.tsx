@@ -54,7 +54,7 @@ export function Artigo() {
                 </section>
             ) : (
                 <>
-                    <div className={styles.barraTopo}>
+                    <div className={`${styles.barraTopo} ${logada ? styles.barraTopoLogada : ''}`}>
                         <button className={styles.linkVoltar} onClick={() => navegacao(-1)}>
                             <TbArrowLeft aria-hidden="true" />
                             Voltar ao blog
@@ -64,7 +64,7 @@ export function Artigo() {
                     <article className={styles.artigo}>
                         <header className={styles.cabecalho}>
                             <h3 className={styles.selo}><span>MariLace</span> / Blog</h3>
-
+                            <h1>{artigo.titulo}</h1>
                             <div className={styles.categorias} aria-label="Categorias do artigo">
                                 {artigo.categorias?.map((categoria) => (
                                     <Chip
@@ -75,8 +75,6 @@ export function Artigo() {
                                     />
                                 ))}
                             </div>
-
-                            <h1>{artigo.titulo}</h1>
                             <p className={styles.descricao}>{artigo.descricao}</p>
                         </header>
 

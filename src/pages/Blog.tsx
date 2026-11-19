@@ -69,7 +69,11 @@ export function Blog(){
 
                     {usandoExemplos && (
                         <span className={ styles.containerChip }>
-                            <Chip texto="exemplos ilustrativos" cor="var(--cinza)" />
+                            <Chip 
+                            texto="exemplos ilustrativos" 
+                            cor="var(--cinza)"
+                            className={styles.chipPequeno}
+                            />
                         </span>
                     )}
 
@@ -163,25 +167,27 @@ export function Blog(){
                         )}
                     </div>
                 </div>
-
-                {categorias.map((categoria) => (
-                    <section className={ styles.categoria } key={categoria}>
-                        <h2 className={ styles.tituloCategoria }>{ categoria.toUpperCase() }</h2>
-                        <div className={ styles.artigosCategoria }>
-                            {artigos
-                                .filter((artigo) => artigo.categorias?.includes(categoria))
-                                .map((artigo) => (
-                                    <ArtigoBlog
-                                        key={artigo.id}
-                                        id={artigo.id}
-                                        src={artigo.imagemURL}
-                                        titulo={artigo.titulo}
-                                        descricao={artigo.descricao}
-                                    />
-                                ))}
-                        </div>
-                    </section>
-                ))}
+                
+                <div className={ styles.containerCategoria }>
+                    {categorias.map((categoria) => (
+                        <section className={ styles.categoria } key={categoria}>
+                            <h2 className={ styles.tituloCategoria }>{ categoria.toUpperCase() }</h2>
+                            <div className={ styles.artigosCategoria }>
+                                {artigos
+                                    .filter((artigo) => artigo.categorias?.includes(categoria))
+                                    .map((artigo) => (
+                                        <ArtigoBlog
+                                            key={artigo.id}
+                                            id={artigo.id}
+                                            src={artigo.imagemURL}
+                                            titulo={artigo.titulo}
+                                            descricao={artigo.descricao}
+                                        />
+                                    ))}
+                            </div>
+                        </section>
+                    ))}
+                </div>
             </div>
             {!logada && <FooterAnon/>}
         </main>

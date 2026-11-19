@@ -23,7 +23,7 @@
     display: flex;
     gap: 10px;
     align-self: flex-start;
-    margin-bottom: 28px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
     padding: 6px;
     border-radius: 999px;
@@ -32,26 +32,8 @@
 
 .containerItens {
     width: 100%;
-    column-count: 1;
-    column-gap: 20px;
-}
-
-@media (min-width: 700px) {
-    .containerItens {
-        column-count: 2;
-    }
-}
-
-@media (min-width: 1150px) {
-    .containerItens {
-        column-count: 3;
-    }
-}
-
-@media (min-width: 1500px) {
-    .containerItens {
-        column-count: 4;
-    }
+    display: flex;
+    flex-direction: column;
 }
 
 .itemEntrada {
@@ -59,15 +41,9 @@
     width: 100%;
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
-    margin-bottom: 20px;
     animation: entrarItem 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
     animation-delay: var(--atraso, 0ms);
-    border-radius: 20px;
     transition: box-shadow 0.2s ease;
-}
-
-.itemEntrada:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
 }
 
 @keyframes entrarItem {

@@ -13,6 +13,10 @@
     transition: all .18s ease;
 }
 
+.barraTopoLogada {
+    margin-top: 1.5rem;
+}
+
 .linkVoltar,
 .botaoVoltar {
     display: inline-flex;
