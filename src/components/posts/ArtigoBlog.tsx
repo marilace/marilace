@@ -18,7 +18,7 @@ export function ArtigoBlog({ id, src, titulo, descricao }: ArtigoBlogProps) {
     const { salvo, alternarSalvo, salvando } = useSalvo(id, 'artigo')
     const [favorito, setFavorito] = useState(false)
 
-    const abrirArtigo = () => navigate(`/blog/${id}`)
+    const abrirArtigo = () => navigate(`${id}`)
 
     const aoClicarSalvar = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
