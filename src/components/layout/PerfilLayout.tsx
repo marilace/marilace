@@ -47,7 +47,12 @@ export function PerfilLayout(){
             
             <main className={ styles.mainPerfil }>
                 <div className={ styles.headerPerfil }>
-                    <img src="https://i.imgur.com/6vAOHB9.png" className={ styles.fundo } />
+                    {perfil.bannerURL ? (
+                        <img src={perfil.bannerURL} className={ styles.fundo } />
+                    ) : (
+                        <img src="https://i.imgur.com/6vAOHB9.png" className={ styles.fundo } />
+                    )}
+                    
 
                     <div className={ styles.avatarSeguidores}>
                         {perfil.photoURL ? (

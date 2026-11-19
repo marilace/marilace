@@ -11,7 +11,7 @@ type ModalEditarPerfilProps = {
 }
 
 export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
-    const { usuario, atualizarPerfil, atualizarFotoPerfil, alterarUsername } = useAutenticacao()
+    const { usuario, atualizarPerfil, atualizarFotoPerfil, atualizarBanner, alterarUsername } = useAutenticacao()
 
     const [displayName, setDisplayName] = useState('')
     const [username, setUsername] = useState('')
@@ -21,11 +21,14 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
 
     const [arquivoFoto, setArquivoFoto] = useState<File | null>(null)
     const [previewFoto, setPreviewFoto] = useState<string | null>(null)
+    const [arquivoBanner, setArquivoBanner] = useState<File | null>(null)
+    const [previewBanner, setPreviewBanner] = useState<string | null>(null)
 
     const [salvando, setSalvando] = useState(false)
     const [erro, setErro] = useState('')
 
     const inputFotoRef = useRef<HTMLInputElement>(null)
+    const inputBannerRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
         if (aberto && usuario) {
@@ -36,6 +39,8 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
             setEmblemas(usuario.emblemas ?? [])
             setArquivoFoto(null)
             setPreviewFoto(null)
+            setArquivoBanner(null)
+            setPreviewBanner(null)
             setErro('')
         }
     }, [aberto, usuario])
@@ -57,6 +62,13 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
         setPreviewFoto(URL.createObjectURL(arquivo))
     }
 
+    const aoSelecionarBanner = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const arquivo = e.target.files?.[0]
+        if (!arquivo) return
+        setArquivoBanner(arquivo)
+        setPreviewBanner(URL.createObjectURL(arquivo))
+    }
+
     const salvar = async () => {
         if (!displayName.trim()) {
             setErro('O nome não pode ficar vazio.')
@@ -71,13 +83,22 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
         setErro('')
 
         try {
-            // 1. Foto
+            // 1.1. Foto
             if (arquivoFoto) {
                 const retornoFoto = await atualizarFotoPerfil(arquivoFoto)
                 if (retornoFoto !== 'sucesso') {
                 setErro(retornoFoto)
                 setSalvando(false)
                 return
+                }
+            }
+            // 1.2. Banner
+            if (arquivoBanner) {
+                const retornoBanner = await atualizarBanner(arquivoBanner)
+                if (retornoBanner !== 'sucesso') {
+                    setErro(retornoBanner)
+                    setSalvando(false)
+                    return
                 }
             }
             // 2. Username
@@ -123,6 +144,28 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                 </div>
 
                 <div className={styles.containerFoto}>
+                    <div className={styles.bannerWrapper}>
+                        {previewBanner || usuario?.bannerURL ? (
+                            <img
+                                src={previewBanner ?? usuario?.bannerURL}
+                                className={styles.banner}
+                                alt="Banner de perfil"
+                            />
+                        ) : (
+                            <img src="https://i.imgur.com/6vAOHB9.png" className={ styles.banner } />
+                        )}
+                        <label htmlFor="inputBanner" className={styles.btnTrocarBanner}>
+                            Alterar banner
+                        </label>
+                        <input
+                        ref={inputBannerRef}
+                            id="inputBanner"
+                            type="file"
+                            accept="image/*"
+                            onChange={aoSelecionarBanner}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
                     <div className={styles.avatarWrapper}>
                         {previewFoto || usuario?.photoURL ? (
                             <img
@@ -146,7 +189,7 @@ export function ModalEditarPerfil({ aberto, fechar }: ModalEditarPerfilProps) {
                             accept="image/*"
                             onChange={aoSelecionarFoto}
                             style={{ display: 'none' }}
-                            />
+                        />
                     </div>
                 </div>
 

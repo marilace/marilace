@@ -50,6 +50,7 @@ export function AutenticacaoProvider({ children }: AutenticacaoProviderProps) {
                     bio: dados.bio,
                     pronomes: dados.pronomes,
                     photoURL: dados.photoURL,
+                    bannerURL: dados.bannerURL,
                     followersCount: dados.followersCount,
                     followingCount: dados.followingCount,
                     verificado: dados.verificado === true,

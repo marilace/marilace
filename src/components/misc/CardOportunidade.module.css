@@ -88,7 +88,7 @@
     font-family: var(--base);
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--preto);
+    color: var(--cinza);
     background-color: var(--branco);
     border: 2px solid var(--cinza);
     border-radius: 999px;

@@ -343,6 +343,18 @@ const autenticarComGoogle = async (): Promise<string> => {
         return retorno
     }
 
+    const atualizarBanner = async (arquivo: File): Promise<string> => {
+        let retorno = 'sucesso'
+        try {
+            if (!usuario) throw new Error('Usuário não autenticado.')
+            const bannerURL = await enviarImagem(arquivo)
+            await updateDoc(doc(banco, 'users', usuario.uid), { bannerURL })
+        } catch (error) {
+            retorno = `Erro ao atualizar banner! (${error})`
+        }
+        return retorno
+    }
+
     const alterarUsername = async (novoUsername: string): Promise<string> => {
         let retorno = 'sucesso'
         try {
@@ -468,6 +480,7 @@ const autenticarComGoogle = async (): Promise<string> => {
         deslogar, 
         atualizarPerfil, 
         atualizarFotoPerfil, 
+        atualizarBanner,
         alterarUsername, 
         atualizarLinks, 
         atualizarStatusAutorNosPosts,

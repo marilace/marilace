@@ -18,6 +18,7 @@ export type UsuarioTipo = {
     bio?: string
     pronomes?: string
     photoURL?: string
+    bannerURL?: string
     followersCount?: number
     followingCount?: number
     verificado?: boolean

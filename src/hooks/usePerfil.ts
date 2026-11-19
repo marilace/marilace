@@ -35,6 +35,7 @@ export function usePerfil(username: string | undefined) {
                     bio: dados.bio,
                     pronomes: dados.pronomes,
                     photoURL: dados.photoURL,
+                    bannerURL: dados.bannerURL,
                     followersCount: dados.followersCount,
                     followingCount: dados.followingCount,
                     emblemas: dados.emblemas ?? [],
