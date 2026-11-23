@@ -100,17 +100,17 @@
     font-weight: 600;
     background-color: transparent;
     color: var(--cinza);
+    border: 2px solid var(--cinza);
     border-radius: 999px;
-    border: 2px solid transparent;
     padding: 4px 8px;
     display: flex;
     cursor: pointer;
     transition: .2s ease;
+    mix-blend-mode: multiply;
 }
 
 .btnTrocarBanner:hover{
-    background-color: var(--branco);
-    border: 2px solid var(--cinza);
+    filter:brightness(0.7)
 }
 
 .avatarWrapper {
